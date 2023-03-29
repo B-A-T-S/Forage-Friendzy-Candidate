@@ -196,7 +196,7 @@ public class GameManager : NetworkBehaviour
         {
             //behaviours we only want to poll periodically
 
-            CheckNighttime();
+            //CheckNighttime();
 
             FoodHeld();
 
