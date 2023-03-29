@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class PooledAudioSourceUtil : MonoBehaviour
 {
+
+    [Tooltip("The audio type this utility will request")]
+    [SerializeField] private AudioCatagories toRequest;
+
+    //current active aSource
+    private PooledAudioSource currentSource;
+
     public void PlaySound(AudioClip clip)
     {
-        PooledAudioSource pas = ObjectPoolManager.Instance.GetPooledObjectComponent<PooledAudioSource>(PoolTypes.AudioSource);
-        pas.gameObject.SetActive(true);
-        pas.PlayAudio(clip);
+        currentSource = AudioManager.Instance.LoanOneShotSource(toRequest, clip);
+    }
+
+    public void StopPlayingSound()
+    {
+        if (currentSource != null)
+            currentSource.Return();
     }
 
 

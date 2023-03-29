@@ -1209,5 +1209,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8235100409808500389, guid: 0da670844855b6f48bdcdf06aeb64b6d, type: 3}
+      propertyPath: objectPrefix
+      value: SFXAudioSource
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235100409808500389, guid: 0da670844855b6f48bdcdf06aeb64b6d, type: 3}
+      propertyPath: pooledAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235100409808500390, guid: 0da670844855b6f48bdcdf06aeb64b6d, type: 3}
+      propertyPath: m_Name
+      value: SFXPool
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0da670844855b6f48bdcdf06aeb64b6d, type: 3}
