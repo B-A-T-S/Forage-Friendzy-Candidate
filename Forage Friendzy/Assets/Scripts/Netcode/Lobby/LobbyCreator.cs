@@ -33,6 +33,7 @@ public class LobbyCreator : MonoBehaviour
     private Button createLobbyButton;
 
     public static event Action<LobbyData> LobbyCreated;
+    public static event Action OnBackClicked;
 
     private void OnEnable()
     {
@@ -60,30 +61,10 @@ public class LobbyCreator : MonoBehaviour
         OnPasswordChanged();
     }
 
-    public void CreatePredatorLobby()
-    {
-        LobbyData lobbyData = new LobbyData
-        {
-            name = "PredatorLobby",
-            lobbyType = (int)LobbyType.PredOnly,
-            maxPlayers = 5,
-            hasRestrictions = false,
-            hasPassword = false,
-            password = ""
-        };
-    }
 
-    public void CreatePreyLobby()
+    public void OnExitClicked()
     {
-        LobbyData lobbyData = new LobbyData
-        {
-            name = "PreyLobby",
-            lobbyType = (int)LobbyType.PreyOnly,
-            maxPlayers = 3,
-            hasRestrictions = false,
-            hasPassword = false,
-            password = ""
-        };
+        OnBackClicked?.Invoke();
     }
 
     public void OnCreateClicked()
