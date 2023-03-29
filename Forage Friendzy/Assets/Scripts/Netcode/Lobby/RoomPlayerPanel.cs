@@ -17,7 +17,7 @@ struct RoleComponentGroup
     public List<Toggle> characterRadios;
     //List of Cameras
 
-    public void Toggle(bool on, Transform toMove)
+    public void Toggle(bool on)
     {
 
         roleBackground.SetActive(on);
@@ -55,7 +55,6 @@ public class RoomPlayerPanel : MonoBehaviour
     [SerializeField] private RoleComponentGroup preyComponentGroup, predatorComponentGroup;
 
     [SerializeField] private Button roleSwapper;
-    [SerializeField] private GameObject roleHandle;
 
     [SerializeField]
     private TMP_Text nameText, statusText;
@@ -88,14 +87,14 @@ public class RoomPlayerPanel : MonoBehaviour
             switch (ClientLaunchInfo.Instance.role)
             {
                 case 0:
-                    preyComponentGroup.Toggle(true, roleHandle.transform);
-                    predatorComponentGroup.Toggle(false, roleHandle.transform);
+                    preyComponentGroup.Toggle(true);
+                    predatorComponentGroup.Toggle(false);
 
                     preyComponentGroup.SelectElement_NoResponse(ClientLaunchInfo.Instance.character);
                     break;
                 case 1:
-                    predatorComponentGroup.Toggle(true, roleHandle.transform);
-                    preyComponentGroup.Toggle(false, roleHandle.transform);
+                    predatorComponentGroup.Toggle(true);
+                    preyComponentGroup.Toggle(false);
 
                     predatorComponentGroup.SelectElement_NoResponse(ClientLaunchInfo.Instance.character);
                     break;
@@ -145,8 +144,8 @@ public class RoomPlayerPanel : MonoBehaviour
             newGroup = predatorComponentGroup;
         }
 
-        newGroup.Toggle(true, roleHandle.transform);
-        previousGroup.Toggle(false, roleHandle.transform);
+        newGroup.Toggle(true);
+        previousGroup.Toggle(false);
 
         ownershipIndicator.color = newRoleIndex == 0 ? preyOwner : predOwner;
 
@@ -164,14 +163,14 @@ public class RoomPlayerPanel : MonoBehaviour
         if (roleIndex == 0)
         {
             //Prey Toggle
-            preyComponentGroup.Toggle(true, roleHandle.transform);
-            predatorComponentGroup.Toggle(false, roleHandle.transform);
+            preyComponentGroup.Toggle(true);
+            predatorComponentGroup.Toggle(false);
         }
         else
         {
             //Pred Toggle
-            predatorComponentGroup.Toggle(true, roleHandle.transform);
-            preyComponentGroup.Toggle(false, roleHandle.transform);
+            predatorComponentGroup.Toggle(true);
+            preyComponentGroup.Toggle(false);
         }
 
         info.roleIndex = roleIndex;
