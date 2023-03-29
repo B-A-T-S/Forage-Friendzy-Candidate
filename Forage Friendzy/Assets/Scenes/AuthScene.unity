@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2684698092194039752, guid: 11f61d4aaff31804993e3f47316bd7b4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a0b900d2b85efcd48a375da41b3652db, type: 2}
     - target: {fileID: 8370893291584876984, guid: 11f61d4aaff31804993e3f47316bd7b4, type: 3}
       propertyPath: trailingRate
       value: 6.5
