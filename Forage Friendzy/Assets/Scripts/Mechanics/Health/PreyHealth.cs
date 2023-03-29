@@ -18,7 +18,7 @@ public class PreyHealth : NetworkBehaviour
     public NetworkVariable<bool> canBeHit;
     public NetworkVariable<bool> rescuingTeammate;
 
-    public event Action event_OnTookDamage;
+    public event Action<bool, bool> event_OnTookDamage;
     public event Action event_OnRescued;
 
     public GameObject healEffect;
@@ -108,7 +108,7 @@ public class PreyHealth : NetworkBehaviour
 
             }
 
-            event_OnTookDamage?.Invoke();
+            event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
 
         }
     }
@@ -211,7 +211,8 @@ public class PreyHealth : NetworkBehaviour
     {
         //inform UI
         //Debug.Log($"Injured State Changed from {previous} to {current}");
-        event_OnTookDamage?.Invoke();
+        event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
+        TeamStateIcons.Instance.TeammateStateUpdateClientRpc();
         if (IsOwner)
         {
             HealthStateIcons.Instance.SetInjuredStateIcon(bodyMovement.characterId.Value, current);
@@ -227,7 +228,7 @@ public class PreyHealth : NetworkBehaviour
         //inform UI
         //Debug.Log($"Fainted State Changed from {previous} to {current}");
         rescueArea.SetActive(current);
-        event_OnTookDamage?.Invoke();
+        event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
         if (IsOwner)
         {
             HealthStateIcons.Instance.SetFaintedStateIcon(bodyMovement.characterId.Value, current);

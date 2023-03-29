@@ -108,10 +108,8 @@ public class Controlled3DBody: ControlledBody
         Anim_SetBoolean(animBool_IsInjured, true);
     }
 
-    private void OnTookDamage()
+    private void OnTookDamage(bool isInjured, bool isFainted)
     {
-        bool isFainted = preyHealth.isFainted.Value;
-        bool isInjured = preyHealth.isInjured.Value;
         if (!isFainted && isInjured)
             Anim_SetTrigger(animTrigger_React);
 
@@ -193,7 +191,8 @@ public class Controlled3DBody: ControlledBody
 
         //add this object to object lists in GameManager
         GameManager.Instance.AddToPlayerList(OwnerClientId, this.gameObject, isPredator);
-        
+
+        TeamStateIcons.Instance?.TeammateStateUpdateClientRpc();
     }
 
     public void ParentGeometry(GameObject newGeometry)
