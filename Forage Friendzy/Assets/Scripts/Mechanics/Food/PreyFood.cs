@@ -21,7 +21,12 @@ public class PreyFood : NetworkBehaviour
 
     [SerializeField] AudioClip sound_OnCollect;
     [SerializeField] AudioClip sound_OnDeposit;
-    private AudioSource audioSource;
+
+    [SerializeField] private float soundResetTime = 2f;
+    [SerializeField] private int requiredDepositsForSound = 3;
+    private float timeTillSoundReset;
+    private int depositsTillSound = 3;
+    private Coroutine currentSoundReset;
 
     public override void OnNetworkSpawn()
     {
@@ -29,16 +34,11 @@ public class PreyFood : NetworkBehaviour
             playerfood.Value = 0;
     }
 
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
     #region movingfood
     public void Addfood()
     {
         AddFoodServerRpc();
-        audioSource?.PlayOneShot(sound_OnCollect);
+        AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_OnCollect);
     }
 
     [ServerRpc]
@@ -63,10 +63,33 @@ public class PreyFood : NetworkBehaviour
             //nestfood = nestfood + 1;
             //player puts their food into nest
 
-            audioSource?.PlayOneShot(sound_OnDeposit);
+            depositsTillSound -= 1;
+            if (depositsTillSound <= 0)
+            {
+                depositsTillSound = requiredDepositsForSound;
+                AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_OnDeposit);
+            }
+
+            timeTillSoundReset = soundResetTime;
+            if (currentSoundReset == null)
+                currentSoundReset = StartCoroutine(SoundCountResetCoroutine());
 
         }
         
+    }
+
+    IEnumerator SoundCountResetCoroutine()
+    {
+
+        while (timeTillSoundReset >= 0)
+        {
+            timeTillSoundReset -= Time.deltaTime;
+            yield return null;
+        }
+
+        currentSoundReset = null;
+        depositsTillSound = requiredDepositsForSound;
+
     }
 
     [ServerRpc(RequireOwnership = false)]
