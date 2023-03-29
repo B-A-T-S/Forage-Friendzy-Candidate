@@ -101,6 +101,8 @@ public class GameManager : NetworkBehaviour
     [Header("Audio Control")]
     public float masterVol = 1;
     public float musicVol = 1, sfxVol = 1; // some day load this from player prefs
+    public float baseMusicVol = 1, baseSFXVol = 1;
+    public float mouseSensitivity = 1;
 
     [Header("")]
     public string playerName; //maybe this goes in the client launch info
@@ -194,7 +196,7 @@ public class GameManager : NetworkBehaviour
         {
             //behaviours we only want to poll periodically
 
-            CheckNighttime();
+            //CheckNighttime();
 
             FoodHeld();
 
@@ -667,7 +669,25 @@ public class GameManager : NetworkBehaviour
 
     }
 
-#endregion
+    public void EditVal(float resultant, int signature) //-99 for mouse sens, 0 master, 1 music, 2 sfx
+    {
+        if (signature == -99)
+        {
+            mouseSensitivity = resultant;
+            return;
+        }
+
+        if (signature == 0) masterVol = resultant;
+        else if (signature == 1) baseMusicVol = resultant;
+        else baseSFXVol = resultant;
+
+        sfxVol = baseSFXVol * masterVol;
+        musicVol = baseMusicVol * masterVol;
+
+
+    }
+
+    #endregion
 
 }
 

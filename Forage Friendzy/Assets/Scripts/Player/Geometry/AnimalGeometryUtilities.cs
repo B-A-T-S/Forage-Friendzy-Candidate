@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Unity.Netcode;
 using System;
+using System.Linq;
 
 public class AnimalGeometryUtilities : NetworkBehaviour
 {
@@ -32,6 +33,9 @@ public class AnimalGeometryUtilities : NetworkBehaviour
     [Header("X-Ray")]
     [SerializeField] private GameObject xRayGeometry;
     [HideInInspector] public NetworkVariable<bool> xRay_IsVisible;
+
+    [Header("Cosmetics")]
+    public CosmeticGroup[] cosmeticGroups;
 
     public override void OnNetworkSpawn()
     {
@@ -120,4 +124,39 @@ public class AnimalGeometryUtilities : NetworkBehaviour
 
     #endregion
 
+    #region Cosmetics
+
+    public void EnableCosmeticByIndex(int cosmeticIndex)
+    {
+        if (cosmeticIndex != 0)
+        {
+            for(int i = 0; i < cosmeticGroups.Length; i++)
+            {
+                if(cosmeticIndex == i)
+                    cosmeticGroups[cosmeticIndex].Toggle(true);
+                else
+                    cosmeticGroups[cosmeticIndex].Toggle(false);
+            }
+        }
+        else
+        {
+            foreach (CosmeticGroup cg in cosmeticGroups)
+                cg.Toggle(false);
+        }
+    }
+
+    #endregion
+
+}
+
+[Serializable]
+public struct CosmeticGroup
+{
+    List<GameObject> toEnable;
+
+    public void Toggle(bool on)
+    {
+        foreach (GameObject go in toEnable)
+            go.SetActive(on);
+    }
 }
