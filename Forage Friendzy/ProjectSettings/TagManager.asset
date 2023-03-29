@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Prey
+  - Predator
+  - BodyGeometry
+  - Attack
+  - DangerSensePerk
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - fireflies
+  - 
+  - 
+  - 
+  - 
+  - Prey
+  - Predator
+  - Food
+  - Depo
+  - Scurry
+  - Scurry Break
+  - PreyXRay
+  - PredXRay
+  - Terrain
+  - PreyTopLevel
+  - PredatorTopLevel
+  - SmellTrail
+  - FoodSmellTrail
+  - Grass
+  - 
+  - 
+  - 
+  - 
+  - 
+  - PostProcessing
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
