@@ -10,7 +10,8 @@ public class PreyHealth : NetworkBehaviour
 
     #region Health Variables
     public NetworkVariable<bool> isInjured, isFainted;
-    [SerializeField] private float injuryDuration;
+    [Tooltip("Duration of i-frames in seconds")]
+    [SerializeField] private float iFrameDuration;
     private int matchFaintCount;
     #endregion
 
@@ -105,7 +106,6 @@ public class PreyHealth : NetworkBehaviour
                 //TakeDamage(damage);
                 canBeHit.Value = false;
                 perks.QuickGetaway();
-                StartCoroutine(InjuryCooldown());
 
             }
 
@@ -134,7 +134,7 @@ public class PreyHealth : NetworkBehaviour
     {
         isFainted.Value = false;
         isInjured.Value = true;
-        //canBeHit.Value = false;
+        canBeHit.Value = false;
 
         audioSource?.PlayOneShot(sound_WhenRescued);
 
@@ -240,8 +240,8 @@ public class PreyHealth : NetworkBehaviour
     {
         if (previous)
         {
-            //REMINDER: uncomment "canBeHit.Value = false"
             //Start immunity time frame
+            StartCoroutine(IFramePeriod());
         }
     }
 
@@ -264,19 +264,10 @@ public class PreyHealth : NetworkBehaviour
 
     */
 
-    IEnumerator InjuryCooldown()
+    IEnumerator IFramePeriod()
     {
-
-        //speed up
-
-        yield return new WaitForSeconds(injuryDuration);
-
-        //speed down
-
+        yield return new WaitForSeconds(iFrameDuration);
         canBeHit.Value = true;
-
-
     }
 
-    
 }

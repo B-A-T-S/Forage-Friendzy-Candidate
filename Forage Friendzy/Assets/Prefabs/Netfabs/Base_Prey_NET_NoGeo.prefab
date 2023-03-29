@@ -1165,7 +1165,9 @@ MonoBehaviour:
     m_InternalValue: 0
   isFainted:
     m_InternalValue: 0
-  injuryDuration: 0.5
+  iFrameDuration: 2
+  canBeHit:
+    m_InternalValue: 0
   rescuingTeammate:
     m_InternalValue: 0
   healEffect: {fileID: 2357791029473068660}
