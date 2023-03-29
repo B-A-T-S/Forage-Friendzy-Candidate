@@ -17,7 +17,7 @@ public class PredatorAttack : NetworkBehaviour
 
     [SerializeField] private AudioClip sound_foxAttack;
     [SerializeField] private AudioClip sound_wolfAttack;
-    private AudioSource audioSource;
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -31,7 +31,6 @@ public class PredatorAttack : NetworkBehaviour
         isStunned.OnValueChanged += OnStunChanged;
         attackVariableAbstract.OnValueChanged += OnAbstractChanged;
 
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnAbstractChanged(int prev, int curr)
@@ -90,7 +89,7 @@ public class PredatorAttack : NetworkBehaviour
         canAttack = false;
         attackVariableAbstract.Value++;
 
-        audioSource?.PlayOneShot(GetSoundByPredID());
+        AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, GetSoundByPredID());
 
         /*
         LayerMask mask = new LayerMask();

@@ -32,6 +32,16 @@ public class AudioManager : MonoBehaviour
         return loanedSource;
     }
 
+    public PooledAudioSource LoanLoopingSource(AudioCatagories catagory, AudioClip toPlay)
+    {
+
+        PooledAudioSource loanedSource = ObjectPoolManager.Instance.GetPooledObjectComponent<PooledAudioSource>(GetMappedPoolType(catagory));
+        loanedSource.gameObject.SetActive(true);
+        if(toPlay != null)
+            loanedSource.PlayAudioLoop(toPlay);
+        return loanedSource;
+    }
+
     public float GetVolume(AudioCatagories catagory)
     {
         switch (catagory)

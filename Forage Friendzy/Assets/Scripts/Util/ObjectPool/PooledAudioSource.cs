@@ -80,6 +80,24 @@ public class PooledAudioSource : MonoBehaviour
         Invoke("Return", clip.length);
     }
 
+    public void PlayAudioLoop(AudioClip clip)
+    {
+        if (aSource.isPlaying)
+            return;
+
+        aSource.clip = clip;
+        aSource.loop = true;
+        aSource.Play();
+    }
+
+    public void StopAudioLoop()
+    {
+        if (!aSource.isPlaying)
+            return;
+
+        aSource.Stop();
+    }
+
     public AudioSource GetAudioSource()
     {
         return aSource;
