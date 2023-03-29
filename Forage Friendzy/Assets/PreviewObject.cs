@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PreviewObject : MonoBehaviour
 {
@@ -15,9 +16,9 @@ public class PreviewObject : MonoBehaviour
         activePreviewGroup = previewGroups[0];
     }
 
-    public void SwitchSubjectPreview(int index)
+    public void SwitchSubjectPreview(int index, RenderTexture renderView)
     {
-        previewGroups[index].Toggle(true);
+        previewGroups[index].Toggle(true, renderView);
         activePreviewGroup.Toggle(false);
 
         activePreviewGroup = previewGroups[index];
@@ -43,12 +44,13 @@ public class PreviewObject : MonoBehaviour
 [Serializable]
 public struct PreviewGroup
 {
-    public GameObject groupCamera;
+    public Camera groupCamera;
     public AnimalGeometryUtilities groupSubject;
 
-    public void Toggle(bool on)
+    public void Toggle(bool on, RenderTexture renderView = null)
     {
-        groupCamera.SetActive(on);
+        groupCamera.gameObject.SetActive(on);
+        groupCamera.targetTexture = renderView;
         groupSubject.EnableCosmeticByIndex(0);
     }
 
