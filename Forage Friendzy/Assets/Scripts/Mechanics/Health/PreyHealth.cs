@@ -241,7 +241,8 @@ public class PreyHealth : NetworkBehaviour
         if (previous)
         {
             //Start immunity time frame
-            StartCoroutine(IFramePeriod());
+            if(IsServer)
+                StartCoroutine(IFramePeriod());
         }
     }
 
