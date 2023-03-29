@@ -2156,7 +2156,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8982972225374122813}
   - component: {fileID: 1798284017767778782}
-  - component: {fileID: 7437837958157796342}
   - component: {fileID: 6024326031893079844}
   m_Layer: 5
   m_Name: CharacterCard
@@ -2203,36 +2202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5458218179204635837}
   m_CullTransparentMesh: 1
---- !u!114 &7437837958157796342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5458218179204635837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4e6b75023776d224d80386598de50100, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &6024326031893079844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2261,7 +2230,6 @@ MonoBehaviour:
     - {fileID: 1016967634945133729}
     - {fileID: 119381705166659398}
   roleSwapper: {fileID: 3989285866104903574}
-  roleHandle: {fileID: 0}
   nameText: {fileID: 5003353887463968761}
   statusText: {fileID: 4931480117640208910}
   ownershipIndicator: {fileID: 5781593342674002338}
