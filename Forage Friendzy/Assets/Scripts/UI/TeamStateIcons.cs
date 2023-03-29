@@ -58,6 +58,8 @@ public class TeamStateIcons : MonoBehaviour
 
         //At this point...
         //Info belongs to a teammate of role prey of the local player
+        if (GameManager.Instance.predatorTeam.ContainsKey(NetworkManager.Singleton.LocalClientId))
+            return;
 
         int index = 0;
         foreach (KeyValuePair<ulong, GameObject> p in GameManager.Instance.preyTeam)

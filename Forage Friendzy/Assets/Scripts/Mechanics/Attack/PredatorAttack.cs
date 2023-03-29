@@ -129,10 +129,10 @@ public class PredatorAttack : NetworkBehaviour
                     {
                         //Debug.Log("I Hit Sone");
                         currentPrey.ProcessAttack(NetworkManager.Singleton.LocalClientId);
-                        if (currentPrey.PreyCanStun())
-                        {
-                            StunPredatorServerRpc(currentPrey.GetComponent<Perks>().StunTime);
-                        }
+                        //if (currentPrey.PreyCanStun())
+                        //{
+                        //    StunPredatorServerRpc(currentPrey.GetComponent<Perks>().StunTime);
+                        //}
                     }
                 }
         }
