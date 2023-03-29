@@ -2235,6 +2235,7 @@ MonoBehaviour:
   ownershipIndicator: {fileID: 5781593342674002338}
   preyOwner: {r: 0.27450982, g: 0.77647066, b: 0.91372555, a: 1}
   predOwner: {r: 0.91372555, g: 0.4901961, b: 0.27450982, a: 1}
+  previewImage: {fileID: 7329095321040677388}
 --- !u!1 &5734826473732775467
 GameObject:
   m_ObjectHideFlags: 0

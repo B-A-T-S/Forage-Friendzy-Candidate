@@ -18,6 +18,6 @@ public class PreviewManager : MonoBehaviour
 
     public PreviewObject GetPreviewObject()
     {
-        return availablePreviewObjects.Find(x => x.IsLoaned());
+        return availablePreviewObjects.Find(x => !x.IsLoaned());
     }
 }

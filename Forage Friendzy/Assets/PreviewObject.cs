@@ -6,20 +6,23 @@ using UnityEngine.UI;
 
 public class PreviewObject : MonoBehaviour
 {
+    public Camera groupCamera;
 
     [SerializeField] private bool isLoaned = false;
     [SerializeField] private PreviewGroup[] previewGroups;
     [SerializeField] private PreviewGroup activePreviewGroup;
+
+    public RenderTexture renderTexture;
 
     private void Start()
     {
         activePreviewGroup = previewGroups[0];
     }
 
-    public void SwitchSubjectPreview(int index, RenderTexture renderView)
+    public void SwitchSubjectPreview(int index)
     {
-        previewGroups[index].Toggle(true, renderView);
         activePreviewGroup.Toggle(false);
+        previewGroups[index].Toggle(true);
 
         activePreviewGroup = previewGroups[index];
     }
@@ -44,18 +47,16 @@ public class PreviewObject : MonoBehaviour
 [Serializable]
 public struct PreviewGroup
 {
-    public Camera groupCamera;
-    public AnimalGeometryUtilities groupSubject;
+    public GameObject groupSubject;
 
-    public void Toggle(bool on, RenderTexture renderView = null)
+    public void Toggle(bool on)
     {
-        groupCamera.gameObject.SetActive(on);
-        groupCamera.targetTexture = renderView;
-        groupSubject.EnableCosmeticByIndex(0);
+        groupSubject.gameObject.SetActive(on);
+        //groupSubject.EnableCosmeticByIndex(0);
     }
 
     public void UpdateCosmetic(int cosmeticIndex)
     {
-        groupSubject.EnableCosmeticByIndex(cosmeticIndex);
+        //groupSubject.EnableCosmeticByIndex(cosmeticIndex);
     }
 }

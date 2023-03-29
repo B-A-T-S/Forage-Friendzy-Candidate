@@ -68,6 +68,10 @@ public class RoomPlayerPanel : MonoBehaviour
     [SerializeField] private Image ownershipIndicator;
     [SerializeField] private Color preyOwner, predOwner;
 
+    [SerializeField] private RawImage previewImage;
+
+    private PreviewObject activePreviewObject;
+
     public void Init(ulong playerId, ulong localId)
     {
         PlayerId = playerId;
@@ -106,7 +110,8 @@ public class RoomPlayerPanel : MonoBehaviour
 
         }
 
-
+        activePreviewObject = PreviewManager.Instance.GetPreviewObject();
+        previewImage.texture = activePreviewObject.renderTexture;
     }
 
     private int GetFakePlayerId(ulong playerId)
@@ -149,6 +154,8 @@ public class RoomPlayerPanel : MonoBehaviour
 
         ownershipIndicator.color = newRoleIndex == 0 ? preyOwner : predOwner;
 
+        activePreviewObject.SwitchSubjectPreview(0 + 3 * newRoleIndex);
+
         LobbyManager.Instance.OnRoleChanged(newRoleIndex);
     }
 
@@ -173,6 +180,7 @@ public class RoomPlayerPanel : MonoBehaviour
             preyComponentGroup.Toggle(false);
         }
 
+        activePreviewObject.SwitchSubjectPreview(0 + 3 * roleIndex);
         info.roleIndex = roleIndex;
     }
 
@@ -187,6 +195,7 @@ public class RoomPlayerPanel : MonoBehaviour
             predatorComponentGroup.SelectElement_NoResponse(characterIndex);
         }
 
+        activePreviewObject.SwitchSubjectPreview(characterIndex + 3 * ClientLaunchInfo.Instance.role);
         info.characterIndex = characterIndex;
     }
 
