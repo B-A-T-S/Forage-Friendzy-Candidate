@@ -11,8 +11,9 @@ public class ProximityTerror: MonoBehaviour
 
     #region Participants
 
-    [SerializeField]
-    private AudioSource localAudioSource; //the camera itself will have an audio source - DO NOT NETWORK THIS AUDIO SOURCE
+    [SerializeField] private AudioClip terrorSound;
+    private PooledAudioSource loanedAudioSource;
+    private AudioSource aSource;
     [SerializeField]
     private Transform myLocation;
     [SerializeField]
@@ -37,6 +38,8 @@ private float volumeMultiplier;
     {
         StartCoroutine(NetConnectionDelay());
         slyFoxPerkMultiplier = GetComponent<Perks>().SlyPerkMultiplier;
+        loanedAudioSource = AudioManager.Instance.LoanLoopingSource(AudioCatagories.SFX, terrorSound);
+        aSource = loanedAudioSource.GetAudioSource();
     }
 
     private IEnumerator NetConnectionDelay()
@@ -86,7 +89,7 @@ private float volumeMultiplier;
 
         //Debug.Log(volumeMultiplier);
 
-        localAudioSource.volume = volumeMultiplier;
+        aSource.volume = loanedAudioSource.GetExpectedVolume() * volumeMultiplier;
     }
 
     private float ApplyEquation()

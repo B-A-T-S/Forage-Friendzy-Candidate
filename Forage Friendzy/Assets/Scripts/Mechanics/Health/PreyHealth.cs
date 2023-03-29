@@ -37,7 +37,6 @@ public class PreyHealth : NetworkBehaviour
     [SerializeField] private AudioClip sound_WhenRescued;
     [SerializeField] private AudioClip sound_WhenCompletedRescue;
 
-    private AudioSource audioSource;
     //this occurs everytime this object is spawned across the network
     public override void OnNetworkSpawn()
     {
@@ -78,7 +77,7 @@ public class PreyHealth : NetworkBehaviour
             {
 
                 if (IsOwner)
-                    audioSource?.PlayOneShot(sound_WhenHit_Fainted);
+                    AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenHit_Fainted);
 
                 isInjured.Value = false;
                 isFainted.Value = true;
@@ -98,7 +97,7 @@ public class PreyHealth : NetworkBehaviour
                 //Debug.Log("I'm one of Lifehouse's biggest songs - Halfway Gone");
 
                 if (IsOwner)
-                    audioSource?.PlayOneShot(sound_WhenHit_Injured);
+                    AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenHit_Injured);
 
                 isInjured.Value = true;
                 //currentSpeed = speed * 2;
@@ -136,7 +135,7 @@ public class PreyHealth : NetworkBehaviour
         isInjured.Value = true;
         canBeHit.Value = false;
 
-        audioSource?.PlayOneShot(sound_WhenRescued);
+        AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenRescued);
 
         event_OnRescued?.Invoke();
 
@@ -189,7 +188,7 @@ public class PreyHealth : NetworkBehaviour
 
     public void ToggleRescuingTeammate()
     {
-        audioSource?.PlayOneShot(sound_WhenCompletedRescue);
+        AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenCompletedRescue);
         ToggleRescuingTeammateServerRpc();
     }
 
