@@ -3,6 +3,8 @@ using System.Collections;
 using TMPro;
 using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
+using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class LobbyOrchestrator : MonoBehaviour
@@ -82,6 +84,7 @@ public class LobbyOrchestrator : MonoBehaviour
 
         //subscribe to events
         LobbyCreator.LobbyCreated += CreateLobby;
+        LobbyCreator.OnBackClicked += OnLobbyCreatorLeft;
         LobbyRoomUI.LobbySelected += OnLobbySelected;
         RoomView.LobbyLeft += OnLobbyLeft;
         RoomView.StartGamePressed += OnGameStart;
@@ -144,14 +147,24 @@ public class LobbyOrchestrator : MonoBehaviour
         LobbyManager.Instance.OnLobbyLeft(lobbyViewer.gameObject, roomView.gameObject);
     }
 
+    public void OnLobbyCreatorLeft()
+    {
+        lobbyViewer.gameObject.SetActive(true);
+        lobbyCreator.gameObject.SetActive(false);
+    }
+
     public void OnExitClicked()
     {
-        GameManager.Instance.CloseApplication();
+        using (new LoadScene("Loading..."))
+        {
+            LoadSceneUtil.Instance.PreviousBuildIndex();
+        }
     }
 
     private void OnDestroy()
     {
         LobbyCreator.LobbyCreated -= CreateLobby;
+        LobbyCreator.OnBackClicked -= OnLobbyCreatorLeft;
         LobbyRoomUI.LobbySelected -= OnLobbySelected;
         RoomView.LobbyLeft -= OnLobbyLeft;
         RoomView.StartGamePressed -= OnGameStart;

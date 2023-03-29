@@ -3225,6 +3225,7 @@ GameObject:
   - component: {fileID: 8332180910104960434}
   - component: {fileID: 2684698092194039752}
   - component: {fileID: 8370893291584876984}
+  - component: {fileID: 2363309752063528919}
   m_Layer: 0
   m_Name: FoxAnimated_v.6.0
   m_TagString: Untagged
@@ -3259,7 +3260,7 @@ Animator:
   m_GameObject: {fileID: 8712788286661756680}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 94d2d35e30920254e8f7e71a5ef38b8c, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0b900d2b85efcd48a375da41b3652db, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3288,6 +3289,23 @@ MonoBehaviour:
   objectTracked: {fileID: 8370893293328271292}
   startCoordinate: {fileID: 8370893292777650861}
   trailingRate: 5
+--- !u!114 &2363309752063528919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8712788286661756680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c3c0a75ccbca34087c7b05751aa8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - mode: 0
+    propertyName: Speed
+    floatValue: 1
+    boolValue: 0
 --- !u!1 &8712788287256030725
 GameObject:
   m_ObjectHideFlags: 0

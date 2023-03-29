@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class SoundEffectCollection : MonoBehaviour
 {
     [SerializeField] bool playSounds = true;
@@ -25,15 +24,27 @@ public class SoundEffectCollection : MonoBehaviour
     [SerializeField] List<StringPair> keyMap = new();
 
     [SerializeField] List<StringListMap> availableSoundLists = new();
-    private AudioSource audioSource;
+    
+    private PooledAudioSource loanedAudioSource;
+    private AudioSource aSource;
 
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        //fire ray, if ray hits, change to state two
-        if (Physics.Raycast(new Ray(transform.position, Vector3.down), out raycastHit, rayDistance, (int)grassLayer))
+        if(other.gameObject.layer == (int) grassLayer)
             state = State.AboveGrass;
-        else
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == (int)grassLayer)
             state = State.AboveGround;
+    }
+
+    void Start()
+    {
+        loanedAudioSource = AudioManager.Instance.LoanLoopingSource(AudioCatagories.SFX, null);
+        aSource = loanedAudioSource.GetAudioSource();
+        aSource.loop = false;
     }
 
     public void PlaySoundByIndex(string listKey, int soundIndex)
@@ -49,9 +60,9 @@ public class SoundEffectCollection : MonoBehaviour
         if (soundIndex >= sounds.Count)
             return;
         PitchedSound chosenClip = sounds[soundIndex];
-        audioSource.clip = chosenClip.clip;
-        audioSource.pitch = UnityEngine.Random.Range(chosenClip.pitchRange.x, chosenClip.pitchRange.y);
-        audioSource.Play();
+        aSource.clip = chosenClip.clip;
+        aSource.pitch = UnityEngine.Random.Range(chosenClip.pitchRange.x, chosenClip.pitchRange.y);
+        aSource.Play();
     }
 
     public void PlayRandomSound(string listKey)
@@ -66,9 +77,9 @@ public class SoundEffectCollection : MonoBehaviour
         List<PitchedSound> sounds = GetMapGivenKey(listKey).list;
         int randomIndex = RandomIndex(sounds.Count);
         PitchedSound chosenClip = sounds[randomIndex];
-        audioSource.clip = chosenClip.clip;
-        audioSource.pitch = UnityEngine.Random.Range(chosenClip.pitchRange.x, chosenClip.pitchRange.y);
-        audioSource.Play();
+        aSource.clip = chosenClip.clip;
+        aSource.pitch = UnityEngine.Random.Range(chosenClip.pitchRange.x, chosenClip.pitchRange.y);
+        aSource.Play();
     }
 
     #region helpers
@@ -93,11 +104,6 @@ public class SoundEffectCollection : MonoBehaviour
 
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 }
 
 [Serializable]

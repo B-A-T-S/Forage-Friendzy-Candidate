@@ -9,7 +9,7 @@ using UnityEngine.UI;
 [System.Serializable]
 struct RoleComponentGroup
 {
-    public Transform handleLocation;
+
     public GameObject roleText;
     public GameObject roleBackground;
 
@@ -17,25 +17,17 @@ struct RoleComponentGroup
     public List<Toggle> characterRadios;
     //List of Cameras
 
-    public void Toggle(bool on, Transform toMove)
+    public void Toggle(bool on)
     {
 
         roleBackground.SetActive(on);
         roleText.SetActive(on);
 
         if (on)
-            Move(toMove);
-
-        if (on)
             radioParent.FadeIn();
         else
             radioParent.FadeOut();
-        
-    }
 
-    public void Move(Transform toMove)
-    {
-        toMove.position = handleLocation.position;
     }
 
     public void SelectElement_NoResponse(int index)
@@ -44,7 +36,7 @@ struct RoleComponentGroup
             index = 0;
 
         characterRadios[index].SetIsOnWithoutNotify(true);
-        
+
     }
 
     public void SetInteractable(bool interactable)
@@ -63,9 +55,8 @@ public class RoomPlayerPanel : MonoBehaviour
     [SerializeField] private RoleComponentGroup preyComponentGroup, predatorComponentGroup;
 
     [SerializeField] private Button roleSwapper;
-    [SerializeField] private GameObject roleHandle;
 
-    [SerializeField] 
+    [SerializeField]
     private TMP_Text nameText, statusText;
 
     public ulong PlayerId { get; private set; }
@@ -74,35 +65,45 @@ public class RoomPlayerPanel : MonoBehaviour
 
     public PlayerInfo info;
 
+    [SerializeField] private Image ownershipIndicator;
+    [SerializeField] private Color preyOwner, predOwner;
+
     public void Init(ulong playerId, ulong localId)
     {
         PlayerId = playerId;
         FakePlayerId = GetFakePlayerId(playerId);
         nameText.text = $"Player {FakePlayerId}";
 
-        if(playerId != localId)
+        if (playerId != localId)
         {
             //this object defines another client
             SetInteractable(false);
+
+            ownershipIndicator.gameObject.SetActive(false);
+
         }
         else
         {
-            switch(ClientLaunchInfo.Instance.role)
+            switch (ClientLaunchInfo.Instance.role)
             {
                 case 0:
-                    preyComponentGroup.Toggle(true, roleHandle.transform);
-                    predatorComponentGroup.Toggle(false, roleHandle.transform);
+                    preyComponentGroup.Toggle(true);
+                    predatorComponentGroup.Toggle(false);
 
                     preyComponentGroup.SelectElement_NoResponse(ClientLaunchInfo.Instance.character);
                     break;
                 case 1:
-                    predatorComponentGroup.Toggle(true, roleHandle.transform);
-                    preyComponentGroup.Toggle(false, roleHandle.transform);
+                    predatorComponentGroup.Toggle(true);
+                    preyComponentGroup.Toggle(false);
 
                     predatorComponentGroup.SelectElement_NoResponse(ClientLaunchInfo.Instance.character);
                     break;
             }
-            
+
+
+            ownershipIndicator.color = ClientLaunchInfo.Instance.role == 0 ? preyOwner : predOwner;
+
+
         }
 
 
@@ -143,8 +144,10 @@ public class RoomPlayerPanel : MonoBehaviour
             newGroup = predatorComponentGroup;
         }
 
-        newGroup.Toggle(true, roleHandle.transform);
-        previousGroup.Toggle(false, roleHandle.transform);
+        newGroup.Toggle(true);
+        previousGroup.Toggle(false);
+
+        ownershipIndicator.color = newRoleIndex == 0 ? preyOwner : predOwner;
 
         LobbyManager.Instance.OnRoleChanged(newRoleIndex);
     }
@@ -157,17 +160,17 @@ public class RoomPlayerPanel : MonoBehaviour
     public void SetRole(int roleIndex)
     {
 
-        if(roleIndex == 0)
+        if (roleIndex == 0)
         {
             //Prey Toggle
-            preyComponentGroup.Toggle(true, roleHandle.transform);
-            predatorComponentGroup.Toggle(false, roleHandle.transform);
+            preyComponentGroup.Toggle(true);
+            predatorComponentGroup.Toggle(false);
         }
         else
         {
             //Pred Toggle
-            predatorComponentGroup.Toggle(true, roleHandle.transform);
-            preyComponentGroup.Toggle(false, roleHandle.transform);
+            predatorComponentGroup.Toggle(true);
+            preyComponentGroup.Toggle(false);
         }
 
         info.roleIndex = roleIndex;
@@ -175,7 +178,7 @@ public class RoomPlayerPanel : MonoBehaviour
 
     public void SetCharacter(int characterIndex)
     {
-        if(ClientLaunchInfo.Instance.role == 0)
+        if (ClientLaunchInfo.Instance.role == 0)
         {
             preyComponentGroup.SelectElement_NoResponse(characterIndex);
         }
@@ -194,13 +197,12 @@ public class RoomPlayerPanel : MonoBehaviour
     }
 }
 
-
-
 public struct PlayerInfo : INetworkSerializable
 {
     public bool isReady;
     public int roleIndex;
     public int characterIndex;
+    public int cosmeticIndex;
 
     //blank char, readyable
     public PlayerInfo(bool isReady)
@@ -208,14 +210,16 @@ public struct PlayerInfo : INetworkSerializable
         this.isReady = isReady;
         roleIndex = 0;
         characterIndex = 0;
+        cosmeticIndex = 0;
     }
 
     //blank char, defined role
-    public PlayerInfo(bool _isReady, int _roleIndex, int _characterIndex)
+    public PlayerInfo(bool _isReady, int _roleIndex, int _characterIndex, int _cosmeticIndex)
     {
         isReady = _isReady;
         roleIndex = _roleIndex;
         characterIndex = _characterIndex;
+        cosmeticIndex = _cosmeticIndex;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
@@ -223,5 +227,6 @@ public struct PlayerInfo : INetworkSerializable
         serializer.SerializeValue(ref isReady);
         serializer.SerializeValue(ref roleIndex);
         serializer.SerializeValue(ref characterIndex);
+        serializer.SerializeValue(ref cosmeticIndex);
     }
 }

@@ -148,8 +148,7 @@ public class Spawner : NetworkBehaviour
 
         spawnedObjects.Add(spawned.GetComponent<NetworkObject>());
         spawnedObjects.Add(spawnedGeo);
-
-
+        TeamStateIcons.Instance?.TeammateStateUpdateClientRpc();
     }
 
     [ServerRpc(RequireOwnership = false)] //it probably would be fine if it did require

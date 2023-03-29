@@ -1165,7 +1165,9 @@ MonoBehaviour:
     m_InternalValue: 0
   isFainted:
     m_InternalValue: 0
-  injuryDuration: 0.5
+  iFrameDuration: 4
+  canBeHit:
+    m_InternalValue: 0
   rescuingTeammate:
     m_InternalValue: 0
   healEffect: {fileID: 2357791029473068660}
@@ -1208,6 +1210,8 @@ MonoBehaviour:
     m_InternalValue: 0
   sound_OnCollect: {fileID: 8300000, guid: 8a892ce3b572b764ba0c1009cec3eec9, type: 3}
   sound_OnDeposit: {fileID: 8300000, guid: 60caf8809cd67d34c93bea2723aa4cfa, type: 3}
+  soundResetTime: 2
+  requiredDepositsForSound: 3
 --- !u!114 &-1097412899143070739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf35e3ca76217b4eaff387ca0d6eab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localAudioSource: {fileID: 8146895535090778308}
+  terrorSound: {fileID: 0}
   myLocation: {fileID: 5457486072309953675}
   activationDistance: 25
   isAfraidOf: []

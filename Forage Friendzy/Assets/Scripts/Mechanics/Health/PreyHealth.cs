@@ -10,14 +10,15 @@ public class PreyHealth : NetworkBehaviour
 
     #region Health Variables
     public NetworkVariable<bool> isInjured, isFainted;
-    [SerializeField] private float injuryDuration;
+    [Tooltip("Duration of i-frames in seconds")]
+    [SerializeField] private float iFrameDuration;
     private int matchFaintCount;
     #endregion
 
     public NetworkVariable<bool> canBeHit;
     public NetworkVariable<bool> rescuingTeammate;
 
-    public event Action event_OnTookDamage;
+    public event Action<bool, bool> event_OnTookDamage;
     public event Action event_OnRescued;
 
     public GameObject healEffect;
@@ -36,7 +37,6 @@ public class PreyHealth : NetworkBehaviour
     [SerializeField] private AudioClip sound_WhenRescued;
     [SerializeField] private AudioClip sound_WhenCompletedRescue;
 
-    private AudioSource audioSource;
     //this occurs everytime this object is spawned across the network
     public override void OnNetworkSpawn()
     {
@@ -77,7 +77,7 @@ public class PreyHealth : NetworkBehaviour
             {
 
                 if (IsOwner)
-                    audioSource?.PlayOneShot(sound_WhenHit_Fainted);
+                    AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenHit_Fainted);
 
                 isInjured.Value = false;
                 isFainted.Value = true;
@@ -97,7 +97,7 @@ public class PreyHealth : NetworkBehaviour
                 //Debug.Log("I'm one of Lifehouse's biggest songs - Halfway Gone");
 
                 if (IsOwner)
-                    audioSource?.PlayOneShot(sound_WhenHit_Injured);
+                    AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenHit_Injured);
 
                 isInjured.Value = true;
                 //currentSpeed = speed * 2;
@@ -105,11 +105,10 @@ public class PreyHealth : NetworkBehaviour
                 //TakeDamage(damage);
                 canBeHit.Value = false;
                 perks.QuickGetaway();
-                StartCoroutine(InjuryCooldown());
 
             }
 
-            event_OnTookDamage?.Invoke();
+            event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
 
         }
     }
@@ -134,9 +133,9 @@ public class PreyHealth : NetworkBehaviour
     {
         isFainted.Value = false;
         isInjured.Value = true;
-        //canBeHit.Value = false;
+        canBeHit.Value = false;
 
-        audioSource?.PlayOneShot(sound_WhenRescued);
+        AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenRescued);
 
         event_OnRescued?.Invoke();
 
@@ -189,7 +188,7 @@ public class PreyHealth : NetworkBehaviour
 
     public void ToggleRescuingTeammate()
     {
-        audioSource?.PlayOneShot(sound_WhenCompletedRescue);
+        AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenCompletedRescue);
         ToggleRescuingTeammateServerRpc();
     }
 
@@ -212,7 +211,8 @@ public class PreyHealth : NetworkBehaviour
     {
         //inform UI
         //Debug.Log($"Injured State Changed from {previous} to {current}");
-        event_OnTookDamage?.Invoke();
+        event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
+        TeamStateIcons.Instance.TeammateStateUpdateClientRpc();
         if (IsOwner)
         {
             HealthStateIcons.Instance.SetInjuredStateIcon(bodyMovement.characterId.Value, current);
@@ -228,7 +228,7 @@ public class PreyHealth : NetworkBehaviour
         //inform UI
         //Debug.Log($"Fainted State Changed from {previous} to {current}");
         rescueArea.SetActive(current);
-        event_OnTookDamage?.Invoke();
+        event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
         if (IsOwner)
         {
             HealthStateIcons.Instance.SetFaintedStateIcon(bodyMovement.characterId.Value, current);
@@ -240,8 +240,9 @@ public class PreyHealth : NetworkBehaviour
     {
         if (previous)
         {
-            //REMINDER: uncomment "canBeHit.Value = false"
             //Start immunity time frame
+            if(IsServer)
+                StartCoroutine(IFramePeriod());
         }
     }
 
@@ -264,19 +265,10 @@ public class PreyHealth : NetworkBehaviour
 
     */
 
-    IEnumerator InjuryCooldown()
+    IEnumerator IFramePeriod()
     {
-
-        //speed up
-
-        yield return new WaitForSeconds(injuryDuration);
-
-        //speed down
-
+        yield return new WaitForSeconds(iFrameDuration);
         canBeHit.Value = true;
-
-
     }
 
-    
 }
