@@ -134,7 +134,7 @@ public class BodyMovement : Controlled3DBody
 
         Vector3 newVelocity;
         //if not fainted, not scurrying, input exists
-        if ((!IsSelfHealing() && (ClientLaunchInfo.Instance.character == 2 && ClientLaunchInfo.Instance.role == 0)) && !IsInteracting() && !IsStunned()
+        if (!IsInteracting() && !IsStunned()
             && !IsFainted() && !IsScurrying() && targetDirection != Vector3.zero)
             newVelocity = Accelerate(inputPayload);
         else

@@ -21,8 +21,8 @@ public class PreviewObject : MonoBehaviour
 
     public void SwitchSubjectPreview(int index)
     {
-        activePreviewGroup.Toggle(false);
         previewGroups[index].Toggle(true);
+        activePreviewGroup.Toggle(false);
 
         activePreviewGroup = previewGroups[index];
     }
