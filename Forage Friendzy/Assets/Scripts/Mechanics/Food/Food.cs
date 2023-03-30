@@ -132,6 +132,9 @@ public class Food : NetworkBehaviour
         while (observed)
         {
             observed = AmIObserved();
+            //Debug.Log("Observed is " + observed + ", so available should be " + !observed + ". Availability is " + isAvailable.Value);
+                // values are correct, but collect action is still provided
+
             yield return null;
         }
         EnableMesh();
@@ -139,6 +142,35 @@ public class Food : NetworkBehaviour
 
     private bool AmIObserved()
     {
+        Vector3 castDirection;
+        RaycastHit hit;
+
+        foreach(KeyValuePair<ulong, GameObject> pred in GameManager.Instance.predatorTeam)
+        {
+            castDirection = pred.Value.transform.position - this.transform.position;
+
+            Physics.Raycast(new Ray(this.transform.position, castDirection), out hit);
+            Debug.Log(hit.collider?.name);
+
+            if (hit.collider?.transform.parent?.tag == "BodyGeometry") return true;
+            if (hit.collider?.transform.tag == "Predator") return true;
+            if (hit.collider?.transform.tag == "Prey") return true;
+        }
+
+        foreach (KeyValuePair<ulong, GameObject> prey in GameManager.Instance.preyTeam)
+        {
+            castDirection = prey.Value.transform.position - this.transform.position;
+
+            Physics.Raycast(new Ray(this.transform.position, castDirection), out hit);
+            Debug.Log(hit.collider?.name);
+
+            if (hit.collider?.transform.parent?.tag == "BodyGeometry") return true;
+            if (hit.collider?.transform.tag == "Predator") return true;
+            if (hit.collider?.transform.tag == "Prey") return true;
+        }
+
+        
+
         return false; //for now
     }
 
