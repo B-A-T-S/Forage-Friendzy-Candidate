@@ -9,6 +9,7 @@ public class BodyMovement : Controlled3DBody
 {
 
     private PreyInteractActor interactActor;
+    private SelfHealActor healActor;
 
     [Header("Mechanic Bools")]
     [SerializeField] private bool canSprint;
@@ -133,7 +134,7 @@ public class BodyMovement : Controlled3DBody
 
         Vector3 newVelocity;
         //if not fainted, not scurrying, input exists
-        if (!IsInteracting() && !IsStunned()
+        if ((!IsSelfHealing() && (ClientLaunchInfo.Instance.character == 2 && ClientLaunchInfo.Instance.role == 0)) && !IsInteracting() && !IsStunned()
             && !IsFainted() && !IsScurrying() && targetDirection != Vector3.zero)
             newVelocity = Accelerate(inputPayload);
         else
@@ -154,7 +155,6 @@ public class BodyMovement : Controlled3DBody
         previousVelocity = currentVelocity;
     }
 
-    
     private Vector3 Deccelerate()
     {
 
@@ -339,6 +339,14 @@ public class BodyMovement : Controlled3DBody
             return false;
 
         return interactActor.isInteracting;
+    }
+
+    private bool IsSelfHealing()
+    {
+        if (healActor == null)
+            return false;
+
+        return healActor.isHealing;
     }
 
     private bool IsScurrying()

@@ -50,37 +50,6 @@ public class LobbyViewer : MonoBehaviour
             currentlyDisplayedLobbies = new List<LobbyRoomUI>();
     }
 
-    private async void SearchForQueueLobby(LobbyType toSearchFor)
-    {
-        List<Lobby> allLobbies;
-        //ask Matchmaking for current lobbies
-        switch(toSearchFor)
-        {
-            case LobbyType.PredOnly:
-                allLobbies = await Matchmaking.GetOpenPredatorLobbies();
-                break;
-
-            default:
-                allLobbies = await Matchmaking.GetOpenPreyLobbies();
-                break;
-        }
-
-        if (allLobbies.Count < 1)
-        {
-            //no lobbies were found, create one
-            await Matchmaking.CreateFreeLobby(CreateRoleQueueLobbyData(toSearchFor));
-
-        }
-        else
-        {
-            //a lobby was found, join it
-            await Matchmaking.LeaveLobby();
-            await Matchmaking.JoinLobby(allLobbies[0].Id);
-        }
-
-
-    }
-
     private LobbyData CreateRoleQueueLobbyData(LobbyType toCreate)
     {
         LobbyData data;
