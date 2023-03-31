@@ -1033,7 +1033,7 @@ MonoBehaviour:
   - 'Food Collected: '
   predatorStatStrings: []
   eomScreenParent: {fileID: 859480621190669480}
-  exitMatchBtn: {fileID: 0}
+  exitMatchBtn: {fileID: 2919806207435810873}
   winBoard: {fileID: 7416911926353235011}
   lossBoard: {fileID: 8309336028676391142}
   mvpPlayerName: {fileID: 4303555286683006603}
@@ -1686,6 +1686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d548f79517231b34aa146777db5429fe, type: 3}
+--- !u!1 &2919806207435810873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4474724446781402616, guid: d548f79517231b34aa146777db5429fe, type: 3}
+  m_PrefabInstance: {fileID: 1629272184928617921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6084830871108506789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4822791270631510372, guid: d548f79517231b34aa146777db5429fe, type: 3}
