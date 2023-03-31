@@ -116,15 +116,10 @@ public class GameManager : NetworkBehaviour
 
     private void Awake()
     {
-        
-    }
-
-    private void Start()
-    {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
-            if(!hasSpawnedNetworkManager)
+            if (!hasSpawnedNetworkManager)
             {
                 Instantiate(networkManagerGO);
                 hasSpawnedNetworkManager = true;
@@ -133,10 +128,13 @@ public class GameManager : NetworkBehaviour
         }
         else
             Destroy(gameObject);
+    }
 
+    private void Start()
+    {
         Reset();
 
-        audioSource = GetComponent<AudioSource>();
+        RecalculateVolume();
         matchFoodCollected.OnValueChanged += FoodCollected_OnValueChanged;
         DontDestroyOnLoad(this.gameObject);
     }
@@ -682,11 +680,16 @@ public class GameManager : NetworkBehaviour
         else if (signature == 1) baseMusicVol = resultant;
         else baseSFXVol = resultant;
 
-        sfxVol = baseSFXVol * masterVol;
-        musicVol = baseMusicVol * masterVol;
+        RecalculateVolume();
 
         event_VolumeSettingsChanged?.Invoke();
 
+    }
+
+    public void RecalculateVolume()
+    {
+        sfxVol = baseSFXVol * masterVol;
+        musicVol = baseMusicVol * masterVol;
     }
 
     #endregion

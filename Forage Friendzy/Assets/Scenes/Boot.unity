@@ -303,6 +303,10 @@ PrefabInstance:
       value: 1458256594
       objectReference: {fileID: 0}
     - target: {fileID: 941695827347005417, guid: cfa901f43e5e29e48b9973dbd64354bf, type: 3}
+      propertyPath: masterVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 941695827347005417, guid: cfa901f43e5e29e48b9973dbd64354bf, type: 3}
       propertyPath: totalDaytime
       value: 180
       objectReference: {fileID: 0}

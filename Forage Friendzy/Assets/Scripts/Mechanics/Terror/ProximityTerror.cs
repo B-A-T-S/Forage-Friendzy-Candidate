@@ -12,8 +12,8 @@ public class ProximityTerror: MonoBehaviour
     #region Participants
 
     [SerializeField] private AudioClip terrorSound;
-    private PooledAudioSource loanedAudioSource;
-    private AudioSource aSource;
+    public PooledAudioSource loanedAudioSource;
+    public AudioSource aSource;
     [SerializeField]
     private Transform myLocation;
     [SerializeField]

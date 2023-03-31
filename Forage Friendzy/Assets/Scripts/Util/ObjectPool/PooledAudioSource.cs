@@ -47,6 +47,7 @@ public class PooledAudioSource : MonoBehaviour
 
     private void UpdateVolume()
     {
+        
         if (!listenForVolumeChange)
             return;
 
