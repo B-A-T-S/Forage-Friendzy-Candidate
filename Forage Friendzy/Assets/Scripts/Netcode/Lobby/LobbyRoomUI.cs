@@ -17,7 +17,7 @@ public class LobbyRoomUI : MonoBehaviour
 
     public Lobby Lobby { get; private set; }
 
-    public static event Action<Lobby> LobbySelected;
+    public static event Action<Lobby> event_LobbySelected;
 
     public void Init(Lobby lobby)
     {
@@ -42,7 +42,7 @@ public class LobbyRoomUI : MonoBehaviour
 
     public void Clicked()
     {
-        LobbySelected?.Invoke(Lobby);
+        event_LobbySelected?.Invoke(Lobby);
     }
 
 }

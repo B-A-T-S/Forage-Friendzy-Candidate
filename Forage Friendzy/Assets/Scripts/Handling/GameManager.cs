@@ -30,6 +30,7 @@ public class GameManager : NetworkBehaviour
     public event Action onPredatorWin;
 
     public event Action<bool, ClientStatus, ClientStatus> event_EndOfMatch;
+    public static event Action event_VolumeSettingsChanged;
 
     #region Match Variables
     //these are variables that pertain to the conditions of the match
@@ -684,6 +685,7 @@ public class GameManager : NetworkBehaviour
         sfxVol = baseSFXVol * masterVol;
         musicVol = baseMusicVol * masterVol;
 
+        event_VolumeSettingsChanged?.Invoke();
 
     }
 

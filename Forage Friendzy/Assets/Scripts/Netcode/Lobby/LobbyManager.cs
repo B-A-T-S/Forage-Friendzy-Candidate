@@ -23,8 +23,8 @@ public class LobbyManager : NetworkBehaviour
 
 
     //meant to be invoked whenever a player joins and we need to update the lobby
-    public static event Action<Dictionary<ulong, PlayerInfo>> LobbyPlayersUpdated;
-    public static event Action<bool> OnClientDisconnect;
+    public static event Action<Dictionary<ulong, PlayerInfo>> event_LobbyPlayersUpdated;
+    public static event Action<bool> event_OnClientDisconnect;
     private float nextLobbyUpdate;
     private bool hasRanStart = false;
 
@@ -240,7 +240,7 @@ public class LobbyManager : NetworkBehaviour
             }
         }
 
-        OnClientDisconnect?.Invoke(hostDisconnect);
+        event_OnClientDisconnect?.Invoke(hostDisconnect);
     }
 
     //server to client
@@ -333,7 +333,7 @@ public class LobbyManager : NetworkBehaviour
     //throws the lobby update event
     private void UpdateUI()
     {
-        LobbyPlayersUpdated?.Invoke(playersInLobby);
+        event_LobbyPlayersUpdated?.Invoke(playersInLobby);
     }
 
     public async void OnLobbyLeft(GameObject toEnable, GameObject toDisable)

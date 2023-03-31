@@ -33,6 +33,9 @@ public class LobbyViewer : MonoBehaviour
     //internal storage for next frametime to update displayed lobbies
     private float nextRefreshTime;
 
+    public static event Action event_OnExitClicked;
+    public static event Action event_OnHostClicked;
+
     private void Update()
     {
         if (Time.time >= nextRefreshTime)
@@ -124,6 +127,16 @@ public class LobbyViewer : MonoBehaviour
         {
             Debug.LogError(e);
         }
+    }
+
+    public void OnExitClicked()
+    {
+        event_OnExitClicked?.Invoke();
+    }
+
+    public void OnHostClicked()
+    {
+        event_OnHostClicked?.Invoke();
     }
 
 

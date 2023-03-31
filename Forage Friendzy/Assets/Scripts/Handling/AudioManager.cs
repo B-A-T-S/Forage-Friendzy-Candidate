@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
+    public static AudioManager Instance { get; private set; }
 
+    /*
     [SerializeField] private float masterVolume = 1.0f;
     [SerializeField] private float musicVolume = 1.0f;
     [SerializeField] private float sfxVolume = 1.0f;
-
+    */
     private Dictionary<AudioCatagories, PoolTypes> catagoryMap = new Dictionary<AudioCatagories, PoolTypes>();
     public event Action event_VolumeValueChanged;
 
@@ -46,8 +47,8 @@ public class AudioManager : MonoBehaviour
     {
         switch (catagory)
         {
-            case AudioCatagories.Master:
-                return GetMasterVolume();
+            //case AudioCatagories.Master:
+                //return GetMasterVolume();
             case AudioCatagories.Music:
                 return GetMusicVolume();
             case AudioCatagories.SFX:
@@ -65,7 +66,7 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Setters
-
+    /*
     public void SetMaster(float newValue)
     {
         masterVolume = newValue;
@@ -83,24 +84,27 @@ public class AudioManager : MonoBehaviour
         sfxVolume = newValue;
         event_VolumeValueChanged?.Invoke();
     }
-
+    */
     #endregion
 
     #region Getters
 
+    /*
     public float GetMasterVolume()
     {
-        return masterVolume;
+        return new NotImplementedException();
     }
-
+    */
     public float GetMusicVolume()
     {
-        return musicVolume;
+        return GameManager.Instance.musicVol;
+        //return musicVolume;
     }
 
     public float GetSFXVolume()
     {
-        return sfxVolume;
+        return GameManager.Instance.sfxVol;
+        //return sfxVolume;
     }
 
     #endregion

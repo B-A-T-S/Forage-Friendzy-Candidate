@@ -22,7 +22,7 @@ public class PooledAudioSource : MonoBehaviour
     private void OnEnable()
     {
         UpdateVolume();
-        AudioManager.Instance.event_VolumeValueChanged += UpdateVolume;
+        GameManager.event_VolumeSettingsChanged += UpdateVolume;
     }
 
     private void OnDisable()
@@ -35,9 +35,7 @@ public class PooledAudioSource : MonoBehaviour
 
         Reset();
 
-        AudioManager.Instance.event_VolumeValueChanged -= UpdateVolume;
-
-        gameObject.SetActive(false);
+        GameManager.event_VolumeSettingsChanged -= UpdateVolume;
     }
 
     private void Reset()
@@ -45,7 +43,6 @@ public class PooledAudioSource : MonoBehaviour
         aSource.clip = null;
         aSource.loop = false;
         listenForVolumeChange = true;
-
     }
 
     private void UpdateVolume()
@@ -53,14 +50,12 @@ public class PooledAudioSource : MonoBehaviour
         if (!listenForVolumeChange)
             return;
 
-        aSource.volume = (AudioManager.Instance.GetMasterVolume() / settingConversionValue) *
-            (AudioManager.Instance.GetVolume(volumeSource) / settingConversionValue);
+        aSource.volume = AudioManager.Instance.GetVolume(volumeSource) / settingConversionValue;
     }
 
     public float GetExpectedVolume()
     {
-        return (AudioManager.Instance.GetMasterVolume() / settingConversionValue) *
-            (AudioManager.Instance.GetVolume(volumeSource) / settingConversionValue);
+        return AudioManager.Instance.GetVolume(volumeSource) / settingConversionValue;
     }
 
     public void Return()

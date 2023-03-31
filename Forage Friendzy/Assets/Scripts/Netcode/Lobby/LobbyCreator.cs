@@ -32,8 +32,8 @@ public class LobbyCreator : MonoBehaviour
     [SerializeField]
     private Button createLobbyButton;
 
-    public static event Action<LobbyData> LobbyCreated;
-    public static event Action OnBackClicked;
+    public static event Action<LobbyData> event_OnCreateClicked;
+    public static event Action event_OnExitClicked;
 
     private void OnEnable()
     {
@@ -64,7 +64,7 @@ public class LobbyCreator : MonoBehaviour
 
     public void OnExitClicked()
     {
-        OnBackClicked?.Invoke();
+        event_OnExitClicked?.Invoke();
     }
 
     public void OnCreateClicked()
@@ -79,6 +79,6 @@ public class LobbyCreator : MonoBehaviour
             password = hasPasswordToggle.isOn ? passwordInput.text : ""
         };
 
-        LobbyCreated?.Invoke(lobbyData);
+        event_OnCreateClicked?.Invoke(lobbyData);
     }
 }

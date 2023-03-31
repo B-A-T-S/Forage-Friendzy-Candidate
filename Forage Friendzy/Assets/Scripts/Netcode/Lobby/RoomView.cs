@@ -30,8 +30,8 @@ public class RoomView : MonoBehaviour
     private bool ready;
 
     //events
-    public static event Action StartGamePressed;
-    public static event Action LobbyLeft;
+    public static event Action event_StartGamePressed;
+    public static event Action event_LobbyLeft;
 
     //this screen gets turned off and on alot, so reset on enable
     private void OnEnable()
@@ -44,8 +44,8 @@ public class RoomView : MonoBehaviour
         playerPanels.Clear();
 
         //subscribe to events
-        LobbyManager.LobbyPlayersUpdated += NetworkLobbyPlayersUpdated;
-        Matchmaking.CurrentLobbyRefreshed += OnCurrentLobbyRefreshed;
+        LobbyManager.event_LobbyPlayersUpdated += NetworkLobbyPlayersUpdated;
+        Matchmaking.event_CurrentLobbyRefreshed += OnCurrentLobbyRefreshed;
 
         //ui setup
         startButton?.SetActive(false);
@@ -61,8 +61,8 @@ public class RoomView : MonoBehaviour
     private void OnDisable()
     {
         //when this is disabled, unsubscribe. pretty sure it would error trying to call methods on disabled objects
-        LobbyManager.LobbyPlayersUpdated -= NetworkLobbyPlayersUpdated;
-        Matchmaking.CurrentLobbyRefreshed -= OnCurrentLobbyRefreshed;
+        LobbyManager.event_LobbyPlayersUpdated -= NetworkLobbyPlayersUpdated;
+        Matchmaking.event_CurrentLobbyRefreshed -= OnCurrentLobbyRefreshed;
     }
 
     //handles the deletion and creation of RoomPanels
@@ -157,7 +157,7 @@ public class RoomView : MonoBehaviour
 
     public void OnLeaveLobby()
     {
-        LobbyLeft?.Invoke();
+        event_LobbyLeft?.Invoke();
     }
 
     private void OnCurrentLobbyRefreshed(Lobby lobby)
@@ -186,6 +186,6 @@ public class RoomView : MonoBehaviour
 
     public void OnStartClicked()
     {
-        StartGamePressed?.Invoke();
+        event_StartGamePressed?.Invoke();
     }
 }

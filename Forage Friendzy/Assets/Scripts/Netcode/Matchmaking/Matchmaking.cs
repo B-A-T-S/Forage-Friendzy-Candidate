@@ -30,10 +30,9 @@ public static class Matchmaking
     //don't know alot about these, but they get used in the async heartbeat and update examples
     //so I included them
     //pretty sure they function as blocks for the processes
-    private static CancellationTokenSource heartbeatSource, updateLobbySource, foundSiblingQueueSource;
+    private static CancellationTokenSource heartbeatSource, updateLobbySource;
 
-    public static event Action<Lobby> CurrentLobbyRefreshed;
-    public static event Action<Lobby, CancellationTokenSource> FoundSiblingQueue;
+    public static event Action<Lobby> event_CurrentLobbyRefreshed;
 
     //get/set for Unity Transport instance
     private static UnityTransport Transport
@@ -311,27 +310,8 @@ public static class Matchmaking
         while (!updateLobbySource.IsCancellationRequested && currentLobby != null)
         {
             currentLobby = await Lobbies.Instance.GetLobbyAsync(currentLobby.Id);
-            CurrentLobbyRefreshed?.Invoke(currentLobby);
+            event_CurrentLobbyRefreshed?.Invoke(currentLobby);
             await Task.Delay(lobbyRefreshRate * 1000);
-        }
-    }
-
-    //async periodic check for lobby during role queue
-    //perform query for 
-    private static async void SearchForSiblingLobby()
-    {
-        foundSiblingQueueSource = new CancellationTokenSource();
-        await Task.Delay(siblingSearchRate * 1000);
-
-        while(!foundSiblingQueueSource.IsCancellationRequested && currentLobby != null)
-        {
-            List<Lobby> foundLobbies = await GetFullPredatorLobbies();
-            if (foundLobbies.Count >= 1)
-            {
-                FoundSiblingQueue?.Invoke(foundLobbies[0], foundSiblingQueueSource);
-            }
-                
-            await Task.Delay(siblingSearchRate * 1000);
         }
     }
 
@@ -339,7 +319,6 @@ public static class Matchmaking
     {
         heartbeatSource?.Cancel();
         updateLobbySource?.Cancel();
-        foundSiblingQueueSource?.Cancel();
 
         if (currentLobby != null)
             try

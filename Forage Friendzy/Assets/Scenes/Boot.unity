@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasUtil
       objectReference: {fileID: 0}
+    - target: {fileID: 5744632950294957558, guid: 0fb5a96bd5035da479df40501f15cab9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5744632950294957562, guid: 0fb5a96bd5035da479df40501f15cab9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -394,9 +398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860b9a03ef83aa347910950c17d70b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolume: 1
-  musicVolume: 1
-  sfxVolume: 1
 --- !u!4 &486646684
 Transform:
   m_ObjectHideFlags: 0

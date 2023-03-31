@@ -132,8 +132,8 @@ public class ThirdPersonCamera : NetworkBehaviour
             return;
 
         //Mouse-Based Rotation
-        currentYaw += rotationSpeed * mouseSensitivity * inputs.mouseInputVector.x;
-        currentPitch -= rotationSpeed * mouseSensitivity * inputs.mouseInputVector.y;
+        currentYaw += rotationSpeed * GameManager.Instance.mouseSensitivity * inputs.mouseInputVector.x;
+        currentPitch -= rotationSpeed * GameManager.Instance.mouseSensitivity * inputs.mouseInputVector.y;
 
         //safety set
         if(currentYaw == 0)

@@ -83,12 +83,46 @@ public class LobbyOrchestrator : MonoBehaviour
         }
 
         //subscribe to events
-        LobbyCreator.LobbyCreated += CreateLobby;
-        LobbyCreator.OnBackClicked += OnLobbyCreatorLeft;
-        LobbyRoomUI.LobbySelected += OnLobbySelected;
-        RoomView.LobbyLeft += OnLobbyLeft;
-        RoomView.StartGamePressed += OnGameStart;
-        LobbyManager.OnClientDisconnect += LobbyManager_OnClientDisconnect;
+
+        LobbyViewer.event_OnExitClicked += ExitLobbyViewer;
+        LobbyViewer.event_OnHostClicked += Transition_ViewerToCreator;
+
+        LobbyCreator.event_OnCreateClicked += CreateLobby;
+        LobbyCreator.event_OnExitClicked += Transition_CreatorToViewer;
+
+        LobbyRoomUI.event_LobbySelected += TryJoinLobby;
+
+        RoomView.event_LobbyLeft += OnLobbyLeft;
+        RoomView.event_StartGamePressed += OnGameStart;
+
+        LobbyManager.event_OnClientDisconnect += LobbyManager_OnClientDisconnect;
+    }
+
+    private void ExitLobbyViewer()
+    {
+        using (new LoadScene("Loading..."))
+        {
+            LoadSceneUtil.Instance.PreviousBuildIndex();
+        }
+    }
+
+    private void Transition_ViewerToCreator()
+    {
+        Transition(lobbyViewer.gameObject, lobbyCreator.gameObject);
+    }
+
+    private void Transition_CreatorToViewer()
+    {
+        Transition(lobbyCreator.gameObject, lobbyViewer.gameObject);
+    }
+
+    private void Transition(GameObject prevScreen, GameObject newScreen)
+    {
+        using (new Load("Loading..."))
+        {
+            newScreen.SetActive(true);
+            prevScreen.SetActive(false);
+        }
     }
 
     public void OnReadyClicked()
@@ -130,7 +164,7 @@ public class LobbyOrchestrator : MonoBehaviour
         LobbyManager.Instance.CreateLobby(data, roomView.gameObject, lobbyCreator.gameObject);
     }
 
-    private void OnLobbySelected(Lobby lobby)
+    private void TryJoinLobby(Lobby lobby)
     {
         if (Convert.ToBoolean(lobby.Data["l"].Value))
         {
@@ -153,21 +187,19 @@ public class LobbyOrchestrator : MonoBehaviour
         lobbyCreator.gameObject.SetActive(false);
     }
 
-    public void OnExitClicked()
-    {
-        using (new LoadScene("Loading..."))
-        {
-            LoadSceneUtil.Instance.PreviousBuildIndex();
-        }
-    }
-
     private void OnDestroy()
     {
-        LobbyCreator.LobbyCreated -= CreateLobby;
-        LobbyCreator.OnBackClicked -= OnLobbyCreatorLeft;
-        LobbyRoomUI.LobbySelected -= OnLobbySelected;
-        RoomView.LobbyLeft -= OnLobbyLeft;
-        RoomView.StartGamePressed -= OnGameStart;
-        LobbyManager.OnClientDisconnect -= LobbyManager_OnClientDisconnect;
+        LobbyViewer.event_OnExitClicked -= ExitLobbyViewer;
+        LobbyViewer.event_OnHostClicked -= Transition_ViewerToCreator;
+
+        LobbyCreator.event_OnCreateClicked -= CreateLobby;
+        LobbyCreator.event_OnExitClicked -= Transition_CreatorToViewer;
+
+        LobbyRoomUI.event_LobbySelected -= TryJoinLobby;
+
+        RoomView.event_LobbyLeft -= OnLobbyLeft;
+        RoomView.event_StartGamePressed -= OnGameStart;
+
+        LobbyManager.event_OnClientDisconnect -= LobbyManager_OnClientDisconnect;
     }
 }
