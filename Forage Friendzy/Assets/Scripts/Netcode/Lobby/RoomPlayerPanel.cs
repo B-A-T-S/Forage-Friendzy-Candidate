@@ -15,7 +15,6 @@ struct RoleComponentGroup
 
     public FadingCanvasGroup radioParent;
     public List<Toggle> characterRadios;
-    //List of Cameras
 
     public void Toggle(bool on)
     {
@@ -56,8 +55,7 @@ public class RoomPlayerPanel : MonoBehaviour
 
     [SerializeField] private Button roleSwapper;
 
-    [SerializeField]
-    private TMP_Text nameText, statusText;
+    [SerializeField] private TMP_Text nameText, statusText;
 
     public ulong PlayerId { get; private set; }
 
@@ -111,6 +109,7 @@ public class RoomPlayerPanel : MonoBehaviour
         }
 
         activePreviewObject = PreviewManager.Instance.GetPreviewObject();
+        activePreviewObject.Loan();
         previewImage.texture = activePreviewObject.renderTexture;
     }
 
@@ -154,14 +153,13 @@ public class RoomPlayerPanel : MonoBehaviour
 
         ownershipIndicator.color = newRoleIndex == 0 ? preyOwner : predOwner;
 
-        activePreviewObject.SwitchSubjectPreview(0 + 3 * newRoleIndex);
-
         LobbyManager.Instance.OnRoleChanged(newRoleIndex);
     }
 
     public void SelectCharacter(int signifierID)
     {
         LobbyManager.Instance.OnCharacterChanged(signifierID);
+        activePreviewObject.SwitchSubjectPreview(signifierID + (3 * ClientLaunchInfo.Instance.role));
     }
 
     public void SetRole(int roleIndex)
@@ -180,7 +178,6 @@ public class RoomPlayerPanel : MonoBehaviour
             preyComponentGroup.Toggle(false);
         }
 
-        activePreviewObject.SwitchSubjectPreview(0 + 3 * roleIndex);
         info.roleIndex = roleIndex;
     }
 
@@ -195,7 +192,6 @@ public class RoomPlayerPanel : MonoBehaviour
             predatorComponentGroup.SelectElement_NoResponse(characterIndex);
         }
 
-        activePreviewObject.SwitchSubjectPreview(characterIndex + 3 * ClientLaunchInfo.Instance.role);
         info.characterIndex = characterIndex;
     }
 

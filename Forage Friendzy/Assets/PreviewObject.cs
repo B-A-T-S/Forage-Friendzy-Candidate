@@ -21,6 +21,12 @@ public class PreviewObject : MonoBehaviour
 
     public void SwitchSubjectPreview(int index)
     {
+
+        if (!(0 <= index && index < previewGroups.Length))
+            return;
+
+        Debug.Log($"SwitchPreview - Index {index}");
+
         previewGroups[index].Toggle(true);
         activePreviewGroup.Toggle(false);
 
@@ -40,6 +46,11 @@ public class PreviewObject : MonoBehaviour
 
     public bool IsLoaned() {
         return isLoaned;
+    }
+
+    public void Loan()
+    {
+        isLoaned = true;
     }
 
 }
