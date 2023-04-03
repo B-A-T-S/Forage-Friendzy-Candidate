@@ -25,8 +25,6 @@ public class Perks : NetworkBehaviour
     #region References
     private BodyMovement bodyMovement;
     private PreySelfHeal preySelfHeal;
-    private PreyFood preyFood;
-    private PredatorAttack predatorAttack;
     private AnimalScurry animalScurry;
     #endregion
 
@@ -50,7 +48,6 @@ public class Perks : NetworkBehaviour
     [SerializeField] private float boostedHealTime;
     [Tooltip("The amount of food the prey can carry with Deep Pocket perk")]
     [SerializeField] private int deepPocketValue;
-    private GameObject dangerSenseIcon;
     public float StunTime { get { return stunTime; } }
     #endregion
 
@@ -65,18 +62,9 @@ public class Perks : NetworkBehaviour
     [SerializeField] private float boostedAttackCooldown;
     #endregion
 
-    #region Night Time Values
-    [Header("Night Values")]
-    [SerializeField] private float nightSlyPerkMultiplier;
-    [SerializeField] private float nightScurrySpeed;
-    [SerializeField] private float nightAttackCooldown;
-    [SerializeField] private float nightRunSpeedPred;
-    #endregion
-
     #region Helper Variables
-    private LineOfSightInfo predatorLOS;
+    public NetworkVariable<bool> activateQuickGetaway;
     private bool isPrey;
-    private bool onCooldownHTI;
     [Header("Preadtor Line of Sight Variables")]
     [Tooltip("Distance of the raycast")]
     [SerializeField]
@@ -91,8 +79,8 @@ public class Perks : NetworkBehaviour
     [Tooltip("Layer that we are targeting")]
     [SerializeField]
     private LayerMask targetMask;
-    private bool preyInSight;
-    private bool nightVariablesSet;
+    private float quickSpeed;
+    private float normalSpeed;
     #endregion
 
     
@@ -100,268 +88,233 @@ public class Perks : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        activateQuickGetaway.Value = false;
         bodyMovement = GetComponent<BodyMovement>();
-        onCooldownHTI = false;
-        nightVariablesSet = false;
 
         isPrey = (GetComponent<PreyHealth>() != null);
 
         //for perks that need to be initialized at the start
-        if (isPrey)
+        if (!isPrey)
         {
-            //get prey components
-            preySelfHeal = GetComponent<PreySelfHeal>();
-            preyFood = GetComponent<PreyFood>();
-            //set up prey perks and other prey related stuff
-            if (bodyMovement.characterId.Value == (int)(prey.HEDGEHOG))
-            {
-                FasterWalk();
-            }
-            if (bodyMovement.characterId.Value == (int)(prey.CHIPMUNK))
-            {
-                EasyAccessToFood();
-                DeepPocket();   
-            }
-        }
-        else
-        {
-            //find the Predator Components
-            predatorLOS = GetComponentInChildren<LineOfSightInfo>();
-            predatorAttack = GetComponent<PredatorAttack>();
             //set up pred perks and other related stuff
-            if (bodyMovement.characterId.Value == (int)(predator.WOLF))
-            {
-                FasterAttackRecover();
-            }else if(bodyMovement.characterId.Value == (int)predator.FOX)
+            if(bodyMovement.characterId.Value == (int)(predator.WOLF))
             {
                 FasterScurry();
             }
         }
-        if (dangerSenseIcon == null && (dangerSenseIcon = GameObject.FindGameObjectWithTag("DangerSensePerk")))
+        else
         {
-            dangerSenseIcon.SetActive(false);
+            normalSpeed = bodyMovement.SprintSpeed;
+            quickSpeed = bodyMovement.SprintSpeed + quickGetawayBoost;
+            if (bodyMovement.characterId.Value == (int)(prey.CHIPMUNK))
+            {
+                QuickHeal();
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(!IsOwner) return;
+        if (!IsOwner)
+            return;
 
-        if (!isPrey)
+        if (activateQuickGetaway.Value)
         {
-            PredatorLineOfSight();
-
-            if (!nightVariablesSet && GameManager.Instance.isNight.Value)
-            {
-                bodyMovement.WalkSpeed = nightRunSpeedPred;
-
-                if (bodyMovement.characterId.Value == (int)(predator.FOX))
-                {
-                    slyPerkMultiplier = nightSlyPerkMultiplier;
-                    boostedScurrySpeed = nightScurrySpeed;
-                }
-                if (bodyMovement.characterId.Value == (int)(predator.WOLF))
-                    predatorAttack.attackCooldown = nightAttackCooldown;
-                nightVariablesSet = true;
-            }
+            DeactivateQuickGetawayIndicatorServerRpc();
+            QuickGetaway();
         }
     }
 
     #region Prey Perks
 
-    private void FasterWalk()
+    private void QuickHeal()
     {
-        if (!IsOwner) return;
-        bodyMovement.WalkSpeed = fasterWalkSpeed;
-    }
-
-    //[ServerRpc(RequireOwnership = false)]
-    //public bool CanStunServerRpc()
-    //{
-    //    return bodyMovement.characterId == (int)(prey.HEDGEHOG);
-    //}
-
-    public void QuickGetaway()
-    {
-        if ((bodyMovement.characterId.Value == (int)(prey.RABBIT)) || (bodyMovement.characterId.Value == (int)(prey.CHIPMUNK)))
-        {
-            bodyMovement.WalkSpeed += quickGetawayBoost;
-            bodyMovement.SprintSpeed += quickGetawayBoost;
-            StartCoroutine(QuickGetawayBoost());
-        }
-    }
-
-    public void HopToIt()
-    {
-        if (!IsOwner || onCooldownHTI) return;
-
-        if (bodyMovement.characterId.Value == (int)(prey.RABBIT))
-        {
-            bodyMovement.SprintSpeed += hopToItBoost;
-            Debug.Log($"Speed: {bodyMovement.SprintSpeed}");
-            onCooldownHTI = true;
-            StartCoroutine(HopToItSpeedBoost());
-            StartCoroutine(HopToItCooldown());
-        }
-    }
-
-    private void EasyAccessToFood()
-    {
-        if (!IsOwner) return;
+        preySelfHeal = GetComponent<PreySelfHeal>();
         preySelfHeal.HealTime = boostedHealTime;
     }
 
-    private void DeepPocket()
+    public void QuickGetaway()
     {
-        if(!IsOwner) return;
-        preyFood.FoodCarryLimit = deepPocketValue;
+        if (!IsOwner)
+            return;
+        bodyMovement.WalkSpeed = quickSpeed;
+        bodyMovement.SprintSpeed = quickSpeed;
+        StartCoroutine(QuickGetawayBoost());
     }
-
-    public void PreyInLineOfSight()
-    {
-        if (!IsOwner) return;
-
-        if ((bodyMovement.characterId.Value == (int)(prey.RABBIT)) || (bodyMovement.characterId.Value == (int)(prey.HEDGEHOG)))
-        {
-            if (dangerSenseIcon != null && !dangerSenseIcon.GetComponent<Image>().IsActive())
-            {
-                Debug.Log("Predator can see prey... uh oh danger!");
-                dangerSenseIcon.SetActive(true);
-            }
-        }
-    }
-    
-    public void DeactivateDangerIcon()
-    {
-        if (!IsOwner) return;
-
-        if ((bodyMovement.characterId.Value == (int)(prey.RABBIT)) || (bodyMovement.characterId.Value == (int)(prey.HEDGEHOG)))
-        {
-            if (dangerSenseIcon != null && dangerSenseIcon.GetComponent<Image>().IsActive())
-            {
-                Debug.Log("no longer seen");
-                dangerSenseIcon.SetActive(false);
-            }
-        }
-    }
-
-    private void PredatorLineOfSight()
-    {
-        Collider[] rangeChecks = Physics.OverlapSphere(predatorLOS.transform.position, maxDistance, targetMask);
-
-        if (rangeChecks.Length != 0)
-        {
-            Transform currentTarget;
-            Vector3 directionToTarget;
-            foreach (Collider collider in rangeChecks)
-            {
-                currentTarget = collider.transform;
-                directionToTarget = (currentTarget.position - predatorLOS.transform.position).normalized;
-                //check if player is in f.o.v.
-                if (Vector3.Angle(predatorLOS.transform.forward, directionToTarget) < angle / 2)
-                {
-                    float distanceToTarget = Vector3.Distance(predatorLOS.transform.position, currentTarget.position);
-                    Ray ray = new Ray(predatorLOS.transform.position, directionToTarget);
-                    RaycastHit hit;
-                    Physics.Raycast(ray, out hit, distanceToTarget);
-                    if (hit.collider != null)
-                    {
-                        if (targetMask == (1 << hit.collider.gameObject.layer))
-                        {
-                            collider.GetComponentInParent<Perks>().PreyInLineOfSight();
-                            if (drawDebugLines)
-                            {
-                                Debug.DrawLine(predatorLOS.transform.position, currentTarget.position, Color.green);
-                            }
-                        }
-                        else
-                        {
-                            collider.GetComponentInParent<Perks>().DeactivateDangerIcon();
-                        }
-                    }
-                }
-                else
-                {
-                    collider.GetComponentInParent<Perks>().DeactivateDangerIcon();
-                }
-            }
-        }
-    }
-
 
     #endregion
 
     #region Predator Perks
 
-    #region Fox Passive Perks
     private void FasterScurry()
     {
         if (!IsOwner) return;
         animalScurry = GetComponent<AnimalScurry>();
         animalScurry.scurryTime = boostedScurrySpeed;
     }
-    #endregion
-
-    #region Wolf Passive Perks
-    private void PackHunter()
-    {
-        //to be continued
-    }
-
-    private void FasterAttackRecover()
-    {
-        if(!IsOwner) return;
-        predatorAttack.attackCooldown = boostedAttackCooldown;
-    }
-
-    #endregion
 
     #endregion
 
     #region Helpers
 
-    private void OnDrawGizmosSelected()
-    {
-        if (predatorLOS == null)
-            return;
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(predatorLOS.transform.position, maxDistance);
-        Gizmos.color = Color.yellow;
-        Vector3 drawViewAngle1 = DirectionFromAngleY(predatorLOS.transform.eulerAngles.y, -angle/2);
-        Vector3 drawViewAngle2 = DirectionFromAngleY(predatorLOS.transform.eulerAngles.y, angle/2);
-        Gizmos.DrawLine(predatorLOS.transform.position, predatorLOS.transform.position + drawViewAngle1 * maxDistance);
-        Gizmos.DrawLine(predatorLOS.transform.position, predatorLOS.transform.position + drawViewAngle2 * maxDistance);
-    }
-
-    private Vector3 DirectionFromAngleY(float eulerY, float angleInDegrees)
-    {
-        angleInDegrees += eulerY;
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    }
-
     IEnumerator QuickGetawayBoost()
     {
         yield return new WaitForSeconds(quickGetawayDuration);
-        bodyMovement.WalkSpeed = bodyMovement.WalkSpeed - quickGetawayBoost;
-        bodyMovement.SprintSpeed = bodyMovement.SprintSpeed - quickGetawayBoost;
+        bodyMovement.WalkSpeed = normalSpeed;
+        bodyMovement.SprintSpeed = normalSpeed;
     }
 
-    IEnumerator HopToItSpeedBoost()
+    [ServerRpc]
+    private void DeactivateQuickGetawayIndicatorServerRpc()
     {
-        yield return new WaitForSeconds(hopToItDuration);
-        bodyMovement.SprintSpeed -= hopToItBoost;
-        Debug.Log($"Speed: {bodyMovement.SprintSpeed}");
+        activateQuickGetaway.Value = false;
     }
 
-    IEnumerator HopToItCooldown()
-    {
-        yield return new WaitForSeconds(hopToItCooldown);
-        onCooldownHTI = false;
-        Debug.Log($"COOLDOWN OVER Speed: {bodyMovement.SprintSpeed}");
+    #endregion
 
-    } 
+    #region Archived Perks
+    //FASTER WALK
+    //
+    //private void FasterWalk()
+    //{
+    //    if (!IsOwner) return;
+    //    bodyMovement.WalkSpeed = fasterWalkSpeed;
+    //}
 
+
+    //HOP TO IT
+    //
+    //public void HopToIt()
+    //{
+    //    if (!IsOwner || onCooldownHTI) return;
+
+    //    if (bodyMovement.characterId.Value == (int)(prey.RABBIT))
+    //    {
+    //        bodyMovement.SprintSpeed += hopToItBoost;
+    //        Debug.Log($"Speed: {bodyMovement.SprintSpeed}");
+    //        onCooldownHTI = true;
+    //        StartCoroutine(HopToItSpeedBoost());
+    //        StartCoroutine(HopToItCooldown());
+    //    }
+    //}
+    //IEnumerator HopToItSpeedBoost()
+    //{
+    //    yield return new WaitForSeconds(hopToItDuration);
+    //    bodyMovement.SprintSpeed -= hopToItBoost;
+    //    Debug.Log($"Speed: {bodyMovement.SprintSpeed}");
+    //}
+    //IEnumerator HopToItCooldown()
+    //{
+    //    yield return new WaitForSeconds(hopToItCooldown);
+    //    onCooldownHTI = false;
+    //    Debug.Log($"COOLDOWN OVER Speed: {bodyMovement.SprintSpeed}");
+
+    //}
+
+
+    //DANGER SENSE
+    //
+    //private void PredatorLineOfSight()
+    //{
+    //    Collider[] rangeChecks = Physics.OverlapSphere(predatorLOS.transform.position, maxDistance, targetMask);
+
+    //    if (rangeChecks.Length != 0)
+    //    {
+    //        Transform currentTarget;
+    //        Vector3 directionToTarget;
+    //        foreach (Collider collider in rangeChecks)
+    //        {
+    //            currentTarget = collider.transform;
+    //            directionToTarget = (currentTarget.position - predatorLOS.transform.position).normalized;
+    //            //check if player is in f.o.v.
+    //            if (Vector3.Angle(predatorLOS.transform.forward, directionToTarget) < angle / 2)
+    //            {
+    //                float distanceToTarget = Vector3.Distance(predatorLOS.transform.position, currentTarget.position);
+    //                Ray ray = new Ray(predatorLOS.transform.position, directionToTarget);
+    //                RaycastHit hit;
+    //                Physics.Raycast(ray, out hit, distanceToTarget);
+    //                if (hit.collider != null)
+    //                {
+    //                    if (targetMask == (1 << hit.collider.gameObject.layer))
+    //                    {
+    //                        collider.GetComponentInParent<Perks>().PreyInLineOfSight();
+    //                        if (drawDebugLines)
+    //                        {
+    //                            Debug.DrawLine(predatorLOS.transform.position, currentTarget.position, Color.green);
+    //                        }
+    //                    }
+    //                    else
+    //                    {
+    //                        collider.GetComponentInParent<Perks>().DeactivateDangerIcon();
+    //                    }
+    //                }
+    //            }
+    //            else
+    //            {
+    //                collider.GetComponentInParent<Perks>().DeactivateDangerIcon();
+    //            }
+    //        }
+    //    }
+    //}
+    //public void DeactivateDangerIcon()
+    //{
+    //    if (!IsOwner) return;
+
+    //    if ((bodyMovement.characterId.Value == (int)(prey.RABBIT)) || (bodyMovement.characterId.Value == (int)(prey.HEDGEHOG)))
+    //    {
+    //        if (dangerSenseIcon != null && dangerSenseIcon.GetComponent<Image>().IsActive())
+    //        {
+    //            Debug.Log("no longer seen");
+    //            dangerSenseIcon.SetActive(false);
+    //        }
+    //    }
+    //}
+    //public void PreyInLineOfSight()
+    //{
+    //    if (!IsOwner) return;
+
+    //    if ((bodyMovement.characterId.Value == (int)(prey.RABBIT)) || (bodyMovement.characterId.Value == (int)(prey.HEDGEHOG)))
+    //    {
+    //        if (dangerSenseIcon != null && !dangerSenseIcon.GetComponent<Image>().IsActive())
+    //        {
+    //            Debug.Log("Predator can see prey... uh oh danger!");
+    //            dangerSenseIcon.SetActive(true);
+    //        }
+    //    }
+    //}
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (predatorLOS == null)
+    //        return;
+
+    //    Gizmos.color = Color.white;
+    //    Gizmos.DrawWireSphere(predatorLOS.transform.position, maxDistance);
+    //    Gizmos.color = Color.yellow;
+    //    Vector3 drawViewAngle1 = DirectionFromAngleY(predatorLOS.transform.eulerAngles.y, -angle / 2);
+    //    Vector3 drawViewAngle2 = DirectionFromAngleY(predatorLOS.transform.eulerAngles.y, angle / 2);
+    //    Gizmos.DrawLine(predatorLOS.transform.position, predatorLOS.transform.position + drawViewAngle1 * maxDistance);
+    //    Gizmos.DrawLine(predatorLOS.transform.position, predatorLOS.transform.position + drawViewAngle2 * maxDistance);
+    //}
+    //private Vector3 DirectionFromAngleY(float eulerY, float angleInDegrees)
+    //{
+    //    angleInDegrees += eulerY;
+    //    return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    //}
+
+
+    //DEEP POCKET
+    //
+    //private void DeepPocket()
+    //{
+    //    if (!IsOwner) return;
+    //    preyFood.FoodCarryLimit = deepPocketValue;
+    //}
+
+    //FASTER ATTACK RECOVERY
+    //private void FasterAttackRecover()
+    //{
+    //    if (!IsOwner) return;
+    //    predatorAttack.attackCooldown = boostedAttackCooldown;
+    //}
     #endregion
 }

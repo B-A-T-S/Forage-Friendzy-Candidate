@@ -104,8 +104,10 @@ public class PreyHealth : NetworkBehaviour
                 //currentFoodCount = 0; //maybe in the future also call a function before this to physically drop food assets
                 //TakeDamage(damage);
                 canBeHit.Value = false;
-                perks.QuickGetaway();
-
+                if ((bodyMovement.characterId.Value == (int)(prey.RABBIT)))
+                {
+                    perks.activateQuickGetaway.Value = true;
+                }
             }
 
             event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);

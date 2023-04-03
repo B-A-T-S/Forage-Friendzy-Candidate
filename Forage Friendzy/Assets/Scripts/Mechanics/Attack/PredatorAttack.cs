@@ -107,20 +107,20 @@ public class PredatorAttack : NetworkBehaviour
         Collider[] hits = Physics.OverlapSphere(attackTransform.position, attackRadius);
 
 
-        foreach (Collider prey in hits)
+        foreach (Collider preyHit in hits)
         {
 
-            if (prey.transform.parent != null)
-                if (prey.transform.parent.parent != null)
+            if (preyHit.transform.parent != null)
+                if (preyHit.transform.parent.parent != null)
                 {
-                    if (prey.gameObject.layer == (int)CustomLayers.Prey)
+                    if (preyHit.gameObject.layer == (int)CustomLayers.Prey)
                     {
                         //Debug.Log("I hit " + prey.transform.parent.parent.name);
                     }
 
-                    if (prey.transform.parent.parent.CompareTag("Prey"))
+                    if (preyHit.transform.parent.parent.CompareTag("Prey"))
                     {
-                        currentPrey = prey.gameObject.transform.parent.GetComponentInParent<PreyHealth>();
+                        currentPrey = preyHit.gameObject.transform.parent.GetComponentInParent<PreyHealth>();
                     }
 
                     //currentPrey = prey.gameObject.GetComponent<PreyHealth>();
@@ -129,10 +129,10 @@ public class PredatorAttack : NetworkBehaviour
                     {
                         //Debug.Log("I Hit Sone");
                         currentPrey.ProcessAttack(NetworkManager.Singleton.LocalClientId);
-                        //if (currentPrey.PreyCanStun())
-                        //{
-                        //    StunPredatorServerRpc(currentPrey.GetComponent<Perks>().StunTime);
-                        //}
+                        if (currentPrey.GetComponent<BodyMovement>().characterId.Value == (int)(prey.HEDGEHOG))
+                        {
+                            StunPredatorServerRpc(currentPrey.GetComponent<Perks>().StunTime);
+                        }
                     }
                 }
         }
