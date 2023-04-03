@@ -162,7 +162,7 @@ public class RoomView : MonoBehaviour
 
     private void OnCurrentLobbyRefreshed(Lobby lobby)
     {
-        waitingText.text = $"Waiting on players... {lobby.Players.Count}/{lobby.MaxPlayers}";
+        waitingText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers}";
     }
 
     public void OnReadyClicked()
