@@ -72,7 +72,8 @@ public class ThirdPersonCamera : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(myCamera == null)
+
+        if(myCamera == null || free)
             return;
 
         if (myCamera.gameObject.activeSelf == false || body.linkedController == null || !body.linkedController.isLinked)
@@ -82,7 +83,12 @@ public class ThirdPersonCamera : NetworkBehaviour
         RotateCamera(inputs);
         if (Input.GetKeyUp(toggleCursorLockState))
             ToggleCursorLockState();
+
+
+        if (Input.GetKeyDown(KeyCode.J)) free = !free;
     }
+
+    bool free = false;
 
     private void ToggleCursorLockState()
     {

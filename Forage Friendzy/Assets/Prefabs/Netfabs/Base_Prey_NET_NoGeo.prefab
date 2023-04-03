@@ -501,6 +501,7 @@ GameObject:
   - component: {fileID: 8146895535090778308}
   - component: {fileID: 4056982959102946211}
   - component: {fileID: 4125321846241758677}
+  - component: {fileID: 6108888240545465173}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -772,6 +773,24 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &6108888240545465173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457486071370482405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7029538add042fd4eb70538469a9a695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rememberedParent: {fileID: 0}
+  rotSpeed: 1
+  moveSpeed: 5
+  count: 0
+  smoothingFrames: 50
+  free: 0
 --- !u!1 &5457486071552696941
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +928,7 @@ GameObject:
   - component: {fileID: 5276327970214325595}
   - component: {fileID: 7198363367225257852}
   - component: {fileID: 2444526575733807868}
+  - component: {fileID: 7653335172321140637}
   m_Layer: 20
   m_Name: Base_Prey_NET_NoGeo
   m_TagString: Prey
@@ -1096,10 +1116,8 @@ MonoBehaviour:
   slyPerkMultiplier: 1.25
   boostedScurrySpeed: 0
   boostedAttackCooldown: 0
-  nightSlyPerkMultiplier: 1.25
-  nightScurrySpeed: 0
-  nightAttackCooldown: 0
-  nightRunSpeedPred: 0
+  activateQuickGetaway:
+    m_InternalValue: 0
   maxDistance: 0
   angle: 0
   drawDebugLines: 0
@@ -1254,6 +1272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrorSound: {fileID: 0}
+  loanedAudioSource: {fileID: 0}
+  aSource: {fileID: 0}
   myLocation: {fileID: 5457486072309953675}
   activationDistance: 25
   isAfraidOf: []
@@ -1409,6 +1429,7 @@ MonoBehaviour:
   searchForProviders: 0
   actionFilter: 05000000
   blackList: []
+  isHealing: 0
 --- !u!114 &2444526575733807868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,6 +1457,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &7653335172321140637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457486072309953669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d51ff68567fc44682d8b7d72ff9273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7873666675847411085
 GameObject:
   m_ObjectHideFlags: 0

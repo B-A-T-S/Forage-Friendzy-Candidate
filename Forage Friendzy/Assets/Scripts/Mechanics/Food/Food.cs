@@ -162,7 +162,7 @@ public class Food : NetworkBehaviour
             castDirection = prey.Value.transform.position - this.transform.position;
 
             Physics.Raycast(new Ray(this.transform.position, castDirection), out hit);
-            Debug.Log(hit.collider?.name);
+            //Debug.Log(hit.collider?.name);
 
             if (hit.collider?.transform.parent?.tag == "BodyGeometry") return true;
             if (hit.collider?.transform.tag == "Predator") return true;
