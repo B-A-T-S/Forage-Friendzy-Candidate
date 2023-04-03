@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Actions
-    public KeyCode interact;
+    public string interact;
     public KeyCode activeAbility;
-    public KeyCode scurry;
-    public KeyCode selfHeal;
+    public string scurry;
+    public string selfHeal;
     public KeyCode sprint;
     public KeyCode sneak;
     public KeyCode scoreboard;

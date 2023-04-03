@@ -58,6 +58,7 @@ public class BreakableScurryProvider : AnonymousProvider
 
     public override void AddAction(AnonymousActor actor)
     {
+        OverrideActionContainerInput();
         if (destrucData == null)
             destrucData = scurryEntrance.parentData as DestructScurryData;
 

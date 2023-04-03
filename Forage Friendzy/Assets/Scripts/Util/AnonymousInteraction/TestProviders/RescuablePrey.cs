@@ -21,6 +21,7 @@ public class RescuablePrey : AnonymousProvider
 
     public override void AddAction(AnonymousActor actor)
     {
+        OverrideActionContainerInput();
         heldAction.executableAction = () =>
         {
 

@@ -20,6 +20,7 @@ public class SelfHealProvider : AnonymousProvider
 
     public override void AddAction(AnonymousActor actor)
     {
+        OverrideActionContainerInput();
         heldAction.executableAction = () =>
         {
             pHealth.HandleSelfHealServerRpc();

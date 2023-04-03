@@ -10,7 +10,7 @@ public class ActionContainer
     public Action executableAction = () => { };
     public int containerID;
     public string displayName;
-    public KeyCode inputKey;
+    public string inputKey;
     public ActionCatagory catagory;
     [Tooltip("lower number is prioritized")]
     public int priority;
@@ -34,7 +34,7 @@ public class ActionContainer
     public ActionContainer()
     {
         containerID = rand.Next();
-        inputKey = KeyCode.E;
+        inputKey = "Interact";
         catagory = ActionCatagory.Scurry;
         priority = 0;
         requiredHoldTime = 0.01f;

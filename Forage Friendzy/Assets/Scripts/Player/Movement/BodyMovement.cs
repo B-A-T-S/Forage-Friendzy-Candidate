@@ -289,11 +289,13 @@ public class BodyMovement : Controlled3DBody
     Vector3 DetermineInputVector(Inputs inputs)
     {
         Vector3 inputVector = Vector3.zero;
-        inputVector.x = Convert.ToInt32(inputs.isRightKeyPressed);
-        inputVector.x -= Convert.ToInt32(inputs.isLeftKeyPressed);
-        inputVector.z = Convert.ToInt32(inputs.isUpKeyPressed);
-        inputVector.z -= Convert.ToInt32(inputs.isDownKeyPressed);
-
+        //inputVector.x = Convert.ToInt32(inputs.isRightKeyPressed);
+        //inputVector.x -= Convert.ToInt32(inputs.isLeftKeyPressed);
+        //inputVector.z = Convert.ToInt32(inputs.isUpKeyPressed);
+        //inputVector.z -= Convert.ToInt32(inputs.isDownKeyPressed);
+        inputVector.x = inputs.horizontal;
+        inputVector.z = inputs.vertical;
+        
         return inputVector;
     }
 
@@ -384,6 +386,8 @@ public struct Inputs
     public bool isInteractKeyPressed;
     public bool isSprintKeyPressed;
     public bool isSneakKeyPressed;
+    public float horizontal;
+    public float vertical;
 
     public Inputs(PlayerController controller)
     {
@@ -393,9 +397,11 @@ public struct Inputs
             isLeftKeyPressed = Input.GetKey(controller.leftKey);
             isUpKeyPressed = Input.GetKey(controller.upKey);
             isDownKeyPressed = Input.GetKey(controller.downKey);
-            isInteractKeyPressed = Input.GetKey(controller.interact);
+            isInteractKeyPressed = Input.GetButton(controller.interact);
             isSprintKeyPressed = Input.GetKey(controller.sprint);
             isSneakKeyPressed = Input.GetKey(controller.sneak);
+            horizontal = Input.GetAxisRaw(controller.horizontal);
+            vertical = Input.GetAxisRaw(controller.vertical);
         }
         else
         {
@@ -406,6 +412,8 @@ public struct Inputs
             isInteractKeyPressed = false;
             isSprintKeyPressed = false;
             isSneakKeyPressed = false;
+            horizontal = 0.0f;
+            vertical = 0.0f;
         }
 
     }

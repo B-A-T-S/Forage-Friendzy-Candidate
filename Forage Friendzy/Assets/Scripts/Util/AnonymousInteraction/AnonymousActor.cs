@@ -88,7 +88,7 @@ public class AnonymousActor : NetworkBehaviour
         {
             //check to see if the input assosiated with that action
             //is down for this frame
-            if (IsValidInputState() && Input.GetKey(frameContainerArr[i].inputKey))
+            if (IsValidInputState() && Input.GetButton(frameContainerArr[i].inputKey))
             {
                 //if multiInput is disabled and an input is already active, ignore this input
                 //if an input is not yet active, set it as such
@@ -235,7 +235,7 @@ public class AnonymousActor : NetworkBehaviour
 
     }
 
-    private int GetIndexOfMatchingInput(KeyCode key)
+    private int GetIndexOfMatchingInput(string key)
     {
         for (int i = 0; i < GetActiveActionCount(); i++)
         {
@@ -245,7 +245,7 @@ public class AnonymousActor : NetworkBehaviour
         return -1;
     }
 
-    public bool ContainsMatchingInput(KeyCode key)
+    public bool ContainsMatchingInput(string key)
     {
         return activeActions.Find(x => x.inputKey == key) != null;
     }

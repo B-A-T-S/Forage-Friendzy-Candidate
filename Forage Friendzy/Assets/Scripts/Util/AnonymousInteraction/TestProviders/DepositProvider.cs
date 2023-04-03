@@ -14,6 +14,7 @@ public class DepositProvider : AnonymousProvider
     // Checks for PreyFood class to add, destroys self
     public override void AddAction(AnonymousActor actor)
     {
+        OverrideActionContainerInput();
         heldAction.executableAction = () =>
         {
 

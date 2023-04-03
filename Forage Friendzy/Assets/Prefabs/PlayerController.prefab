@@ -45,17 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a4e3e75320bb2409c11315fa8a8fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upKey: 119
-  downKey: 115
-  rightKey: 100
-  leftKey: 97
-  interact: 101
-  activeAbility: 113
-  scurry: 32
-  selfHeal: 324
-  sprint: 304
-  sneak: 306
-  scoreboard: 9
+  upKey: 0
+  downKey: 0
+  rightKey: 0
+  leftKey: 0
+  interact: Interact
+  activeAbility: 0
+  scurry: Jump
+  selfHeal: Fire2
+  sprint: 0
+  sneak: 0
+  scoreboard: 0
   mouseX: Mouse X
   mouseY: Mouse Y
   horizontal: Horizontal

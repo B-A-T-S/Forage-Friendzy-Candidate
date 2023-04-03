@@ -31,6 +31,7 @@ public class PerminantScurryProvider : AnonymousProvider
 
     public override void AddAction(AnonymousActor actor)
     {
+        OverrideActionContainerInput();
         heldAction.executableAction = () => 
         {
             worldCanvas.Hide();

@@ -17,6 +17,7 @@ public class CollectableFood : AnonymousProvider
     // Checks for PreyFood class to add, destroys self
     public override void AddAction(AnonymousActor actor)
     {
+        OverrideActionContainerInput();
         heldAction.executableAction = () =>
         {
 
@@ -41,6 +42,11 @@ public class CollectableFood : AnonymousProvider
                     $"Provider {name} calling it.");
             }
         };
+    }
+
+    protected override void OverrideActionContainerInput()
+    {
+        heldAction.inputKey = inSceneController.interact;
     }
 
     public override bool Enter_IsValidActor(AnonymousActor actor)
