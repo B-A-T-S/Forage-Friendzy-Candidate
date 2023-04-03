@@ -336,6 +336,9 @@ public class LobbyManager : NetworkBehaviour
             int i = 0;
             foreach (KeyValuePair<ulong, PlayerInfo> info in copy)
             {
+                if (info.Key == playerId)
+                    continue;
+
                 if (info.Value.playerName == playerName)
                     i++;
             }
