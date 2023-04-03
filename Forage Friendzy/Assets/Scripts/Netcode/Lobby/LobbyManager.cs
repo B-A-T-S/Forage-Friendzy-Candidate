@@ -150,12 +150,18 @@ public class LobbyManager : NetworkBehaviour
             //add myself to the list of local clients as not ready (because I am in the lobby)
             if(!playersInLobby.ContainsKey(NetworkManager.Singleton.LocalClientId))
                 playersInLobby.Add(NetworkManager.Singleton.LocalClientId, new PlayerInfo(false));
+            SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
+            
             //and update UI
             UpdateUI();
         }
 
         //regardless of who I am, start listening for disconnections
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
+
+        //After a client networkSpawn, update playerName on server
+        if(IsClient)
+            SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
     }
 
     public override void OnNetworkDespawn()
@@ -310,6 +316,42 @@ public class LobbyManager : NetworkBehaviour
     {
         PlayerInfo copyOfInfo = playersInLobby[playerId];
         copyOfInfo.isReady = isReady;
+        playersInLobby[playerId] = copyOfInfo;
+        PropagateToClients();
+        UpdateUI();
+    }
+
+    //client to server
+    //inform server of Client Name
+    [ServerRpc(RequireOwnership = false)]
+    private void SetPlayerNameServerRpc(ulong playerId, string playerName)
+    {
+
+        KeyValuePair<ulong, PlayerInfo>[] copy = playersInLobby.ToArray();
+
+        //returns the number of times a specific name turns up 
+        // in a basic search
+        int DoesNameExist(string inQuestion)
+        {
+            int i = 0;
+            foreach (KeyValuePair<ulong, PlayerInfo> info in copy)
+            {
+                if (info.Value.playerName == playerName)
+                    i++;
+            }
+
+            return i;
+        }
+
+        //does given name already exist?
+        // if so, add postfix
+        int numDuplicates = DoesNameExist(playerName);
+        if(numDuplicates > 0)
+            playerName = $"{playerName} ({numDuplicates})";
+
+        //edit information in dictionary
+        PlayerInfo copyOfInfo = playersInLobby[playerId];
+        copyOfInfo.playerName = playerName;
         playersInLobby[playerId] = copyOfInfo;
         PropagateToClients();
         UpdateUI();

@@ -70,11 +70,11 @@ public class RoomPlayerPanel : MonoBehaviour
 
     private PreviewObject activePreviewObject;
 
-    public void Init(ulong playerId, ulong localId)
+    public void Init(ulong playerId, ulong localId, string playerName)
     {
         PlayerId = playerId;
-        FakePlayerId = GetFakePlayerId(playerId);
-        nameText.text = $"Player {FakePlayerId}";
+        FakePlayerId =  GetFakePlayerId(playerId);
+        nameText.text = string.IsNullOrEmpty(playerName) ? $"Player {FakePlayerId}" : playerName;
 
         if (playerId != localId)
         {
@@ -208,6 +208,8 @@ public struct PlayerInfo : INetworkSerializable
     public int roleIndex;
     public int characterIndex;
     public int cosmeticIndex;
+    public string playerName;
+
 
     //blank char, readyable
     public PlayerInfo(bool isReady)
@@ -216,15 +218,7 @@ public struct PlayerInfo : INetworkSerializable
         roleIndex = 0;
         characterIndex = 0;
         cosmeticIndex = 0;
-    }
-
-    //blank char, defined role
-    public PlayerInfo(bool _isReady, int _roleIndex, int _characterIndex, int _cosmeticIndex)
-    {
-        isReady = _isReady;
-        roleIndex = _roleIndex;
-        characterIndex = _characterIndex;
-        cosmeticIndex = _cosmeticIndex;
+        playerName = "";
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
@@ -233,5 +227,6 @@ public struct PlayerInfo : INetworkSerializable
         serializer.SerializeValue(ref roleIndex);
         serializer.SerializeValue(ref characterIndex);
         serializer.SerializeValue(ref cosmeticIndex);
+        serializer.SerializeValue(ref playerName);
     }
 }

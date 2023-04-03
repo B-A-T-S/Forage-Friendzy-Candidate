@@ -31,5 +31,6 @@ public class ClientLaunchInfo : MonoBehaviour, INetworkSerializable
         serializer.SerializeValue(ref role);
         serializer.SerializeValue(ref character);
         serializer.SerializeValue(ref cosmetic);
+        serializer.SerializeValue(ref playerName);
     }
 }

@@ -97,7 +97,7 @@ public class RoomView : MonoBehaviour
             {
                 //create
                 RoomPlayerPanel panel = Instantiate(playerPanelPrefab, roomPanelParent);
-                panel.Init(key, NetworkManager.Singleton.LocalClientId);
+                panel.Init(key, NetworkManager.Singleton.LocalClientId, players[key].playerName);
                 playerPanels.Add(panel);
                 
             }
