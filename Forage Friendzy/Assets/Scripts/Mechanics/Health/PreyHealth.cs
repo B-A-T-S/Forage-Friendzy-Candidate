@@ -236,8 +236,8 @@ public class PreyHealth : NetworkBehaviour
     {
         //inform UI
         // turning off downed effects once rescued
-        knockedEffect.SetActive(!current);
-        downedEffect.SetActive(!current);
+        knockedEffect.SetActive(current);
+        downedEffect.SetActive(current);
 
         //Debug.Log($"Fainted State Changed from {previous} to {current}");
         rescueArea.SetActive(current);
