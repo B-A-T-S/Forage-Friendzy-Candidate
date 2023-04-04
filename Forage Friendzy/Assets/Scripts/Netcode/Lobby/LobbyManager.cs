@@ -150,7 +150,7 @@ public class LobbyManager : NetworkBehaviour
             //add myself to the list of local clients as not ready (because I am in the lobby)
             if(!playersInLobby.ContainsKey(NetworkManager.Singleton.LocalClientId))
                 playersInLobby.Add(NetworkManager.Singleton.LocalClientId, new PlayerInfo(false));
-            SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
+            //SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
             
             //and update UI
             UpdateUI();
@@ -160,8 +160,8 @@ public class LobbyManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
         //After a client networkSpawn, update playerName on server
-        if(IsClient)
-            SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
+        //if(IsClient)
+            //SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
     }
 
     public override void OnNetworkDespawn()

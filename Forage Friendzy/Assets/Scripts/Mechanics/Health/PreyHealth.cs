@@ -85,7 +85,7 @@ public class PreyHealth : NetworkBehaviour
                 isInjured.Value = false;
                 isFainted.Value = true;
                 matchFaintCount++;
-                DownedCheckClientRPC();
+                
 
                 GameManager.Instance.EditClientMetricServerRpc(attackerID, (int)ClientStatus.StatIndex.Knockouts, 1);
                 //TakeDamage(damage);
@@ -149,7 +149,7 @@ public class PreyHealth : NetworkBehaviour
 
         HealingClientRPC();
         ResurectedClientRPC();
-        DownedCheckClientRPC();
+        
     }
 
     [ClientRpc]
@@ -176,24 +176,6 @@ public class PreyHealth : NetworkBehaviour
         hitEffect.SetActive(true);
         StartCoroutine(DelayedFunction(() => { hitEffect.SetActive(false); }, 3f));
         // used for playing hurt on all players
-    }
-
-    [ClientRpc]
-    public void DownedCheckClientRPC()
-    { 
-        if (isFainted.Value == false) 
-        {
-            // turning off downed effects once rescued
-            knockedEffect.SetActive(false);
-            downedEffect.SetActive(false);
-
-        }
-        else 
-        {
-            knockedEffect.SetActive(true);
-            downedEffect.SetActive(true);
-
-        } 
     }
 
     IEnumerator DelayedFunction(Action toPerform, float toWait)
@@ -253,6 +235,10 @@ public class PreyHealth : NetworkBehaviour
     public void OnFaintedChanged(bool previous, bool current)
     {
         //inform UI
+        // turning off downed effects once rescued
+        knockedEffect.SetActive(current);
+        downedEffect.SetActive(current);
+
         //Debug.Log($"Fainted State Changed from {previous} to {current}");
         rescueArea.SetActive(current);
         event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
