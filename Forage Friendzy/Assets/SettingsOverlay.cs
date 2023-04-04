@@ -8,6 +8,7 @@ public class SettingsOverlay : MonoBehaviour
 
     public void OpenSettings()
     {
+        Debug.Log("Help me");
         overlayPrefab?.SetActive(true);
     }
 
