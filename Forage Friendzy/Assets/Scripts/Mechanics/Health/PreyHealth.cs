@@ -25,6 +25,9 @@ public class PreyHealth : NetworkBehaviour
     public GameObject resEffect;
     public GameObject hitEffect;
 
+    public GameObject knockedEffect;// used to show the prey and pred that prey is knocked
+    public GameObject downedEffect;// can be seen through walls to help prey see downed freinds
+
     private BodyMovement bodyMovement;
     private Perks perks;
 
@@ -82,6 +85,7 @@ public class PreyHealth : NetworkBehaviour
                 isInjured.Value = false;
                 isFainted.Value = true;
                 matchFaintCount++;
+                DownedCheckClientRPC();
 
                 GameManager.Instance.EditClientMetricServerRpc(attackerID, (int)ClientStatus.StatIndex.Knockouts, 1);
                 //TakeDamage(damage);
@@ -139,10 +143,13 @@ public class PreyHealth : NetworkBehaviour
 
         AudioManager.Instance.LoanOneShotSource(AudioCatagories.SFX, sound_WhenRescued);
 
+
+
         event_OnRescued?.Invoke();
 
         HealingClientRPC();
         ResurectedClientRPC();
+        DownedCheckClientRPC();
     }
 
     [ClientRpc]
@@ -169,6 +176,24 @@ public class PreyHealth : NetworkBehaviour
         hitEffect.SetActive(true);
         StartCoroutine(DelayedFunction(() => { hitEffect.SetActive(false); }, 3f));
         // used for playing hurt on all players
+    }
+
+    [ClientRpc]
+    public void DownedCheckClientRPC()
+    { 
+        if (isFainted.Value == false) 
+        {
+            // turning off downed effects once rescued
+            knockedEffect.SetActive(false);
+            downedEffect.SetActive(false);
+
+        }
+        else 
+        {
+            knockedEffect.SetActive(true);
+            downedEffect.SetActive(true);
+
+        } 
     }
 
     IEnumerator DelayedFunction(Action toPerform, float toWait)
