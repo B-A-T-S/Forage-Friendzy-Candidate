@@ -2675,15 +2675,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2941339780720003664, guid: b7e8c619339c5bc42897f1660b1deed3, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
-      value: 3.4822018
+      value: 5.551048
       objectReference: {fileID: 0}
     - target: {fileID: 2941339780720003664, guid: b7e8c619339c5bc42897f1660b1deed3, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
-      value: 0
+      value: 5.551048
       objectReference: {fileID: 0}
     - target: {fileID: 2941339780720003664, guid: b7e8c619339c5bc42897f1660b1deed3, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
-      value: 0
+      value: 5.551048
       objectReference: {fileID: 0}
     - target: {fileID: 2941339780720003664, guid: b7e8c619339c5bc42897f1660b1deed3, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Overridden
