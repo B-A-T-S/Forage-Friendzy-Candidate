@@ -16,7 +16,6 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void Awake()
     {
-        //Debug.Log("Object Pool Manager - Instance Set");
         instance = this;
     }
 

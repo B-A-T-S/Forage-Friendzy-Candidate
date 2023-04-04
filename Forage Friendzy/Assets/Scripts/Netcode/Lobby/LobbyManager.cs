@@ -150,7 +150,7 @@ public class LobbyManager : NetworkBehaviour
             //add myself to the list of local clients as not ready (because I am in the lobby)
             if(!playersInLobby.ContainsKey(NetworkManager.Singleton.LocalClientId))
                 playersInLobby.Add(NetworkManager.Singleton.LocalClientId, new PlayerInfo(false));
-            //SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
+            EnqueueNameUpdateRequestServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
             
             //and update UI
             UpdateUI();
@@ -160,8 +160,8 @@ public class LobbyManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
         //After a client networkSpawn, update playerName on server
-        //if(IsClient)
-            //SetPlayerNameServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
+        if(IsClient)
+            EnqueueNameUpdateRequestServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
     }
 
     public override void OnNetworkDespawn()
@@ -321,10 +321,58 @@ public class LobbyManager : NetworkBehaviour
         UpdateUI();
     }
 
-    //client to server
-    //inform server of Client Name
-    [ServerRpc(RequireOwnership = false)]
-    private void SetPlayerNameServerRpc(ulong playerId, string playerName)
+    struct PlayerNameUpdateRequest
+    {
+        public ulong playerId;
+        public string playerName;
+        public bool status;
+
+        public PlayerNameUpdateRequest(ulong id, string name)
+        {
+            playerId = id;
+            playerName = name;
+            status = false;
+        }
+    }
+
+    Queue<PlayerNameUpdateRequest> nameUpdateQueue = new();
+    Coroutine queueProcessor;
+    float failedProcessWaitTime = 1f;
+
+    IEnumerator ProcessNameQueueCoroutine()
+    {
+        while(nameUpdateQueue.Count > 0)
+        {
+            if (ProcessUpdateRequest(nameUpdateQueue.Peek()))
+            {
+                Debug.Log("NameUpdateRequest Processed Successfully");
+                nameUpdateQueue.Dequeue();
+                yield return null;
+            }
+            else
+            {
+                Debug.Log("NameUpdateRequest Processing Failed");
+                yield return new WaitForSeconds(failedProcessWaitTime);
+            }
+        }
+        queueProcessor = null;
+    }
+
+    private bool ProcessUpdateRequest(PlayerNameUpdateRequest request)
+    {
+
+        ulong[] existingIds = playersInLobby.Keys.ToArray();
+        if (existingIds.Contains<ulong>(request.playerId))
+        {
+            //player exists in dictionary
+            SetPlayerName(request.playerId, request.playerName);
+            return true;
+        }
+
+        return false;
+    } 
+
+    private void SetPlayerName(ulong id, string name)
     {
 
         KeyValuePair<ulong, PlayerInfo>[] copy = playersInLobby.ToArray();
@@ -336,10 +384,10 @@ public class LobbyManager : NetworkBehaviour
             int i = 0;
             foreach (KeyValuePair<ulong, PlayerInfo> info in copy)
             {
-                if (info.Key == playerId)
+                if (info.Key == id)
                     continue;
 
-                if (info.Value.playerName == playerName)
+                if (info.Value.playerName == name)
                     i++;
             }
 
@@ -348,16 +396,26 @@ public class LobbyManager : NetworkBehaviour
 
         //does given name already exist?
         // if so, add postfix
-        int numDuplicates = DoesNameExist(playerName);
-        if(numDuplicates > 0)
-            playerName = $"{playerName} ({numDuplicates})";
+        int numDuplicates = DoesNameExist(name);
+        if (numDuplicates > 0)
+            name = $"{name} ({numDuplicates})";
 
         //edit information in dictionary
-        PlayerInfo copyOfInfo = playersInLobby[playerId];
-        copyOfInfo.playerName = playerName;
-        playersInLobby[playerId] = copyOfInfo;
+        PlayerInfo copyOfInfo = playersInLobby[id];
+        copyOfInfo.playerName = name;
+        playersInLobby[id] = copyOfInfo;
         PropagateToClients();
         UpdateUI();
+    }
+
+    //client to server
+    //inform server of Client Name
+    [ServerRpc(RequireOwnership = false)]
+    private void EnqueueNameUpdateRequestServerRpc(ulong playerId, string playerName)
+    {
+        nameUpdateQueue.Enqueue(new PlayerNameUpdateRequest(playerId, playerName));
+        if (queueProcessor == null)
+            queueProcessor = StartCoroutine(ProcessNameQueueCoroutine());
     }
 
     [ClientRpc]

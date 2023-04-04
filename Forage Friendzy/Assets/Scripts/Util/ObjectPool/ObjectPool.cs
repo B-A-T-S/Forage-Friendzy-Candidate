@@ -34,7 +34,6 @@ public class ObjectPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("Object Pool " + this.name + " Init");
         pooledObjects = new List<GameObject>();
 
         for(int i = 0; i < pooledAmount; i++)
@@ -55,7 +54,6 @@ public class ObjectPool : MonoBehaviour
     {
         for(int i = 0; i < pooledObjects.Count; i++)
         {
-            //Debug.Log($"{pooledObjects[i].name} is currently {pooledObjects[i].activeSelf}");
             if(!pooledObjects[i].activeSelf)
             {
                 return pooledObjects[i];
@@ -71,7 +69,6 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
 
-        //Debug.LogError("Object Pool for " + poolableObject.name + "is empty.");
         return null;
     }
 

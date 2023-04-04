@@ -42,6 +42,9 @@ public class SoundEffectCollection : MonoBehaviour
 
     void Start()
     {
+        if (!playSounds)
+            return;
+
         loanedAudioSource = AudioManager.Instance.LoanLoopingSource(AudioCatagories.SFX, null);
         aSource = loanedAudioSource.GetAudioSource();
         aSource.loop = false;

@@ -74,7 +74,7 @@ public class RoomPlayerPanel : MonoBehaviour
     {
         PlayerId = playerId;
         FakePlayerId =  GetFakePlayerId(playerId);
-        nameText.text = string.IsNullOrEmpty(playerName) ? $"Player {FakePlayerId}" : playerName;
+        SetName(playerName);
 
         if (playerId != localId)
         {
@@ -123,6 +123,11 @@ public class RoomPlayerPanel : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void SetName(string name)
+    {
+        nameText.text = string.IsNullOrEmpty(name) ? $"Player {FakePlayerId}" : name;
     }
 
     public void SetInteractable(bool isInteractable)
