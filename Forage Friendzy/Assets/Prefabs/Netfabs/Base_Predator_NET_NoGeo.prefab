@@ -1154,6 +1154,7 @@ MonoBehaviour:
   attackTransform: {fileID: 0}
   attackRadius: 1.5
   attackCooldown: 1
+  attackFrameDelay: 15
   isStunned:
     m_InternalValue: 0
   sound_foxAttack: {fileID: 8300000, guid: 074813b752241274fb5b802f8b5b0137, type: 3}
@@ -1207,10 +1208,8 @@ MonoBehaviour:
   slyPerkMultiplier: 0
   boostedScurrySpeed: 1.25
   boostedAttackCooldown: 0.5
-  nightSlyPerkMultiplier: 0
-  nightScurrySpeed: 1.5
-  nightAttackCooldown: 1
-  nightRunSpeedPred: 13
+  activateQuickGetaway:
+    m_InternalValue: 0
   maxDistance: 40
   angle: 90
   drawDebugLines: 1
