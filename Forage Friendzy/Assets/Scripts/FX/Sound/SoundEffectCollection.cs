@@ -30,7 +30,7 @@ public class SoundEffectCollection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == (int) grassLayer)
+        if (other.gameObject.layer == (int)grassLayer)
             state = State.AboveGrass;
     }
 

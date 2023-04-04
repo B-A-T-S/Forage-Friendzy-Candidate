@@ -51,12 +51,12 @@ public class CollectableFood : AnonymousProvider
 
     public override bool Enter_IsValidActor(AnonymousActor actor)
     {
-        return actor.tag == "Prey";
+        return actor.tag == "Prey" && food.isAvailable.Value;
     }
 
     public override bool Stay_IsValidActor(AnonymousActor actor)
     {
-        return actor.tag == "Prey";
+        return actor.tag == "Prey" && food.isAvailable.Value;
     }
 
     protected override void WhenForgottenByActor()
