@@ -221,7 +221,7 @@ public class PreyHealth : NetworkBehaviour
         //inform UI
         //Debug.Log($"Injured State Changed from {previous} to {current}");
         event_OnTookDamage?.Invoke(isInjured.Value, isFainted.Value);
-        TeamStateIcons.Instance.TeammateStateUpdateClientRpc();
+        TeamStateIcons.Instance?.TeammateStateUpdateClientRpc(false);
         if (IsOwner)
         {
             HealthStateIcons.Instance.SetInjuredStateIcon(bodyMovement.characterId.Value, current);

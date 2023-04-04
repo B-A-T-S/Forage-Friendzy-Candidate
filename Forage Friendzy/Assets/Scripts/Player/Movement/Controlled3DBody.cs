@@ -192,7 +192,7 @@ public class Controlled3DBody: ControlledBody
         //add this object to object lists in GameManager
         GameManager.Instance.AddToPlayerList(OwnerClientId, this.gameObject, isPredator);
 
-        TeamStateIcons.Instance?.TeammateStateUpdateClientRpc();
+        TeamStateIcons.Instance?.TeammateStateUpdateClientRpc(isPredator);
     }
 
     public void ParentGeometry(GameObject newGeometry)
