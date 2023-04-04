@@ -168,6 +168,7 @@ public class GameManager : NetworkBehaviour
         isMatch = false;
         predatorTeam = new();
         preyTeam = new();
+        ObjectPoolManager.Instance.Reset();
 
         remainingDaytime = totalDaytime;
     }

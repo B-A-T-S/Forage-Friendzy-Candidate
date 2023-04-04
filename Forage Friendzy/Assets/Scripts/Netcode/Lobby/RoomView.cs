@@ -92,6 +92,7 @@ public class RoomView : MonoBehaviour
                 currentPanel.SetReady(players[key].isReady);
                 currentPanel.SetRole(players[key].roleIndex);
                 currentPanel.SetCharacter(players[key].characterIndex);
+                currentPanel.SetName(players[key].playerName);
             }
             else
             {
