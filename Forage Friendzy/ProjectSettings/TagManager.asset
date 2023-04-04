@@ -9,6 +9,7 @@ TagManager:
   - BodyGeometry
   - Attack
   - DangerSensePerk
+  - Cosmetics
   layers:
   - Default
   - TransparentFX
