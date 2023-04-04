@@ -593,7 +593,7 @@ MonoBehaviour:
   numFoods: 0
   rarity: 0
   foodMeshes:
-  - {fileID: 6225508823920086827}
+  - {fileID: 4718335660025353251}
   - {fileID: 3247294013805230958}
   - {fileID: 3661068839433845910}
   playerList: []
@@ -1247,6 +1247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43b8fa334450d264e81b2669522ebb21, type: 3}
+--- !u!1 &4718335660025353251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1395645984332027244, guid: 43b8fa334450d264e81b2669522ebb21, type: 3}
+  m_PrefabInstance: {fileID: 5919051422050091343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5346113486712655513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1735438419619729366, guid: 43b8fa334450d264e81b2669522ebb21, type: 3}
