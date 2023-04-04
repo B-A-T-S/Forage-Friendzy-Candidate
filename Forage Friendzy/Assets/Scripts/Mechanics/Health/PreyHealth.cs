@@ -55,7 +55,6 @@ public class PreyHealth : NetworkBehaviour
         isInjured.OnValueChanged += OnInjuredChanged;
         isFainted.OnValueChanged += OnFaintedChanged;
         rescuingTeammate.OnValueChanged += OnRescuingChanged;
-        isFainted.O
     }
 
     private void Start()
