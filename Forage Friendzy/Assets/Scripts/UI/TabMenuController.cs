@@ -21,6 +21,8 @@ public class TabMenuController : MonoBehaviour
 
     private void Start()
     {
+        //am I prey
+        isPrey = (ClientLaunchInfo.Instance.role == 0);
         if (deactivateInitialTimer)
         {
             initialPhaseOver = true;
@@ -47,9 +49,6 @@ public class TabMenuController : MonoBehaviour
     IEnumerator StartPhaseVisibility()
     {
         yield return new WaitForSeconds(0.5f);
-
-        //am I prey
-        isPrey = (ClientLaunchInfo.Instance.role == 0);
 
 
         (isPrey ? preyMenu : predMenu).gameObject.SetActive(true);
