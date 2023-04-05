@@ -107,7 +107,6 @@ public class AnimalGeometryUtilities : NetworkBehaviour
 
     private void xRayIsVisible_OnValueChanged(bool previousValue, bool newValue)
     {
-        Debug.Log($"{body.name}'s X-Ray Geometry is now {newValue}");
         xRayGeometry.SetActive(newValue);
     }
 

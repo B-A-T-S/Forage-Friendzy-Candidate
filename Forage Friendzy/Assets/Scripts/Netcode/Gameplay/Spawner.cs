@@ -124,14 +124,20 @@ public class Spawner : NetworkBehaviour
         NetworkObject spawnedGeo = Instantiate(geoToSpawn);
         spawnedGeo.SpawnWithOwnership(playerId);
 
+        //spawn prefab with owner being the client who sent this
+
+        //pick a random place
+        //byte randomPlaceIndex = (byte) Random.Range(0,placesToSpawn.Count - 1);
+        //Transform randomPlace = placesToSpawn[randomPlaceIndex];
+
         //Enable Cosmetic Prefab
-        spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
+        //spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
 
         Controlled3DBody spawned = Instantiate(bodyToSpawn, randomPlace.position, randomPlace.rotation);
-        spawned.name = $"SpawnedPlayer_Player{playerId}";
         spawned.NetworkObject.SpawnWithOwnership(playerId);
-        spawned.NetworkObject.name = $"SpawnedPlayer_Player{playerId}";
         spawned.characterId.Value = launchInfo.character;
+
+        spawned.Pair(spawnedGeo.gameObject);
 
         numSpawned++;
 
@@ -143,8 +149,8 @@ public class Spawner : NetworkBehaviour
             //OnFinishedSpawningPlayers?.Invoke();
         }
 
-        spawnedObjects.Add(spawned.GetComponent<NetworkObject>());
         spawnedObjects.Add(spawnedGeo);
+        spawnedObjects.Add(spawned.GetComponent<NetworkObject>());
         TeamStateIcons.Instance?.TeammateStateUpdateClientRpc(launchInfo.role==0?false:true);
     }
 
