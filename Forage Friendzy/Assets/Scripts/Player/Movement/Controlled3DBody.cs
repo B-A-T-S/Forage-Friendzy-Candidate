@@ -51,18 +51,22 @@ public class Controlled3DBody: ControlledBody
 
         //object attempts to find an unlinked geometry object
         GameObject[] geos = GameObject.FindGameObjectsWithTag("BodyGeometry");
-
         foreach(GameObject geometryObject in geos)
         {
-            AnimalGeometryUtilities geoFmd = geometryObject.GetComponent<AnimalGeometryUtilities>();
-
-            if (geoFmd != null && geoFmd.Body == null)
-            {
-                AssignGeometry(geometryObject);
-                AssignAnimator(geometryObject);
-            }
+            Pair(geometryObject);
         }
         
+    }
+
+    public void Pair(GameObject toPair)
+    {
+        NetworkObject no = toPair.GetComponent<NetworkObject>();
+        AnimalGeometryUtilities geoUtil = toPair.GetComponent<AnimalGeometryUtilities>();
+        if (geoUtil != null && geoUtil.Body == null && no != null && no.OwnerClientId == OwnerClientId)
+        {
+            AssignGeometry(toPair, NetworkManager.Singleton.IsServer);
+            AssignAnimator(toPair);
+        }
     }
 
     public override void OnNetworkDespawn()
@@ -151,7 +155,7 @@ public class Controlled3DBody: ControlledBody
 
     #region Geometry Setup
 
-    public void AssignGeometry(GameObject newGeometry)
+    public void AssignGeometry(GameObject newGeometry, bool isServer)
     {
 
         //get fmd
@@ -187,7 +191,9 @@ public class Controlled3DBody: ControlledBody
 
         }
 
-        ParentGeometry(newGeometry);
+        if(IsServer)
+            newGeometry.transform.parent = geometryParent;
+        newGeometry.transform.localPosition = Vector3.zero;
 
         //add this object to object lists in GameManager
         GameManager.Instance.AddToPlayerList(OwnerClientId, this.gameObject, isPredator);
@@ -203,7 +209,6 @@ public class Controlled3DBody: ControlledBody
 
     public void UnassignGeometry()
     {
-
         geoUtility.Body = null;
         geoUtility = null;
     }
