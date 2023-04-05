@@ -49,18 +49,18 @@ public class ActionContainerCanvas : NetworkBehaviour
     public Sprite LoadInputIcon(ActionContainer action)
     {
         string resultingPath = "" + inputIconFilePath + "" + action.inputKey;
-        string gamepad = Input.GetJoystickNames()[0];
-        if (gamepad.ToLower().Contains("xbox"))
+        string[] gamepad = Input.GetJoystickNames();
+        if (gamepad != null && gamepad[0].ToLower().Contains("xbox"))
         {
             //add xbox controller suffix
             resultingPath += xboxSuffix;
         }
-        else if (gamepad.ToLower().Contains("ps"))
+        else if (gamepad != null &&  gamepad[0].ToLower().Contains("ps"))
         {
             //add ps controller suffix
             resultingPath += psSuffix;
         }
-        else if (string.IsNullOrEmpty(gamepad))
+        else if (gamepad != null && string.IsNullOrEmpty(gamepad[0]))
         {
             //add the keyboard suffix
             resultingPath += keyboardSuffix;
