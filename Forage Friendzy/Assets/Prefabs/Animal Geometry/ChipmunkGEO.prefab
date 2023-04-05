@@ -123,9 +123,7 @@ GameObject:
   - component: {fileID: 5970557974515946416}
   - component: {fileID: 7050206254513722958}
   - component: {fileID: 7535091709352709196}
-  - component: {fileID: 6427625279847230468}
   - component: {fileID: 2844905471087243426}
-  - component: {fileID: 7597141730964353638}
   - component: {fileID: 8443110018126887599}
   m_Layer: 11
   m_Name: ChipmunkGEO
@@ -226,102 +224,6 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 1
   Interpolate: 1
---- !u!82 &6427625279847230468
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5970557974515946422}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 26
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &2844905471087243426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,67 +242,6 @@ MonoBehaviour:
   geoUtil: {fileID: 5970557974515946416}
   copyOfVelocityMagnitude:
     m_InternalValue: 0
---- !u!114 &7597141730964353638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5970557974515946422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3688f341570ca45b6243e652d7e6c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playSounds: 1
-  grassLayer: 20
-  rayDistance: 0.3
-  keyMap:
-  - key: Walk
-    value: GrassWalk
-  - key: Run
-    value: GrassRun
-  availableSoundLists:
-  - key: Walk
-    list:
-    - clip: {fileID: 8300000, guid: c4da38c182928c4469e52d5186acca65, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 2d98a86883cc101479b7e8cb38696ffa, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: c1069a2d63b15284cb8c839f5a145108, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 9cae89fbadd359647a6a66b8356b2358, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-  - key: Run
-    list:
-    - clip: {fileID: 8300000, guid: 490c2f6f7e664c449b0ac972de948177, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 9de0cbe8f05346b4da3b122c88ae568b, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 9fe4591f337b66a46a6f60aac0f950be, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: e2d516213fee07341b523f2fcb01972e, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-  - key: GrassWalk
-    list:
-    - clip: {fileID: 8300000, guid: 5e1887ecb4208364f97bf7226af13292, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 42e33f4be12e20a4390ca926affccd1a, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 71c2be672da26bc4ea26b76f9f3360f3, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: d27318d4984a4aa4ebdd0185169ed92a, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-  - key: GrassRun
-    list:
-    - clip: {fileID: 8300000, guid: 45f9037369376e5489ab635fb67c6d3d, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 552eb199e09abda4a914916ab5255ebd, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 3c8c3bc110aac3c4597ba970e1e97d58, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 60a11d8bebdf7d945a4f8de9c7a73edf, type: 3}
-      pitchRange: {x: 0.5, y: 1}
 --- !u!114 &8443110018126887599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,11 +376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.0347587
+      value: 1.0347584
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.0347579
+      value: 1.0347577
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalScale.z
@@ -547,15 +388,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.786144
+      value: -1.7861443
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.61711
+      value: 1.6171101
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7054961
+      value: 0.70549655
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalRotation.w
@@ -567,11 +408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.63477224
+      value: 0.6347722
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.31169823
+      value: -0.31169835
       objectReference: {fileID: 0}
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -789,11 +630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.1203699
+      value: 1.1203703
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1203706
+      value: 1.1203707
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalScale.z
@@ -805,19 +646,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0634428
+      value: 1.0634392
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.0705483
+      value: -1.0705473
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000027322702
+      value: -0.000000027322688
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000052406936
+      value: -0.00000005240685
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalRotation.y
@@ -825,7 +666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30348724
+      value: 0.3034871
       objectReference: {fileID: 0}
     - target: {fileID: 4526971373602198468, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -859,7 +700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.42480052
+      value: 0.42480054
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalScale.y
@@ -867,19 +708,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4248008
+      value: 0.42480084
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1019559
+      value: 1.1019554
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1358001
+      value: 2.1357977
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.64477146
+      value: 0.6447737
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -887,15 +728,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.30348724
+      value: -0.3034871
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000027322773
+      value: -0.00000002732276
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000005240694
+      value: -0.000000052406875
       objectReference: {fileID: 0}
     - target: {fileID: 1212474443315961608, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1211,6 +1052,67 @@ CapsuleCollider:
   m_Height: 10.4
   m_Direction: 2
   m_Center: {x: 0, y: 4.73, z: 0.5}
+--- !u!114 &2443712426170400153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691964278230300515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3688f341570ca45b6243e652d7e6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSounds: 1
+  grassLayer: 20
+  rayDistance: 0.3
+  keyMap:
+  - key: Walk
+    value: GrassWalk
+  - key: Run
+    value: GrassRun
+  availableSoundLists:
+  - key: Walk
+    list:
+    - clip: {fileID: 8300000, guid: c4da38c182928c4469e52d5186acca65, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 2d98a86883cc101479b7e8cb38696ffa, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: c1069a2d63b15284cb8c839f5a145108, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 9cae89fbadd359647a6a66b8356b2358, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: Run
+    list:
+    - clip: {fileID: 8300000, guid: 490c2f6f7e664c449b0ac972de948177, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 9de0cbe8f05346b4da3b122c88ae568b, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 9fe4591f337b66a46a6f60aac0f950be, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: e2d516213fee07341b523f2fcb01972e, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassWalk
+    list:
+    - clip: {fileID: 8300000, guid: 5e1887ecb4208364f97bf7226af13292, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 42e33f4be12e20a4390ca926affccd1a, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 71c2be672da26bc4ea26b76f9f3360f3, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: d27318d4984a4aa4ebdd0185169ed92a, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassRun
+    list:
+    - clip: {fileID: 8300000, guid: 45f9037369376e5489ab635fb67c6d3d, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 552eb199e09abda4a914916ab5255ebd, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 3c8c3bc110aac3c4597ba970e1e97d58, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 60a11d8bebdf7d945a4f8de9c7a73edf, type: 3}
+      pitchRange: {x: 0.5, y: 1}
 --- !u!114 &7715356517053268748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1485,6 +1387,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 3875257021849760359}
+--- !u!114 &6971960543999047297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524478973904745127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3688f341570ca45b6243e652d7e6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSounds: 0
+  grassLayer: 20
+  rayDistance: 0.3
+  keyMap:
+  - key: Walk
+    value: GrassWalk
+  - key: Run
+    value: GrassRun
+  availableSoundLists:
+  - key: Walk
+    list:
+    - clip: {fileID: 8300000, guid: c4da38c182928c4469e52d5186acca65, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 2d98a86883cc101479b7e8cb38696ffa, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: c1069a2d63b15284cb8c839f5a145108, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 9cae89fbadd359647a6a66b8356b2358, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: Run
+    list:
+    - clip: {fileID: 8300000, guid: 490c2f6f7e664c449b0ac972de948177, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 9de0cbe8f05346b4da3b122c88ae568b, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 9fe4591f337b66a46a6f60aac0f950be, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: e2d516213fee07341b523f2fcb01972e, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassWalk
+    list:
+    - clip: {fileID: 8300000, guid: 5e1887ecb4208364f97bf7226af13292, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 42e33f4be12e20a4390ca926affccd1a, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 71c2be672da26bc4ea26b76f9f3360f3, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: d27318d4984a4aa4ebdd0185169ed92a, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassRun
+    list:
+    - clip: {fileID: 8300000, guid: 45f9037369376e5489ab635fb67c6d3d, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 552eb199e09abda4a914916ab5255ebd, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 3c8c3bc110aac3c4597ba970e1e97d58, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 60a11d8bebdf7d945a4f8de9c7a73edf, type: 3}
+      pitchRange: {x: 0.5, y: 1}
 --- !u!4 &8970175152019724976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1788297204152800582, guid: 3d6a8066dae07124f98a5699814f08b5, type: 3}

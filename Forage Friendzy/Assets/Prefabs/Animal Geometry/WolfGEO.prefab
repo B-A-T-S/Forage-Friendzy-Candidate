@@ -182,7 +182,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7969404828211183213}
   - component: {fileID: 7969404828211183212}
-  - component: {fileID: 2901873252919698735}
   - component: {fileID: 1477517892202222242}
   - component: {fileID: 8217170168126070087}
   - component: {fileID: 7051625616494217132}
@@ -241,45 +240,6 @@ MonoBehaviour:
   - toEnable:
     - {fileID: 3729729508235875605}
     - {fileID: 4562726203451779724}
---- !u!114 &2901873252919698735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969404828211183210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3688f341570ca45b6243e652d7e6c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playSounds: 1
-  grassLayer: 20
-  rayDistance: 0.3
-  keyMap:
-  - key: Run
-    value: GrassRun
-  availableSoundLists:
-  - key: Run
-    list:
-    - clip: {fileID: 8300000, guid: e2da129e5ee491649ae61623fd269ca4, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 57b45819f791c8144bed4f47f97023cc, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: eb7f70d141ba1b749b96a1de810b64f7, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: b65199a43a2791a46a5441115a11f88d, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-  - key: GrassRun
-    list:
-    - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 85523eda435f74349b9513e634b8f2a0, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 35795ea279bd3ec4082c173799bab303, type: 3}
-      pitchRange: {x: 0.5, y: 1}
-    - clip: {fileID: 8300000, guid: 6838ded9b6451b143866436741924557, type: 3}
-      pitchRange: {x: 0.5, y: 1}
 --- !u!82 &1477517892202222242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -968,6 +928,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 7080441411828596294}
+--- !u!114 &8787747127849644080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605277563673099910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3688f341570ca45b6243e652d7e6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSounds: 0
+  grassLayer: 20
+  rayDistance: 0.3
+  keyMap:
+  - key: Run
+    value: GrassRun
+  availableSoundLists:
+  - key: Run
+    list:
+    - clip: {fileID: 8300000, guid: e2da129e5ee491649ae61623fd269ca4, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 57b45819f791c8144bed4f47f97023cc, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: eb7f70d141ba1b749b96a1de810b64f7, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: b65199a43a2791a46a5441115a11f88d, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassRun
+    list:
+    - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 85523eda435f74349b9513e634b8f2a0, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 35795ea279bd3ec4082c173799bab303, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 6838ded9b6451b143866436741924557, type: 3}
+      pitchRange: {x: 0.5, y: 1}
 --- !u!95 &7080441411828596294 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: bb524c21ede926242b75ef810580414f, type: 3}
@@ -1356,6 +1355,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 2542550787339901748}
+--- !u!114 &7373019382155973035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143160465810349044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3688f341570ca45b6243e652d7e6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSounds: 1
+  grassLayer: 20
+  rayDistance: 0.3
+  keyMap:
+  - key: Run
+    value: GrassRun
+  availableSoundLists:
+  - key: Run
+    list:
+    - clip: {fileID: 8300000, guid: e2da129e5ee491649ae61623fd269ca4, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 57b45819f791c8144bed4f47f97023cc, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: eb7f70d141ba1b749b96a1de810b64f7, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: b65199a43a2791a46a5441115a11f88d, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassRun
+    list:
+    - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 85523eda435f74349b9513e634b8f2a0, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 35795ea279bd3ec4082c173799bab303, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 6838ded9b6451b143866436741924557, type: 3}
+      pitchRange: {x: 0.5, y: 1}
 --- !u!4 &9176442905332432613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 971414012165511232, guid: bb524c21ede926242b75ef810580414f, type: 3}

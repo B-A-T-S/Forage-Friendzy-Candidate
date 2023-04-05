@@ -131,12 +131,7 @@ public class AnimalGeometryUtilities : NetworkBehaviour
         if (cosmeticIndex != 0)
         {
             for(int i = 0; i < cosmeticGroups.Length; i++)
-            {
-                if(cosmeticIndex == i)
-                    cosmeticGroups[cosmeticIndex].Toggle(true);
-                else
-                    cosmeticGroups[cosmeticIndex].Toggle(false);
-            }
+                    cosmeticGroups[i].Toggle(cosmeticIndex-1 == i);
         }
         else
         {

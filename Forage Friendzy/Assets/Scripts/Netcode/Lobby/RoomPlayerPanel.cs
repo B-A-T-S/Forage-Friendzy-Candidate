@@ -104,13 +104,12 @@ public class RoomPlayerPanel : MonoBehaviour
 
 
             ownershipIndicator.color = ClientLaunchInfo.Instance.role == 0 ? preyOwner : predOwner;
-
-
         }
 
         activePreviewObject = PreviewManager.Instance.GetPreviewObject();
         activePreviewObject.Loan();
         previewImage.texture = activePreviewObject.renderTexture;
+
     }
 
     private int GetFakePlayerId(ulong playerId)
@@ -165,6 +164,7 @@ public class RoomPlayerPanel : MonoBehaviour
     {
         LobbyManager.Instance.OnCharacterChanged(signifierID);
         activePreviewObject.SwitchSubjectPreview(signifierID + (3 * ClientLaunchInfo.Instance.role));
+        AdvanceCosmeticIndex(currentCosmeticIndex - currentCosmeticIndex);
     }
 
     public void SetRole(int roleIndex)
@@ -204,6 +204,26 @@ public class RoomPlayerPanel : MonoBehaviour
     {
         statusText.text = isReady ? "<color=#00FF00>Ready" : "<color=#D96565>Waiting";
         info.isReady = isReady;
+    }
+
+    [SerializeField] private int currentCosmeticIndex = 0;
+
+    public void AdvanceCosmeticIndex(int value)
+    {
+        currentCosmeticIndex += value;
+        int numCosmetics = activePreviewObject.GetActiveGroup().groupSubject.cosmeticGroups.Length;
+        if (currentCosmeticIndex < 0)
+            currentCosmeticIndex = numCosmetics;
+        else if (currentCosmeticIndex > numCosmetics)
+            currentCosmeticIndex = 0;
+
+        LobbyManager.Instance.OnCosmeticChanged(currentCosmeticIndex);
+    }
+
+    public void SetCosmetic(int cosmeticIndex)
+    {
+        activePreviewObject?.SwitchSubjectCosmetic(cosmeticIndex);
+        info.cosmeticIndex = cosmeticIndex;
     }
 }
 

@@ -93,6 +93,7 @@ public class RoomView : MonoBehaviour
                 currentPanel.SetRole(players[key].roleIndex);
                 currentPanel.SetCharacter(players[key].characterIndex);
                 currentPanel.SetName(players[key].playerName);
+                currentPanel.SetCosmetic(players[key].cosmeticIndex);
             }
             else
             {

@@ -288,6 +288,22 @@ public class LobbyManager : NetworkBehaviour
         SetCharacterServerRpc(NetworkManager.Singleton.LocalClientId, value);
     }
 
+    public void OnCosmeticChanged(int value)
+    {
+        ClientLaunchInfo.Instance.cosmetic = value;
+        SetCosmeticServerRpc(NetworkManager.Singleton.LocalClientId, value);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetCosmeticServerRpc(ulong playerId, int cosmeticIndex)
+    {
+        PlayerInfo copyOfInfo = playersInLobby[playerId];
+        copyOfInfo.cosmeticIndex = cosmeticIndex;
+        playersInLobby[playerId] = copyOfInfo;
+        PropagateToClients();
+        UpdateUI();
+    }
+
     [ServerRpc(RequireOwnership = false)]
     private void SetRoleServerRpc(ulong playerId, int roleIndex)
     {
@@ -345,13 +361,11 @@ public class LobbyManager : NetworkBehaviour
         {
             if (ProcessUpdateRequest(nameUpdateQueue.Peek()))
             {
-                Debug.Log("NameUpdateRequest Processed Successfully");
                 nameUpdateQueue.Dequeue();
                 yield return null;
             }
             else
             {
-                Debug.Log("NameUpdateRequest Processing Failed");
                 yield return new WaitForSeconds(failedProcessWaitTime);
             }
         }

@@ -25,8 +25,6 @@ public class PreviewObject : MonoBehaviour
         if (!(0 <= index && index < previewGroups.Length))
             return;
 
-        Debug.Log($"SwitchPreview - Index {index}");
-
         previewGroups[index].Toggle(true);
         activePreviewGroup.Toggle(false);
 
@@ -53,21 +51,26 @@ public class PreviewObject : MonoBehaviour
         isLoaned = true;
     }
 
+    public PreviewGroup GetActiveGroup()
+    {
+        return activePreviewGroup;
+    }
+
 }
 
 [Serializable]
 public struct PreviewGroup
 {
-    public GameObject groupSubject;
+    public AnimalGeometryUtilities groupSubject;
 
     public void Toggle(bool on)
     {
         groupSubject.gameObject.SetActive(on);
-        //groupSubject.EnableCosmeticByIndex(0);
+        groupSubject.EnableCosmeticByIndex(0);
     }
 
     public void UpdateCosmetic(int cosmeticIndex)
     {
-        //groupSubject.EnableCosmeticByIndex(cosmeticIndex);
+        groupSubject.EnableCosmeticByIndex(cosmeticIndex);
     }
 }

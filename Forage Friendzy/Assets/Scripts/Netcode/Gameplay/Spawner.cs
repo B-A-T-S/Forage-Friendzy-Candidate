@@ -124,11 +124,8 @@ public class Spawner : NetworkBehaviour
         NetworkObject spawnedGeo = Instantiate(geoToSpawn);
         spawnedGeo.SpawnWithOwnership(playerId);
 
-        //spawn prefab with owner being the client who sent this
-
-        //pick a random place
-        //byte randomPlaceIndex = (byte) Random.Range(0,placesToSpawn.Count - 1);
-        //Transform randomPlace = placesToSpawn[randomPlaceIndex];
+        //Enable Cosmetic Prefab
+        spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
 
         Controlled3DBody spawned = Instantiate(bodyToSpawn, randomPlace.position, randomPlace.rotation);
         spawned.name = $"SpawnedPlayer_Player{playerId}";
