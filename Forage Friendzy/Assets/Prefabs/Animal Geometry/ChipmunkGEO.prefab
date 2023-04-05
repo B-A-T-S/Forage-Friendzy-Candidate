@@ -264,9 +264,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5246276897281810292}
     m_Modifications:
+    - target: {fileID: 2520525027722172810, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881881581408873470, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6263854519898531019, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_Name
       value: ChipmunkGoggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263854519898531019, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6263854519898531019, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_IsActive
@@ -331,6 +343,10 @@ PrefabInstance:
     - target: {fileID: 6748220536464522865, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -16.937
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536189272596993946, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b213d68c75331d1459053a433f4c9a59, type: 3}
@@ -447,6 +463,10 @@ PrefabInstance:
     - target: {fileID: 3862075094865774974, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_Name
       value: Dreadlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862075094865774974, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3862075094865774974, guid: 3c47b89c0ebb18c458cbc34621aab292, type: 3}
       propertyPath: m_IsActive
@@ -587,12 +607,28 @@ PrefabInstance:
       value: Monocle_V2.0
       objectReference: {fileID: 0}
     - target: {fileID: 1988413699876324786, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988413699876324786, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1988413699876324786, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
       propertyPath: m_TagString
       value: Cosmetics
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729183508812543715, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067318569192106535, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025166520953559504, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7ceb6035895fce458d19c5574bf60bc, type: 3}

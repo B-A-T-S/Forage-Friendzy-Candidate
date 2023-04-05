@@ -610,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4380024366566225651, guid: 15b131608a1d3cf4b81bd693e4f91ba2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4380024366566225651, guid: 15b131608a1d3cf4b81bd693e4f91ba2, type: 3}
       propertyPath: m_IsActive
@@ -982,6 +982,10 @@ PrefabInstance:
     - target: {fileID: 240006382420115858, guid: 4db200321eee68e4a8c8c4309fc34b96, type: 3}
       propertyPath: m_Name
       value: WolfMohawk
+      objectReference: {fileID: 0}
+    - target: {fileID: 240006382420115858, guid: 4db200321eee68e4a8c8c4309fc34b96, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 240006382420115858, guid: 4db200321eee68e4a8c8c4309fc34b96, type: 3}
       propertyPath: m_IsActive

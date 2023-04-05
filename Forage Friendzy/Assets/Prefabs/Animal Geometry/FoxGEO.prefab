@@ -1218,6 +1218,10 @@ PrefabInstance:
       value: FoxFedora
       objectReference: {fileID: 0}
     - target: {fileID: 5336956998388097603, guid: 10f37337caa7ec9428b0b727abe5332b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336956998388097603, guid: 10f37337caa7ec9428b0b727abe5332b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1242,6 +1246,10 @@ PrefabInstance:
     - target: {fileID: 3699928235411852567, guid: 5172c22aaaaa2164481011d65598b5c6, type: 3}
       propertyPath: m_Name
       value: FoxTie
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699928235411852567, guid: 5172c22aaaaa2164481011d65598b5c6, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3699928235411852567, guid: 5172c22aaaaa2164481011d65598b5c6, type: 3}
       propertyPath: m_IsActive

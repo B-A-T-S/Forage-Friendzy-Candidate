@@ -480,6 +480,10 @@ PrefabInstance:
       value: AngelWings
       objectReference: {fileID: 0}
     - target: {fileID: 4306533339756347921, guid: 51aa357dfc5b7624eb0c24aa63db822e, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306533339756347921, guid: 51aa357dfc5b7624eb0c24aa63db822e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -659,6 +663,10 @@ PrefabInstance:
       value: AngelHalo
       objectReference: {fileID: 0}
     - target: {fileID: 4533673806650800710, guid: c8d0e6ba70057944aa26a8196c9e5f03, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533673806650800710, guid: c8d0e6ba70057944aa26a8196c9e5f03, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -825,6 +833,10 @@ PrefabInstance:
     - target: {fileID: 2054556054750366786, guid: 5bc206f9a61ed114bbb565b7adffd9b4, type: 3}
       propertyPath: m_Name
       value: Bow_V1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2054556054750366786, guid: 5bc206f9a61ed114bbb565b7adffd9b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2054556054750366786, guid: 5bc206f9a61ed114bbb565b7adffd9b4, type: 3}
       propertyPath: m_IsActive
