@@ -55,7 +55,7 @@ public class ActionContainerCanvas : NetworkBehaviour
             //add xbox controller suffix
             resultingPath += xboxSuffix;
         }
-        else if (!gamepad.ToLower().Contains("xbox"))
+        else if (gamepad.ToLower().Contains("ps"))
         {
             //add ps controller suffix
             resultingPath += psSuffix;
