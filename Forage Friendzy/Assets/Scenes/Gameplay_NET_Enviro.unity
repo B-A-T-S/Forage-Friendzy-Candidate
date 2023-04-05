@@ -388,7 +388,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5610249}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -576,7 +576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &14253244
 Transform:
   m_ObjectHideFlags: 0
@@ -1653,7 +1653,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40061384}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2092,7 +2092,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50112476}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2482,7 +2482,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57830343}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2890,7 +2890,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83458015}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -9773,7 +9773,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267538374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -10051,7 +10051,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273662909}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -10307,7 +10307,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280696953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -10742,7 +10742,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311001552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -14446,7 +14446,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406553712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -17175,7 +17175,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496930981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -19195,7 +19195,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574925587}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -23030,7 +23030,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667496399}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -27252,7 +27252,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826265036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -32022,7 +32022,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961627179}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -32818,7 +32818,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982049151}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -35558,7 +35558,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033099757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -37573,7 +37573,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080865369}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -38039,7 +38039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8375514181622718083, guid: 0c1d8c1705eba6749a4600ffed603458, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.89
+      value: -44.03
       objectReference: {fileID: 0}
     - target: {fileID: 8375514181622718083, guid: 0c1d8c1705eba6749a4600ffed603458, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38047,7 +38047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8375514181622718083, guid: 0c1d8c1705eba6749a4600ffed603458, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.34
+      value: 37.13
       objectReference: {fileID: 0}
     - target: {fileID: 8375514181622718083, guid: 0c1d8c1705eba6749a4600ffed603458, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38287,7 +38287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1115869657
 Transform:
   m_ObjectHideFlags: 0
@@ -39394,7 +39394,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152361050}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -40760,7 +40760,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185452805}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -44647,7 +44647,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296829192}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -49253,7 +49253,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418970459}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -52177,7 +52177,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538877545}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -53269,7 +53269,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565112429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -53379,7 +53379,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567824018}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -53543,7 +53543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1571035134
 Transform:
   m_ObjectHideFlags: 0
@@ -55005,7 +55005,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604471641}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -59176,7 +59176,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711337499}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -65355,7 +65355,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922764782}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -65714,7 +65714,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940055879}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -67947,7 +67947,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008911348}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -70281,7 +70281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7963805856339005819, guid: 4b46fe9c2afd9b143b7c4f0219e3c471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.27
+      value: 2.54
       objectReference: {fileID: 0}
     - target: {fileID: 7963805856339005819, guid: 4b46fe9c2afd9b143b7c4f0219e3c471, type: 3}
       propertyPath: m_LocalPosition.y
@@ -70289,7 +70289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7963805856339005819, guid: 4b46fe9c2afd9b143b7c4f0219e3c471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.53
+      value: 7.47
       objectReference: {fileID: 0}
     - target: {fileID: 7963805856339103067, guid: 4b46fe9c2afd9b143b7c4f0219e3c471, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -71567,7 +71567,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114780768}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -72048,7 +72048,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128803645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -73259,7 +73259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2229079046315029910, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.8200994
+      value: 4.9900994
       objectReference: {fileID: 0}
     - target: {fileID: 2229079046315029910, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -73267,7 +73267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2229079046315029910, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.96932256
+      value: -1.3093225
       objectReference: {fileID: 0}
     - target: {fileID: 2530797368643404213, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -73355,11 +73355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3631347849039826918, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.46
+      value: 4.63
       objectReference: {fileID: 0}
     - target: {fileID: 3631347849039826918, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.45
+      value: -3.79
       objectReference: {fileID: 0}
     - target: {fileID: 3636244628812307719, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -73579,11 +73579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6988370815111704577, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7700994
+      value: 1.9400995
       objectReference: {fileID: 0}
     - target: {fileID: 6988370815111704577, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.8293226
+      value: -4.1693225
       objectReference: {fileID: 0}
     - target: {fileID: 7013122592069890280, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -73779,11 +73779,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8308938326021808179, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5199006
+      value: -0.34990054
       objectReference: {fileID: 0}
     - target: {fileID: 8308938326021808179, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.7193227
+      value: -4.0593224
       objectReference: {fileID: 0}
     - target: {fileID: 8324779199853717765, guid: e2bca6b8f2c902749a60a5874c50b71a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -75573,6 +75573,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2772130144915483915, guid: 11c42acc80b861d4b89e18c8c95b4c5d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.6579545
+      objectReference: {fileID: 0}
     - target: {fileID: 2773612621081417850, guid: 11c42acc80b861d4b89e18c8c95b4c5d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -76020,6 +76024,10 @@ PrefabInstance:
     - target: {fileID: 8662416630800437374, guid: 11c42acc80b861d4b89e18c8c95b4c5d, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662416630800437374, guid: 11c42acc80b861d4b89e18c8c95b4c5d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.79
       objectReference: {fileID: 0}
     - target: {fileID: 8666325072263962065, guid: 11c42acc80b861d4b89e18c8c95b4c5d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -81126,6 +81134,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7361710174645429616, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361710174645429616, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361710174645429616, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7363174492384874497, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -81153,6 +81173,18 @@ PrefabInstance:
     - target: {fileID: 7706094933125676969, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706094933125676969, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706094933125676969, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706094933125676969, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.77
       objectReference: {fileID: 0}
     - target: {fileID: 7745288059436895589, guid: 1998d3d23a281f14f86fd60c1ccc0538, type: 3}
       propertyPath: m_StaticEditorFlags
