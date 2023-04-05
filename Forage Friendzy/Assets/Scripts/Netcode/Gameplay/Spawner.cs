@@ -131,7 +131,7 @@ public class Spawner : NetworkBehaviour
         //Transform randomPlace = placesToSpawn[randomPlaceIndex];
 
         //Enable Cosmetic Prefab
-        //spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
+        spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
 
         Controlled3DBody spawned = Instantiate(bodyToSpawn, randomPlace.position, randomPlace.rotation);
         spawned.NetworkObject.SpawnWithOwnership(playerId);

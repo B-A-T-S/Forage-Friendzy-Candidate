@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -12,6 +13,10 @@ public class ActionContainerCanvas : NetworkBehaviour
     [SerializeField] protected Image inputIconImage;
     [SerializeField] protected TextMeshProUGUI actionNameText;
     [SerializeField] protected string inputIconFilePath = "InputIcons/";
+
+    [SerializeField] protected string xboxSuffix = "_xctrl";
+    [SerializeField] protected string psSuffix = "_psctrl";
+    [SerializeField] protected string keyboardSuffix = "_kb";
 
     protected FadingCanvasGroup fcg;
     [HideInInspector] public bool isPromptVisible = false;
@@ -32,13 +37,37 @@ public class ActionContainerCanvas : NetworkBehaviour
     public void Show(ActionContainer action)
     {
         //Load input icon
-        Sprite iconSprite = Resources.Load<Sprite>($"{inputIconFilePath}{action.inputKey.ToString()}");
+        Sprite iconSprite = LoadInputIcon(action);
         inputIconImage.sprite = iconSprite;
         //Set name text
         actionNameText.text = action.displayName;
         //Fade in UI
         fcg.FadeIn();
         isPromptVisible = true;
+    }
+
+    public Sprite LoadInputIcon(ActionContainer action)
+    {
+        string resultingPath = "" + inputIconFilePath + "" + action.inputKey;
+        string gamepad = Input.GetJoystickNames()[0];
+        if (gamepad.ToLower().Contains("xbox"))
+        {
+            //add xbox controller suffix
+            resultingPath += xboxSuffix;
+        }
+        else if (!gamepad.ToLower().Contains("xbox"))
+        {
+            //add ps controller suffix
+            resultingPath += psSuffix;
+        }
+        else if (string.IsNullOrEmpty(gamepad))
+        {
+            //add the keyboard suffix
+            resultingPath += keyboardSuffix;
+        }
+
+        Debug.Log($"Returned {resultingPath}");
+        return Resources.Load<Sprite>(resultingPath);
     }
 
     public void Hide()
