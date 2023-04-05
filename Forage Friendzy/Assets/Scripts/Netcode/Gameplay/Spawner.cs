@@ -130,6 +130,9 @@ public class Spawner : NetworkBehaviour
         //byte randomPlaceIndex = (byte) Random.Range(0,placesToSpawn.Count - 1);
         //Transform randomPlace = placesToSpawn[randomPlaceIndex];
 
+        //Enable Cosmetic Prefab
+        spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
+
         Controlled3DBody spawned = Instantiate(bodyToSpawn, randomPlace.position, randomPlace.rotation);
         spawned.NetworkObject.SpawnWithOwnership(playerId);
         spawned.characterId.Value = launchInfo.character;
