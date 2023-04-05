@@ -41,11 +41,8 @@ public class EOMCanvasManager : NetworkBehaviour
         exitMatchBtn.SetActive(NetworkManager.Singleton.IsHost);
     }
 
-    private void OnEndOfMatch(bool localClientWon, ClientStatus localClientStatus, ClientStatus mvp)
+    private void OnEndOfMatch(bool localClientWon, ClientStatus localClientStatus)
     {
-
-        if(IsHost)
-
 
         winBoard.SetActive(localClientWon);
         lossBoard.SetActive(!localClientWon);

@@ -55,13 +55,17 @@ public class Controlled3DBody: ControlledBody
         {
             Pair(geometryObject);
         }
-        
+
+        //Enable Cosmetic Prefab
+
+
     }
 
     public void Pair(GameObject toPair)
     {
         NetworkObject no = toPair.GetComponent<NetworkObject>();
         AnimalGeometryUtilities geoUtil = toPair.GetComponent<AnimalGeometryUtilities>();
+
         if (geoUtil != null && geoUtil.Body == null && no != null && no.OwnerClientId == OwnerClientId)
         {
             AssignGeometry(toPair, NetworkManager.Singleton.IsServer);
