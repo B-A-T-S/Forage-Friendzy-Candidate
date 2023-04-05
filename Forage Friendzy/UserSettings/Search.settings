@@ -7,7 +7,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.DA949528" = "1.993"
+	"last_search.DA949528" = "h: tag:Cosmetic"
 	"OpenInspectorPreview.DA949528" = "0"
 	"currentGroup.DA949528" = "all"
 	"last_search.2138236A" = ""
@@ -62,6 +62,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"h: tag:Cosmetic"
 	"1"
 ]
 searchItemFavorites = [

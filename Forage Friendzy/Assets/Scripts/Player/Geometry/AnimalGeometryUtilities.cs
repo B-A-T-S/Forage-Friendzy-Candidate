@@ -152,7 +152,7 @@ public class AnimalGeometryUtilities : NetworkBehaviour
 [Serializable]
 public struct CosmeticGroup
 {
-    List<GameObject> toEnable;
+    [SerializeField] private List<GameObject> toEnable;
 
     public void Toggle(bool on)
     {
