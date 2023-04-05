@@ -7,7 +7,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.DA949528" = "h: tag:Cosmetic"
+	"last_search.DA949528" = "h: t:OwnerAuthNetworkAnimator"
 	"OpenInspectorPreview.DA949528" = "0"
 	"currentGroup.DA949528" = "all"
 	"last_search.2138236A" = ""
@@ -62,6 +62,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"h"
 	"h: tag:Cosmetic"
 	"1"
 ]
