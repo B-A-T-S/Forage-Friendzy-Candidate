@@ -29,7 +29,7 @@ public class GameManager : NetworkBehaviour
     public event Action onPreyWin;
     public event Action onPredatorWin;
 
-    public event Action<bool, ClientStatus, ClientStatus> event_EndOfMatch;
+    public event Action<bool, ClientStatus> event_EndOfMatch;
     public static event Action event_VolumeSettingsChanged;
 
     #region Match Variables
@@ -445,7 +445,7 @@ public class GameManager : NetworkBehaviour
 
         //Determine MVP
         event_EndOfMatch?.Invoke(ClientLaunchInfo.Instance.role == 1, 
-            clientStatus.Find(x => x.clientId == NetworkManager.Singleton.LocalClientId), DetermineMVP(1));
+            clientStatus.Find(x => x.clientId == NetworkManager.Singleton.LocalClientId));
     }
 
     private ClientStatus DetermineMVP(int role)
@@ -499,7 +499,7 @@ public class GameManager : NetworkBehaviour
             StartCoroutine(DelayedFunction(() => { TryExitMatch(); }, 3f));
         */
         event_EndOfMatch?.Invoke(ClientLaunchInfo.Instance.role == 0,
-            clientStatus.Find(x => x.clientId == NetworkManager.Singleton.LocalClientId), DetermineMVP(0));
+            clientStatus.Find(x => x.clientId == NetworkManager.Singleton.LocalClientId));
     }
 
     //call after everyone is loaded into game, possibly after a prematch timer?
