@@ -57,7 +57,7 @@ public class Controlled3DBody: ControlledBody
         }
 
         //Enable Cosmetic Prefab
-
+        geoUtility.EnableCosmeticByIndex(LobbyManager.Instance.GetConnectedClientCosmeticIndex(OwnerClientId));
 
     }
 
