@@ -34,9 +34,6 @@ public class AnimalGeometryUtilities : NetworkBehaviour
     [SerializeField] private GameObject xRayGeometry;
     [HideInInspector] public NetworkVariable<bool> xRay_IsVisible;
 
-    [Header("Cosmetics")]
-    public CosmeticGroup[] cosmeticGroups;
-
     public override void OnNetworkSpawn()
     {
         xRay_IsVisible.OnValueChanged += xRayIsVisible_OnValueChanged;
@@ -123,34 +120,6 @@ public class AnimalGeometryUtilities : NetworkBehaviour
 
     #endregion
 
-    #region Cosmetics
-
-    public void EnableCosmeticByIndex(int cosmeticIndex)
-    {
-        if (cosmeticIndex != 0)
-        {
-            for(int i = 0; i < cosmeticGroups.Length; i++)
-                    cosmeticGroups[i].Toggle(cosmeticIndex-1 == i);
-        }
-        else
-        {
-            foreach (CosmeticGroup cg in cosmeticGroups)
-                cg.Toggle(false);
-        }
-    }
-
-    #endregion
 
 }
 
-[Serializable]
-public struct CosmeticGroup
-{
-    [SerializeField] private List<GameObject> toEnable;
-
-    public void Toggle(bool on)
-    {
-        foreach (GameObject go in toEnable)
-            go.SetActive(on);
-    }
-}

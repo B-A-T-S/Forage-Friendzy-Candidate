@@ -504,6 +504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClientLaunchInfo
       objectReference: {fileID: 0}
+    - target: {fileID: 4812194458574681196, guid: 3cb1df6e984f9d3409bd38ab68b41166, type: 3}
+      propertyPath: role
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4812194458574681197, guid: 3cb1df6e984f9d3409bd38ab68b41166, type: 3}
       propertyPath: m_RootOrder
       value: 5

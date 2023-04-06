@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5970557974515946417}
   - component: {fileID: 5970557974515946416}
+  - component: {fileID: 4618420568926762092}
   - component: {fileID: 7050206254513722958}
   - component: {fileID: 7535091709352709196}
   - component: {fileID: 2844905471087243426}
@@ -172,6 +173,28 @@ MonoBehaviour:
   xRayGeometry: {fileID: 7524478973904745127}
   xRay_IsVisible:
     m_InternalValue: 0
+  cosmeticGroups:
+  - toEnable:
+    - {fileID: 5972668822957132628}
+    - {fileID: 6881675892707648646}
+  - toEnable:
+    - {fileID: 571378934935240903}
+    - {fileID: 6259375203146501056}
+  - toEnable:
+    - {fileID: 2671093252508830034}
+    - {fileID: 2077808259928419998}
+--- !u!114 &4618420568926762092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5970557974515946422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f9a6be2ed5f2e449173b54c8f9f06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   cosmeticGroups:
   - toEnable:
     - {fileID: 5972668822957132628}

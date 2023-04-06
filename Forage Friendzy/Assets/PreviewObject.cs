@@ -61,7 +61,7 @@ public class PreviewObject : MonoBehaviour
 [Serializable]
 public struct PreviewGroup
 {
-    public AnimalGeometryUtilities groupSubject;
+    public CosmeticEnabler groupSubject;
 
     public void Toggle(bool on)
     {
