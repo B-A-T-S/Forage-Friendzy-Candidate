@@ -21,16 +21,17 @@ public class FreeCamera : MonoBehaviour
 
     public bool free;
 
-    private Vector3[] avgMove = new Vector3[100];
+    private Vector3[] avgMove;
 
     Vector3 offsetWhenFreed;
     Quaternion rotWhenFreed;
-    GameObject hud;
+    public GameObject hud;
 
     private void Start()
     {
         smoothX = new float[smoothingFrames];
         smoothY = new float[smoothingFrames];
+        avgMove = new Vector3[smoothingFrames];
 
         for (int i = 0; i < smoothingFrames; i++)
         {
@@ -52,7 +53,7 @@ public class FreeCamera : MonoBehaviour
         {
             if(free)
             {
-                hud.SetActive(false);
+                hud.SetActive(true);
                 transform.parent = rememberedParent.transform;
                 //transform.localPosition= Vector3.zero;
                 //transform.localRotation= Quaternion.identity;
@@ -64,7 +65,7 @@ public class FreeCamera : MonoBehaviour
             }
             else
             {
-                hud.SetActive(true);
+                hud.SetActive(false);
                 offsetWhenFreed = transform.localPosition;
                 rotWhenFreed = transform.localRotation;
 

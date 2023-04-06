@@ -803,8 +803,9 @@ MonoBehaviour:
   rotSpeed: 1
   moveSpeed: 5
   count: 0
-  smoothingFrames: 50
+  smoothingFrames: 75
   free: 0
+  hud: {fileID: 0}
 --- !u!1 &5457486071552696941
 GameObject:
   m_ObjectHideFlags: 0
