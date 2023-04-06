@@ -25,6 +25,7 @@ public class FreeCamera : MonoBehaviour
 
     Vector3 offsetWhenFreed;
     Quaternion rotWhenFreed;
+    GameObject hud;
 
     private void Start()
     {
@@ -49,6 +50,7 @@ public class FreeCamera : MonoBehaviour
         {
             if(free)
             {
+                hud.SetActive(false);
                 transform.parent = rememberedParent.transform;
                 //transform.localPosition= Vector3.zero;
                 //transform.localRotation= Quaternion.identity;
@@ -60,6 +62,7 @@ public class FreeCamera : MonoBehaviour
             }
             else
             {
+                hud.SetActive(true);
                 offsetWhenFreed = transform.localPosition;
                 rotWhenFreed = transform.localRotation;
 
