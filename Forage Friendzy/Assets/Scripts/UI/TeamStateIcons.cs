@@ -48,17 +48,7 @@ public class TeamStateIcons : MonoBehaviour
     [ClientRpc]
     public void TeammateStateUpdateClientRpc(bool isPred)
     {
-        ////if passed info is of a pred OR localClient is a pred...
-        //if (info.role == 1 || ClientLaunchInfo.Instance.role == 1)
-        //    return;
-
-        ////if passed info belongs to this localClient...
-        //if (NetworkManager.Singleton.LocalClientId == id)
-        //    return;
-
-        //At this point...
-        //Info belongs to a teammate of role prey of the local player
-        if (isPred)
+        if (ClientLaunchInfo.Instance.role == 1)
             return;
 
         if (GameManager.Instance.predatorTeam.ContainsKey(NetworkManager.Singleton.LocalClientId))
