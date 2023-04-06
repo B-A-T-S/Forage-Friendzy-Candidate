@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4693095431921433905}
-  - component: {fileID: 7884465993444711854}
+  - component: {fileID: 7178615606572816493}
   m_Layer: 0
   m_Name: WoodLogCollider
   m_TagString: Untagged
@@ -191,16 +191,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5926654346711709177}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.008938434, y: -0, z: -0.013811392, w: 0.9998647}
+  m_LocalPosition: {x: -0.04285857, y: 0.0006054243, z: -0.027737144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7431689380292047730}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7884465993444711854
-BoxCollider:
+  m_LocalEulerAnglesHint: {x: 1.024, y: -0.014, z: -1.583}
+--- !u!136 &7178615606572816493
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -209,9 +209,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8817862, y: 3.7974765, z: 1.8817863}
-  m_Center: {x: 0.005725071, y: 0.95784295, z: 0}
+  m_Radius: 0.9067145
+  m_Height: 5.9360003
+  m_Direction: 1
+  m_Center: {x: -0.008503997, y: 1.7215205, z: -0.0000000030834284}
 --- !u!1 &6519265267690409239
 GameObject:
   m_ObjectHideFlags: 0
