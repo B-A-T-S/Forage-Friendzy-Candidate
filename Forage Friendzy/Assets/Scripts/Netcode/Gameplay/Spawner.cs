@@ -131,7 +131,7 @@ public class Spawner : NetworkBehaviour
         //Transform randomPlace = placesToSpawn[randomPlaceIndex];
 
         //Enable Cosmetic Prefab
-        spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
+        //spawnedGeo.GetComponent<AnimalGeometryUtilities>().EnableCosmeticByIndex(launchInfo.cosmetic);
 
         Controlled3DBody spawned = Instantiate(bodyToSpawn, randomPlace.position, randomPlace.rotation);
         spawned.NetworkObject.SpawnWithOwnership(playerId);
@@ -143,11 +143,6 @@ public class Spawner : NetworkBehaviour
 
         //add the spawned client to the clientStatus list
         GameManager.Instance.AddClientStatus(playerId, launchInfo);
-
-        if(numSpawned == GameManager.Instance.numPlayersInMatch)
-        {
-            //OnFinishedSpawningPlayers?.Invoke();
-        }
 
         spawnedObjects.Add(spawnedGeo);
         spawnedObjects.Add(spawned.GetComponent<NetworkObject>());
