@@ -41,6 +41,8 @@ public class FreeCamera : MonoBehaviour
 
         rotX = transform.eulerAngles.x;
         rotY = transform.eulerAngles.y;
+
+        hud = GameObject.FindGameObjectWithTag("GNECanvas");
     }
 
 

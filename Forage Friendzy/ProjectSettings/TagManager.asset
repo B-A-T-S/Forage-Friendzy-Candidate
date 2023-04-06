@@ -10,6 +10,7 @@ TagManager:
   - Attack
   - DangerSensePerk
   - Cosmetics
+  - GNECanvas
   layers:
   - Default
   - TransparentFX
