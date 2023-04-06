@@ -102,13 +102,27 @@ public class RoomPlayerPanel : MonoBehaviour
                     break;
             }
 
-
             ownershipIndicator.color = ClientLaunchInfo.Instance.role == 0 ? preyOwner : predOwner;
+
         }
 
         activePreviewObject = PreviewManager.Instance.GetPreviewObject();
         activePreviewObject.Loan();
         previewImage.texture = activePreviewObject.renderTexture;
+
+        activePreviewObject.SwitchSubjectPreview(ClientLaunchInfo.Instance.character + (3 * ClientLaunchInfo.Instance.role));
+
+        if (playerId == 0 && localId == 0)
+            TempFix_LockHostToPredator();
+
+    }
+
+    bool lockHost = false;
+
+    private void TempFix_LockHostToPredator()
+    {
+        roleSwapper.interactable = false;
+        lockHost = true;
 
     }
 
@@ -131,7 +145,8 @@ public class RoomPlayerPanel : MonoBehaviour
 
     public void SetInteractable(bool isInteractable)
     {
-        roleSwapper.interactable = isInteractable;
+        if(!lockHost)
+            roleSwapper.interactable = isInteractable;
         preyComponentGroup.SetInteractable(isInteractable);
         predatorComponentGroup.SetInteractable(isInteractable);
     }
@@ -240,7 +255,7 @@ public struct PlayerInfo : INetworkSerializable
     public PlayerInfo(bool isReady)
     {
         this.isReady = isReady;
-        roleIndex = 0;
+        roleIndex = 1;
         characterIndex = 0;
         cosmeticIndex = 0;
         playerName = "";
