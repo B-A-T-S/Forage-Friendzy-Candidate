@@ -493,6 +493,12 @@ public class LobbyManager : NetworkBehaviour
         GameManager.Instance.CloseApplication();
     }
 
+    public int GetConnectedClientCosmeticIndex(ulong clientId)
+    {
+        PlayerInfo copyOfInfo = playersInLobby[clientId];
+        return copyOfInfo.cosmeticIndex;
+    }
+
 }
 
 public struct LobbyData
