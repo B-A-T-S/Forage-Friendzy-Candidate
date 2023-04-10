@@ -113,9 +113,19 @@ public class RoomView : MonoBehaviour
     private bool MeetsRestrictions(Dictionary<ulong, PlayerInfo> players)
     {
         //if the lobby doesn't have restrictions enabled, just return true
-        DataObject hasRestrictionsDO;
-        Matchmaking.GetCurrentLobby().Data.TryGetValue("r", out hasRestrictionsDO);
-        if(!Convert.ToBoolean(hasRestrictionsDO.Value))
+        bool hasRestrictionsDO;
+        if(Authentication.IsAuthenticated)
+        {
+            DataObject datObj;
+            Matchmaking.GetCurrentLobby().Data.TryGetValue("r", out datObj);
+            hasRestrictionsDO = Convert.ToBoolean(datObj.Value);
+        }   
+        else
+        {
+            hasRestrictionsDO = Matchmaking.GetResponseData().hasRestrictions;
+        } 
+            
+        if(!hasRestrictionsDO)
             return true;
 
         //count nums of role in player list

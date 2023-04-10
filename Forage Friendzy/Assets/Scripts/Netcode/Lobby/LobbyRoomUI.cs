@@ -19,14 +19,14 @@ public class LobbyRoomUI : MonoBehaviour
     public bool IsLocal { get; private set; }
 
     public Lobby Lobby { get; private set; }
-    public IPAddress IP { get; private set; }
+    public IPEndPoint IP { get; private set; }
     public DiscoveryResponseData ResponseData { get; private set; }
 
     public static event Action<Lobby> event_GlobalLobbySelected;
-    public static event Action<IPAddress, DiscoveryResponseData> event_LocalLobbySelected;
+    public static event Action<IPEndPoint, DiscoveryResponseData> event_LocalLobbySelected;
 
     
-    public void Init(KeyValuePair<IPAddress, DiscoveryResponseData> lobby)
+    public void Init(KeyValuePair<IPEndPoint, DiscoveryResponseData> lobby)
     {
         UpdateDetails(lobby);
         IsLocal = true;
@@ -39,7 +39,7 @@ public class LobbyRoomUI : MonoBehaviour
         IsLocal = false;
     }
 
-    public void UpdateDetails(KeyValuePair<IPAddress, DiscoveryResponseData> lobby)
+    public void UpdateDetails(KeyValuePair<IPEndPoint, DiscoveryResponseData> lobby)
     {
         IP = lobby.Key;
         ResponseData = lobby.Value;

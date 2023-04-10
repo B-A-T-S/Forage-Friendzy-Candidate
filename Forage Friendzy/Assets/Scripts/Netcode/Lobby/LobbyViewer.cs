@@ -64,17 +64,31 @@ public class LobbyViewer : MonoBehaviour
             currentlyDisplayedLobbies = new List<LobbyRoomUI>();
 
         globalDiscovery = Authentication.IsAuthenticated;
+
+        if (!globalDiscovery)
+        {
+            ForageFriendzyLanDiscovery.Instance.StartClient();
+            ForageFriendzyLanDiscovery.Instance.StartClientBroadcast();
+        }
+            
+    }
+
+    private void OnDisable()
+    {
+        ForageFriendzyLanDiscovery.Instance.StopClientBroadcast();
     }
 
     private void FetchLocalLobbies()
     {
 
         //Get Discovered Lobbies from Discovery Component (array of KeyValuePair<IP, ResponseData>)
+        KeyValuePair<IPEndPoint, DiscoveryResponseData>[] discoveredLobbies = ForageFriendzyLanDiscovery.currentlyKnownLobbies.ToArray();
 
-        /*
-        foreach(KeyValuePair<IPAdress, ResponseData> lobby in discoveredLobbies)
+        Debug.Log($"Found {discoveredLobbies.Length} local lobbies.");
+
+        foreach(KeyValuePair<IPEndPoint, DiscoveryResponseData> lobby in discoveredLobbies)
         {
-            LobbyRoomUI current = currentlyDisplayedLobbies.FirstOrDefault(p => p.ipAdress == lobby.key);
+            LobbyRoomUI current = currentlyDisplayedLobbies.FirstOrDefault(p => p.IP == lobby.Key);
             if (current != null)
             {
                 current.UpdateDetails(lobby);
@@ -86,7 +100,7 @@ public class LobbyViewer : MonoBehaviour
                 currentlyDisplayedLobbies.Add(panel);
             }
         }
-        */
+        
 
     }
 

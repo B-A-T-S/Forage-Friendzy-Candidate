@@ -24,7 +24,7 @@ public class LobbyOrchestrator : MonoBehaviour
     [SerializeField] TMP_InputField passwordInput;
     [SerializeField] GameObject incorrectPasswordTLO;
     private Lobby cachedPasswordLobby;
-    private IPAddress cachedIP;
+    private IPEndPoint cachedIP;
     private DiscoveryResponseData cachedResponseData;
 
     #region Password
@@ -38,7 +38,7 @@ public class LobbyOrchestrator : MonoBehaviour
         passwordWindow.SetActive(true);
     }
 
-    public void OpenPasswordWindow(IPAddress ip, DiscoveryResponseData responseData, string password)
+    public void OpenPasswordWindow(IPEndPoint ip, DiscoveryResponseData responseData, string password)
     {
         cachedLobbyPassword = password;
         cachedIP = ip;
@@ -198,7 +198,7 @@ public class LobbyOrchestrator : MonoBehaviour
         }
     }
 
-    private void TryJoinLocalLobby(IPAddress ip, DiscoveryResponseData responseData)
+    private void TryJoinLocalLobby(IPEndPoint ip, DiscoveryResponseData responseData)
     {
         if (responseData.hasPassword)
         {

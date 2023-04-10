@@ -63,10 +63,12 @@ public abstract class NetworkDiscovery<TBroadCast, TResponse> : MonoBehaviour
 
     public void ClientBroadcast(TBroadCast broadCast)
     {
+        /*
         if (!IsClient)
         {
             throw new InvalidOperationException("Cannot send client broadcast while not running in client mode. Call StartClient first.");
         }
+        */
 
         IPEndPoint endPoint = new IPEndPoint(IPAddress.Broadcast, m_Port);
 

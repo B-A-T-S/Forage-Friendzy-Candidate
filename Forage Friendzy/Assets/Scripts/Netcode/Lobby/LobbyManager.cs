@@ -119,7 +119,7 @@ public class LobbyManager : NetworkBehaviour
 
     #region LAN
 
-    public void JoinLobby(IPAddress ip, ushort port, GameObject toEnable, GameObject toDisable)
+    public void JoinLobby(IPEndPoint ip, ushort port, GameObject toEnable, GameObject toDisable)
     {
         try
         {
@@ -156,6 +156,9 @@ public class LobbyManager : NetworkBehaviour
 
             //if I am the server, listen for client connection events
             NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
+
+            ForageFriendzyLanDiscovery.Instance.StartServer();
+
             //add myself to the list of local clients as not ready (because I am in the lobby)
             if(!playersInLobby.ContainsKey(NetworkManager.Singleton.LocalClientId))
                 playersInLobby.Add(NetworkManager.Singleton.LocalClientId, new PlayerInfo(false));
@@ -482,11 +485,21 @@ public class LobbyManager : NetworkBehaviour
         
         using (new LoadNetworkScene("Starting Game...", NetworkManager.Singleton))
         {
-            //locking the lobby means noone can join
-            await Matchmaking.LockGlobalLobby();
 
-            //fill in GM's information
-            GameManager.Instance.numPlayersInMatch = Matchmaking.GetCurrentLobby().Players.Count;
+            if(Authentication.IsAuthenticated)
+            {
+                //locking the lobby means noone can join
+                await Matchmaking.LockGlobalLobby();
+
+                //fill in GM's information
+                GameManager.Instance.numPlayersInMatch = Matchmaking.GetCurrentLobby().Players.Count;
+            }
+            else
+            {
+                Matchmaking.LockLocalLobby();
+                GameManager.Instance.numPlayersInMatch = Matchmaking.GetResponseData().currentPlayerCount;
+            }
+            
 
             //tell client to show loading screen
             GameManager.Instance.NetworkSceneLoadingScreenClientRpc("Starting Game...");

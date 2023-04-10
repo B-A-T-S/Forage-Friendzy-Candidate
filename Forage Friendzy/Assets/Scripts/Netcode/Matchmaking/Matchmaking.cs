@@ -30,6 +30,11 @@ public static class Matchmaking
         return currentLobby;
     }
 
+    public static DiscoveryResponseData GetResponseData()
+    {
+        return currentResonseData;
+    }
+
     private static CancellationTokenSource heartbeatSource, updateLobbySource;
 
     public static event Action<Lobby> event_CurrentLobbyRefreshed;
@@ -159,7 +164,7 @@ public static class Matchmaking
 
     }
 
-    public static void JoinLocalLobby(IPAddress ip, ushort port)
+    public static void JoinLocalLobby(IPEndPoint ip, ushort port)
     {
         Transport.SetConnectionData(ip.ToString(), port);
         NetworkManager.Singleton.StartClient();
