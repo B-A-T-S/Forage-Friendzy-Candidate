@@ -7,6 +7,7 @@ using System;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Linq;
+using System.Net;
 
 public class LobbyManager : NetworkBehaviour
 {
@@ -19,8 +20,6 @@ public class LobbyManager : NetworkBehaviour
     {
         get { return playersInLobby; }
     }
-
-
 
     //meant to be invoked whenever a player joins and we need to update the lobby
     public static event Action<Dictionary<ulong, PlayerInfo>> event_LobbyPlayersUpdated;
@@ -47,13 +46,15 @@ public class LobbyManager : NetworkBehaviour
         hasRanStart = true;
     }
 
+    #region Lobby
+
     public async void JoinLobby(Lobby lobby, GameObject toEnable, GameObject toDisable)
     {
         try
         {
             using(new Load("Joining Lobby..."))
             {
-                await Matchmaking.JoinLobby(lobby.Id);
+                await Matchmaking.JoinGlobalLobby(lobby.Id);
 
                 //enable/disable related screen
                 toEnable.gameObject.SetActive(true);
@@ -70,17 +71,67 @@ public class LobbyManager : NetworkBehaviour
         }
     }
 
-    public async void JoinLobby(string lobbyId, GameObject toEnable, GameObject toDisable)
+    //Ran when user finishes inputing lobby data and wants to host
+    public async void CreateLobby(LobbyData data, GameObject toEnable, GameObject toDisable)
+    {
+
+        if(Authentication.IsAuthenticated)
+            try
+            {
+                using(new Load("Creating Lobby..."))
+                {
+                    await Matchmaking.CreateGlobalLobby(data);
+
+                    //enable/disable related screen
+                    toEnable?.gameObject.SetActive(true);
+                    toDisable?.gameObject.SetActive(false);
+
+                    //Starting host immediately will keep the relay server alive
+                    NetworkManager.Singleton.StartHost();
+                }
+            } 
+            catch (Exception e)
+            {
+                CanvasUtil.Instance.ShowError("Failed to Create Lobby");
+                Debug.LogError(e);
+            }
+        else
+            try
+            {
+                using (new Load("Creating Lobby..."))
+                {
+                   
+                    //enable/disable related screen
+                    toEnable?.gameObject.SetActive(true);
+                    toDisable?.gameObject.SetActive(false);
+
+                    Matchmaking.CreateLocalLobby(data);
+                }
+            }
+            catch (Exception e)
+            {
+                CanvasUtil.Instance.ShowError("Failed to Create Lobby");
+                Debug.LogError(e);
+            }
+    }
+
+    #endregion Lobby
+
+    #region LAN
+
+    public void JoinLobby(IPAddress ip, ushort port, GameObject toEnable, GameObject toDisable)
     {
         try
         {
-            await Matchmaking.JoinLobby(lobbyId);
+            using (new Load("Joining Lobby..."))
+            {
 
-            //enable/disable related screen
-            toEnable.gameObject.SetActive(true);
-            toDisable.gameObject.SetActive(false);
+                //enable/disable related screen
+                toEnable.gameObject.SetActive(true);
+                toDisable.gameObject.SetActive(false);
 
-            NetworkManager.Singleton.StartClient();
+                Matchmaking.JoinLocalLobby(ip, port);
+            }
 
         }
         catch (Exception e)
@@ -90,49 +141,7 @@ public class LobbyManager : NetworkBehaviour
         }
     }
 
-    private async void ForceJoin(string lobbyId)
-    {
-        Debug.Log($"Forced to Join: {lobbyId}");
-        /*
-        await Matchmaking.LeaveLobby();
-        NetworkManager.Singleton.Shutdown();
-        await Matchmaking.JoinLobby(lobbyId);
-        roomView.gameObject.SetActive(true);
-        NetworkManager.Singleton.StartClient();
-        */
-
-    }
-
-    [ClientRpc]
-    public void ForceJoinClientRpc(string lobbyId)
-    {
-        ForceJoin(lobbyId);   
-    }
-
-    //Ran when user finishes inputing lobby data and wants to host
-    public async void CreateLobby(LobbyData data, GameObject toEnable, GameObject toDisable)
-    {
-
-        try
-        {
-            using(new Load("Creating Lobby..."))
-            {
-                await Matchmaking.CreateFreeLobby(data);
-
-                //enable/disable related screen
-                toEnable?.gameObject.SetActive(true);
-                toDisable?.gameObject.SetActive(false);
-
-                //Starting host immediately will keep the relay server alive
-                NetworkManager.Singleton.StartHost();
-            }
-        } 
-        catch (Exception e)
-        {
-            CanvasUtil.Instance.ShowError("Failed to Create Lobby");
-            Debug.LogError(e);
-        }
-    }
+    #endregion
 
     //Network behaviour override
     public override void OnNetworkSpawn()
@@ -341,13 +350,13 @@ public class LobbyManager : NetworkBehaviour
     {
         public ulong playerId;
         public string playerName;
-        public bool status;
+        //public bool status;
 
         public PlayerNameUpdateRequest(ulong id, string name)
         {
             playerId = id;
             playerName = name;
-            status = false;
+            //status = false;
         }
     }
 
@@ -474,7 +483,7 @@ public class LobbyManager : NetworkBehaviour
         using (new LoadNetworkScene("Starting Game...", NetworkManager.Singleton))
         {
             //locking the lobby means noone can join
-            await Matchmaking.LockLobby();
+            await Matchmaking.LockGlobalLobby();
 
             //fill in GM's information
             GameManager.Instance.numPlayersInMatch = Matchmaking.GetCurrentLobby().Players.Count;

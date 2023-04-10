@@ -571,7 +571,7 @@ public class GameManager : NetworkBehaviour
             using (new LoadNetworkScene("Exiting Match...", NetworkManager.Singleton))
             {
                 UnlockClientMouseClientRpc();
-                await Matchmaking.UnlockLobby();
+                await Matchmaking.UnlockGlobalLobby();
                 //LoadSceneUtil.Instance.NM_BySceneName("LobbyScene");
                 NetworkManager.Singleton.SceneManager.LoadScene("LobbyScene", LoadSceneMode.Single);
             }

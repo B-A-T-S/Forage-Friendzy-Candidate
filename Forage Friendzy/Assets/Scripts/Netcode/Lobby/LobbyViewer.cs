@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Services.Lobbies.Models;
 using System.Linq;
 using System;
+using System.Net;
 
 
 //includes a non-threaded approach to delays between method calls
@@ -12,20 +13,19 @@ public class LobbyViewer : MonoBehaviour
 {
 
     [Tooltip("The UI Prefab that represents an active Room")]
-    [SerializeField]
-    private LobbyRoomUI lobbyRoomPrefab;
+    [SerializeField] private LobbyRoomUI lobbyRoomPrefab;
 
     [Tooltip("Instantiated LobbyRoomUI objects are placed underneath this")]
-    [SerializeField]
-    private Transform lobbyViewParent;
+    [SerializeField] private Transform lobbyViewParent;
 
     [Tooltip("Object visible when no lobbies can be found")]
-    [SerializeField]
-    private GameObject noLobbiesText;
+    [SerializeField] private GameObject noLobbiesText;
 
     [Tooltip("Controls how often this object attempts to update the visible lobbies")]
-    [SerializeField]
-    private float lobbyRefreshRate = 2f;
+    [SerializeField] private float lobbyRefreshRate = 2f;
+
+    //determines the process used to find active lobbies
+    private bool globalDiscovery;
 
     //a list of all currently displayed LobbyRoomUI objects
     private List<LobbyRoomUI> currentlyDisplayedLobbies;
@@ -39,7 +39,18 @@ public class LobbyViewer : MonoBehaviour
     private void Update()
     {
         if (Time.time >= nextRefreshTime)
-            FetchLobbies();
+        {
+
+            //determine next refresh time
+            nextRefreshTime = Time.time + lobbyRefreshRate;
+
+            if (globalDiscovery)
+                FetchGlobalLobbies();
+
+            FetchLocalLobbies();
+        }
+            
+
     }
 
     private void OnEnable()
@@ -51,48 +62,41 @@ public class LobbyViewer : MonoBehaviour
             currentlyDisplayedLobbies.Clear();
         else
             currentlyDisplayedLobbies = new List<LobbyRoomUI>();
+
+        globalDiscovery = Authentication.IsAuthenticated;
     }
 
-    private LobbyData CreateRoleQueueLobbyData(LobbyType toCreate)
+    private void FetchLocalLobbies()
     {
-        LobbyData data;
-        switch(toCreate)
-        {
-            case LobbyType.PredOnly:
-                data = new LobbyData
-                {
-                    name = "PredLobby",
-                    lobbyType = (int)LobbyType.PredOnly,
-                    maxPlayers = 5,
-                    hasRestrictions = false,
-                    hasPassword = false
-                };
-                break;
-            default:
-                data = new LobbyData
-                {
-                    name = "PreyLobby",
-                    lobbyType = (int)LobbyType.PreyOnly,
-                    maxPlayers = 3,
-                    hasRestrictions = false,
-                    hasPassword = false
-                };
-                break;
-        }
 
-        return data;
+        //Get Discovered Lobbies from Discovery Component (array of KeyValuePair<IP, ResponseData>)
+
+        /*
+        foreach(KeyValuePair<IPAdress, ResponseData> lobby in discoveredLobbies)
+        {
+            LobbyRoomUI current = currentlyDisplayedLobbies.FirstOrDefault(p => p.ipAdress == lobby.key);
+            if (current != null)
+            {
+                current.UpdateDetails(lobby);
+            }
+            else
+            {
+                LobbyRoomUI panel = Instantiate(lobbyRoomPrefab, lobbyViewParent);
+                panel.Init(lobby);
+                currentlyDisplayedLobbies.Add(panel);
+            }
+        }
+        */
+
     }
 
-    private async void FetchLobbies()
+    private async void FetchGlobalLobbies()
     {
         try
         {
-            //add to the refresh time
-            //if this continues to get big, wouldn't it go over the float limit?
-            nextRefreshTime = Time.time + lobbyRefreshRate;
-
+            
             //ask Matchmaking for current lobbies
-            var allLobbies = await Matchmaking.GetLobbies();
+            var allLobbies = await Matchmaking.GetGlobalLobbies();
 
             // Exclude our owned lobbies
             var lobbyIds = allLobbies.Where(l => l.HostId != Authentication.PlayerId).Select(l => l.Id);
@@ -123,9 +127,9 @@ public class LobbyViewer : MonoBehaviour
 
             noLobbiesText.SetActive(!currentlyDisplayedLobbies.Any());
         }
-        catch (Exception e)
+        catch (InvalidOperationException e)
         {
-            Debug.LogError(e);
+            Debug.LogError("LobbyAPI not Initialized");
         }
     }
 

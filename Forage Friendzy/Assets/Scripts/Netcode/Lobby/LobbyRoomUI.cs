@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using TMPro;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
@@ -15,13 +16,38 @@ public class LobbyRoomUI : MonoBehaviour
     [SerializeField]
     private Image restrictionImage, passwordLockImage;
 
-    public Lobby Lobby { get; private set; }
+    public bool IsLocal { get; private set; }
 
-    public static event Action<Lobby> event_LobbySelected;
+    public Lobby Lobby { get; private set; }
+    public IPAddress IP { get; private set; }
+    public DiscoveryResponseData ResponseData { get; private set; }
+
+    public static event Action<Lobby> event_GlobalLobbySelected;
+    public static event Action<IPAddress, DiscoveryResponseData> event_LocalLobbySelected;
+
+    
+    public void Init(KeyValuePair<IPAddress, DiscoveryResponseData> lobby)
+    {
+        UpdateDetails(lobby);
+        IsLocal = true;
+    }
+    
 
     public void Init(Lobby lobby)
     {
         UpdateDetails(lobby);
+        IsLocal = false;
+    }
+
+    public void UpdateDetails(KeyValuePair<IPAddress, DiscoveryResponseData> lobby)
+    {
+        IP = lobby.Key;
+        ResponseData = lobby.Value;
+        nameText.text = ResponseData.lobbyName;
+        playerCountText.text = $"{ResponseData.currentPlayerCount}/{ResponseData.maxPlayers}";
+        restrictionImage.gameObject.SetActive(ResponseData.hasRestrictions);
+        passwordLockImage.gameObject.SetActive(ResponseData.hasPassword);
+        
     }
 
     public void UpdateDetails(Lobby lobby)
@@ -31,18 +57,16 @@ public class LobbyRoomUI : MonoBehaviour
         playerCountText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers}";
         restrictionImage.gameObject.SetActive(Convert.ToBoolean(lobby.Data["r"].Value));
         passwordLockImage.gameObject.SetActive(Convert.ToBoolean(lobby.Data["l"].Value));
-        int GetValue(string key)
-        {
-            return int.Parse(lobby.Data[key].Value);
-        }
-            
     }
 
 
 
     public void Clicked()
     {
-        event_LobbySelected?.Invoke(Lobby);
+        if (!IsLocal)
+            event_GlobalLobbySelected?.Invoke(Lobby);
+        else
+            event_LocalLobbySelected?.Invoke(IP, ResponseData);
     }
 
 }

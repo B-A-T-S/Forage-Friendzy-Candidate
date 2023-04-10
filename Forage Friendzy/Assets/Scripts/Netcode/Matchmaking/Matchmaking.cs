@@ -9,6 +9,8 @@ using Unity.Netcode.Transports.UTP;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using System.Net;
+using Unity.Netcode;
 
 public static class Matchmaking
 {
@@ -16,20 +18,18 @@ public static class Matchmaking
     //must be constants, static classes cannot have non-constant instance vars
     private const int heartbeat = 15;
     private const int lobbyRefreshRate = 2;
-    private const int siblingSearchRate = 2;
 
     private static UnityTransport transport;
 
     private static Lobby currentLobby;
+
+    private static DiscoveryResponseData currentResonseData;
 
     public static Lobby GetCurrentLobby() 
     {
         return currentLobby;
     }
 
-    //don't know alot about these, but they get used in the async heartbeat and update examples
-    //so I included them
-    //pretty sure they function as blocks for the processes
     private static CancellationTokenSource heartbeatSource, updateLobbySource;
 
     public static event Action<Lobby> event_CurrentLobbyRefreshed;
@@ -62,71 +62,8 @@ public static class Matchmaking
         currentLobby = null;
     }
 
-    public static async Task<List<Lobby>> GetOpenPreyLobbies()
-    {
-        //Setup Query Options
-        QueryLobbiesOptions queryOptions = new QueryLobbiesOptions
-        {
-            //The maximum number of lobbies to return via this query
-            Count = 15,
-            Filters = new List<QueryFilter>
-            {
-                new(QueryFilter.FieldOptions.AvailableSlots, "0", QueryFilter.OpOptions.GT),
-                new(QueryFilter.FieldOptions.IsLocked, "0", QueryFilter.OpOptions.EQ),
-                new(QueryFilter.FieldOptions.N1, "2", QueryFilter.OpOptions.EQ)
-            }
-        };
-
-        //request lobbies that fit defined conditions
-        var validLobbies = await Lobbies.Instance.QueryLobbiesAsync(queryOptions);
-        return validLobbies.Results;
-    }
-
-    public static async Task<List<Lobby>> GetFullPredatorLobbies()
-    {
-        //Setup Query Options
-        QueryLobbiesOptions queryOptions = new QueryLobbiesOptions
-        {
-            //The maximum number of lobbies to return via this query
-            Count = 15,
-            Filters = new List<QueryFilter>
-            {
-                //filters for lobbies that have 3 available slots (2 Predators)
-                new(QueryFilter.FieldOptions.AvailableSlots, "3", QueryFilter.OpOptions.EQ),
-                new(QueryFilter.FieldOptions.IsLocked, "0", QueryFilter.OpOptions.EQ),
-                new(QueryFilter.FieldOptions.N1, "1", QueryFilter.OpOptions.EQ)
-            }
-
-        };
-
-        //request lobbies that fit defined conditions
-        var validLobbies = await Lobbies.Instance.QueryLobbiesAsync(queryOptions);
-        return validLobbies.Results;
-    }
-
-    public static async Task<List<Lobby>> GetOpenPredatorLobbies()
-    {
-        //Setup Query Options
-        QueryLobbiesOptions queryOptions = new QueryLobbiesOptions
-        {
-            Count = 15,
-
-            Filters = new List<QueryFilter>
-            {
-                new(QueryFilter.FieldOptions.AvailableSlots, "1", QueryFilter.OpOptions.EQ),
-                new(QueryFilter.FieldOptions.IsLocked, "0", QueryFilter.OpOptions.EQ),
-                new(QueryFilter.FieldOptions.N1, "1", QueryFilter.OpOptions.EQ)
-            }
-
-        };
-
-        //request lobbies that fit defined conditions
-        var validLobbies = await Lobbies.Instance.QueryLobbiesAsync(queryOptions);
-        return validLobbies.Results;
-    }
-
     //Lobby Query Process
-    public static async Task<List<Lobby>> GetLobbies()
+    public static async Task<List<Lobby>> GetGlobalLobbies()
     {
 
         //Setup Query Options
@@ -159,7 +96,7 @@ public static class Matchmaking
     }
 
     //Lobby Creation Process
-    public static async Task CreateFreeLobby(LobbyData data)
+    public static async Task CreateGlobalLobby(LobbyData data)
     {
         //Create Relay Allocation
         Allocation relayAllocation = await RelayService.Instance.CreateAllocationAsync(data.maxPlayers, "northamerica-northeast1");
@@ -191,62 +128,22 @@ public static class Matchmaking
         PeriodicallyRefreshLobby();
     }
 
-    public static async Task CreatePredatorOnlyLobby(LobbyData data)
+    public static void CreateLocalLobby(LobbyData data)
     {
-        Allocation relayAllocation = await RelayService.Instance.CreateAllocationAsync(data.maxPlayers, "northamerica-northeast1");
-        string joinCode = await RelayService.Instance.GetJoinCodeAsync(relayAllocation.AllocationId);
-
-        CreateLobbyOptions lobbyOptions = new CreateLobbyOptions
+        currentResonseData = new DiscoveryResponseData
         {
-            Data = new Dictionary<string, DataObject>
-            {
-                { CustomLobbyData.JoinKey, new DataObject(DataObject.VisibilityOptions.Member, joinCode) },
-                { CustomLobbyData.MatchRestricted, new DataObject(DataObject.VisibilityOptions.Public, data.hasRestrictions.ToString(), DataObject.IndexOptions.S1) },
-                { CustomLobbyData.LobbyType, new DataObject(DataObject.VisibilityOptions.Public, ((int)data.lobbyType).ToString(), DataObject.IndexOptions.N1) },
-                { CustomLobbyData.PasswordLocked, new DataObject(DataObject.VisibilityOptions.Public, (!string.IsNullOrEmpty(data.password)).ToString(), DataObject.IndexOptions.S2)},
-                { CustomLobbyData.Password, new DataObject(DataObject.VisibilityOptions.Public, data.password, DataObject.IndexOptions.S3)}
-            }
+            port = ((UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport).ConnectionData.Port,
+            lobbyName = data.name,
+            currentPlayerCount = 1,
+            maxPlayers = data.maxPlayers,
+            hasRestrictions = data.hasRestrictions,
+            hasPassword = data.hasPassword,
+            password = data.password
         };
-
-        currentLobby = await LobbyService.Instance.CreateLobbyAsync(data.name, data.maxPlayers, lobbyOptions);
-
-        RelayServer server = relayAllocation.RelayServer;
-        Transport.SetHostRelayData(server.IpV4, (ushort)server.Port, relayAllocation.AllocationIdBytes, relayAllocation.Key, relayAllocation.ConnectionData);
-
-        Heartbeat();
-        PeriodicallyRefreshLobby();
+        NetworkManager.Singleton.StartHost();
     }
 
-    public static async Task CreatePreyOnlyLobby(LobbyData data)
-    {
-        Allocation relayAllocation = await RelayService.Instance.CreateAllocationAsync(data.maxPlayers, "northamerica-northeast1");
-        string joinCode = await RelayService.Instance.GetJoinCodeAsync(relayAllocation.AllocationId);
-
-        CreateLobbyOptions lobbyOptions = new CreateLobbyOptions
-        {
-            Data = new Dictionary<string, DataObject>
-            {
-                { CustomLobbyData.JoinKey, new DataObject(DataObject.VisibilityOptions.Member, joinCode) },
-                { CustomLobbyData.MatchRestricted, new DataObject(DataObject.VisibilityOptions.Public, data.hasRestrictions.ToString(), DataObject.IndexOptions.S1) },
-                { CustomLobbyData.LobbyType, new DataObject(DataObject.VisibilityOptions.Public, ((int)data.lobbyType).ToString(), DataObject.IndexOptions.N1) },
-                { CustomLobbyData.PasswordLocked, new DataObject(DataObject.VisibilityOptions.Public, (!string.IsNullOrEmpty(data.password)).ToString(), DataObject.IndexOptions.S2)},
-                { CustomLobbyData.Password, new DataObject(DataObject.VisibilityOptions.Public, data.password, DataObject.IndexOptions.S3)}
-            }
-        };
-
-        currentLobby = await LobbyService.Instance.CreateLobbyAsync(data.name, data.maxPlayers, lobbyOptions);
-
-        RelayServer server = relayAllocation.RelayServer;
-        Transport.SetHostRelayData(server.IpV4, (ushort)server.Port, relayAllocation.AllocationIdBytes, relayAllocation.Key, relayAllocation.ConnectionData);
-
-        Heartbeat();
-        PeriodicallyRefreshLobby();
-        //Start Looking for Predator Lobbies
-
-    }
-
-
-    public static async Task JoinLobby(string lobbyId)
+    public static async Task JoinGlobalLobby(string lobbyId)
     {
         //Join the lobby
         currentLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobbyId);
@@ -262,8 +159,14 @@ public static class Matchmaking
 
     }
 
+    public static void JoinLocalLobby(IPAddress ip, ushort port)
+    {
+        Transport.SetConnectionData(ip.ToString(), port);
+        NetworkManager.Singleton.StartClient();
+    }
+
     //prevent players from entering the current lobby
-    public static async Task LockLobby()
+    public static async Task LockGlobalLobby()
     {
         try
         {
@@ -274,8 +177,19 @@ public static class Matchmaking
             Debug.Log($"Failed closing lobby: {e}");
         }
     }
+    
+    //prevent players from entering the current lobby
+    public static async Task LockLocalLobby()
+    {
+        //discovery.StopDiscovery();
+    }
 
-    public static async Task UnlockLobby()
+    public static async Task UnlockLocalLobby()
+    {
+        //discovery.StartServer();
+    }
+
+    public static async Task UnlockGlobalLobby()
     {
         try
         {

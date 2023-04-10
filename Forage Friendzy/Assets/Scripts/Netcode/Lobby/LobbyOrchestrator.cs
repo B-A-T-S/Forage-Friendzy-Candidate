@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Net;
 using TMPro;
 using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
@@ -23,7 +24,8 @@ public class LobbyOrchestrator : MonoBehaviour
     [SerializeField] TMP_InputField passwordInput;
     [SerializeField] GameObject incorrectPasswordTLO;
     private Lobby cachedPasswordLobby;
-
+    private IPAddress cachedIP;
+    private DiscoveryResponseData cachedResponseData;
 
     #region Password
 
@@ -36,10 +38,21 @@ public class LobbyOrchestrator : MonoBehaviour
         passwordWindow.SetActive(true);
     }
 
+    public void OpenPasswordWindow(IPAddress ip, DiscoveryResponseData responseData, string password)
+    {
+        cachedLobbyPassword = password;
+        cachedIP = ip;
+        cachedResponseData = responseData;
+        passwordInput.text = "";
+        incorrectPasswordTLO.SetActive(false);
+        passwordWindow.SetActive(true);
+    }
+
     public void ClosePasswordWindow()
     {
         cachedLobbyPassword = null;
         cachedPasswordLobby = null;
+        cachedIP = null;
         passwordWindow.SetActive(false);
     }
 
@@ -48,7 +61,15 @@ public class LobbyOrchestrator : MonoBehaviour
         if (string.Equals(passwordInput.text, cachedLobbyPassword))
         {
             //If Correct
-            LobbyManager.Instance.JoinLobby(cachedPasswordLobby, roomView.gameObject, lobbyViewer.gameObject);
+            if(cachedPasswordLobby != null)
+            {
+                LobbyManager.Instance.JoinLobby(cachedPasswordLobby, roomView.gameObject, lobbyViewer.gameObject);
+            }
+            else if (cachedIP != null)
+            {
+                LobbyManager.Instance.JoinLobby(cachedIP, cachedResponseData.port, roomView.gameObject, lobbyViewer.gameObject);
+            }
+            
             ClosePasswordWindow();
         }
         else
@@ -90,7 +111,8 @@ public class LobbyOrchestrator : MonoBehaviour
         LobbyCreator.event_OnCreateClicked += CreateLobby;
         LobbyCreator.event_OnExitClicked += Transition_CreatorToViewer;
 
-        LobbyRoomUI.event_LobbySelected += TryJoinLobby;
+        LobbyRoomUI.event_GlobalLobbySelected += TryJoinGlobalLobby;
+        LobbyRoomUI.event_LocalLobbySelected += TryJoinLocalLobby;
 
         RoomView.event_LobbyLeft += OnLobbyLeft;
         RoomView.event_StartGamePressed += OnGameStart;
@@ -164,7 +186,7 @@ public class LobbyOrchestrator : MonoBehaviour
         LobbyManager.Instance.CreateLobby(data, roomView.gameObject, lobbyCreator.gameObject);
     }
 
-    private void TryJoinLobby(Lobby lobby)
+    private void TryJoinGlobalLobby(Lobby lobby)
     {
         if (Convert.ToBoolean(lobby.Data["l"].Value))
         {
@@ -173,6 +195,18 @@ public class LobbyOrchestrator : MonoBehaviour
         else
         {
             LobbyManager.Instance.JoinLobby(lobby, roomView.gameObject, lobbyViewer.gameObject);
+        }
+    }
+
+    private void TryJoinLocalLobby(IPAddress ip, DiscoveryResponseData responseData)
+    {
+        if (responseData.hasPassword)
+        {
+            OpenPasswordWindow(ip, responseData, responseData.password);
+        }
+        else
+        {
+            LobbyManager.Instance.JoinLobby(ip, responseData.port, roomView.gameObject, lobbyViewer.gameObject);
         }
     }
 
@@ -195,7 +229,8 @@ public class LobbyOrchestrator : MonoBehaviour
         LobbyCreator.event_OnCreateClicked -= CreateLobby;
         LobbyCreator.event_OnExitClicked -= Transition_CreatorToViewer;
 
-        LobbyRoomUI.event_LobbySelected -= TryJoinLobby;
+        LobbyRoomUI.event_GlobalLobbySelected -= TryJoinGlobalLobby;
+        LobbyRoomUI.event_LocalLobbySelected -= TryJoinLocalLobby;
 
         RoomView.event_LobbyLeft -= OnLobbyLeft;
         RoomView.event_StartGamePressed -= OnGameStart;

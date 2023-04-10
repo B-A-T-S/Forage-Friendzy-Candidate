@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
+using System;
 
 #if UNITY_EDITOR
 using ParrelSync;
@@ -13,6 +14,7 @@ using ParrelSync;
 public static class Authentication
 {
     public static string PlayerId { get; private set; }
+    public static bool IsAuthenticated { get; private set; }
 
     public static async Task LogIn()
     {
@@ -30,16 +32,35 @@ public static class Authentication
                 else
                     initOptions.SetProfile("Primary");
             #endif
+            
+            try
+            {
+                await UnityServices.InitializeAsync(initOptions);
+            } 
+            catch (Exception e)
+            {
+                CanvasUtil.Instance.ShowError("Service Initilization Failed. Switching to Offline Mode");
+            } 
 
-            await UnityServices.InitializeAsync(initOptions);
+            
         } //end if service check
 
         //if not authorized for session, do that
         if(!AuthenticationService.Instance.IsSignedIn)
         {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            //Set PlayerID based on provided ID
-            PlayerId = AuthenticationService.Instance.PlayerId;
+            try
+            {
+
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+                //Set PlayerID based on provided ID
+                PlayerId = AuthenticationService.Instance.PlayerId;
+                IsAuthenticated = true;
+
+            } catch (Exception e)
+            {
+                CanvasUtil.Instance.ShowError("Authentication Failed. Switching to Offline <ode");
+            }
+            
         }
     }
 }
