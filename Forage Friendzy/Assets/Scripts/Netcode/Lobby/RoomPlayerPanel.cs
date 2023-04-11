@@ -112,8 +112,8 @@ public class RoomPlayerPanel : MonoBehaviour
 
         activePreviewObject.SwitchSubjectPreview(ClientLaunchInfo.Instance.character + (3 * ClientLaunchInfo.Instance.role));
 
-        if (playerId == 0 && localId == 0)
-            TempFix_LockHostToPredator();
+        //if (playerId == 0 && localId == 0)
+            //TempFix_LockHostToPredator();
 
     }
 
@@ -212,6 +212,7 @@ public class RoomPlayerPanel : MonoBehaviour
             predatorComponentGroup.SelectElement_NoResponse(characterIndex);
         }
 
+        activePreviewObject.SwitchSubjectPreview(characterIndex + (3 * info.roleIndex));
         info.characterIndex = characterIndex;
     }
 

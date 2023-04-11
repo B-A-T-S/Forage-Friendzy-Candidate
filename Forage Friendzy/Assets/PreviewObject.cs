@@ -25,8 +25,12 @@ public class PreviewObject : MonoBehaviour
         if (!(0 <= index && index < previewGroups.Length))
             return;
 
+        if (activePreviewGroup.groupSubject == previewGroups[index].groupSubject)
+            return;
+
         previewGroups[index].Toggle(true);
         activePreviewGroup.Toggle(false);
+        
 
         activePreviewGroup = previewGroups[index];
     }

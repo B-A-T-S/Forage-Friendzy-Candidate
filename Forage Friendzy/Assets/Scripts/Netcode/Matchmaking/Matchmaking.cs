@@ -166,7 +166,7 @@ public static class Matchmaking
 
     public static void JoinLocalLobby(IPEndPoint ip, ushort port)
     {
-        Transport.SetConnectionData(ip.ToString(), port);
+        Transport.SetConnectionData(ip.Address.ToString(), port);
         NetworkManager.Singleton.StartClient();
     }
 

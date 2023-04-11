@@ -42,6 +42,8 @@ public class PooledAudioSource : MonoBehaviour
     {
         aSource.clip = null;
         aSource.loop = false;
+        aSource.volume = 1;
+        aSource.pitch = 1;
         listenForVolumeChange = true;
     }
 

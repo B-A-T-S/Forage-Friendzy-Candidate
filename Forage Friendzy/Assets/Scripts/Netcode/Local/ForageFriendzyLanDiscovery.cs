@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.Netcode;
 using UnityEngine;
 
 public class ForageFriendzyLanDiscovery : NetworkDiscovery<DiscoveryBroadcastData, DiscoveryResponseData>
@@ -43,7 +44,7 @@ public class ForageFriendzyLanDiscovery : NetworkDiscovery<DiscoveryBroadcastDat
     IEnumerator ClientBroadcast()
     {
 
-        while(!IsClient)
+        while(!NetworkManager.Singleton.IsClient)
         {
             ClientBroadcast(new DiscoveryBroadcastData());
             yield return new WaitForSeconds(shoutDelay);

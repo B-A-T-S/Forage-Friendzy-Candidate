@@ -46,8 +46,8 @@ public class LobbyViewer : MonoBehaviour
 
             if (globalDiscovery)
                 FetchGlobalLobbies();
-
-            FetchLocalLobbies();
+            else 
+                FetchLocalLobbies();
         }
             
 
@@ -84,9 +84,18 @@ public class LobbyViewer : MonoBehaviour
         //Get Discovered Lobbies from Discovery Component (array of KeyValuePair<IP, ResponseData>)
         KeyValuePair<IPEndPoint, DiscoveryResponseData>[] discoveredLobbies = ForageFriendzyLanDiscovery.currentlyKnownLobbies.ToArray();
 
-        Debug.Log($"Found {discoveredLobbies.Length} local lobbies.");
+        //Remove any existing lobbies that did not respond to broadcast
+        IPEndPoint[] discoveredIPs = ForageFriendzyLanDiscovery.currentlyKnownLobbies.Keys.ToArray();
+        foreach (LobbyRoomUI ui in currentlyDisplayedLobbies)
+        {
+            if(ui.IsLocal && !discoveredIPs.Contains(ui.IP))
+            {
+                Destroy(ui.gameObject);
+                currentlyDisplayedLobbies.Remove(ui);
+            }
+        }
 
-        foreach(KeyValuePair<IPEndPoint, DiscoveryResponseData> lobby in discoveredLobbies)
+        foreach (KeyValuePair<IPEndPoint, DiscoveryResponseData> lobby in discoveredLobbies)
         {
             LobbyRoomUI current = currentlyDisplayedLobbies.FirstOrDefault(p => p.IP == lobby.Key);
             if (current != null)
@@ -98,9 +107,11 @@ public class LobbyViewer : MonoBehaviour
                 LobbyRoomUI panel = Instantiate(lobbyRoomPrefab, lobbyViewParent);
                 panel.Init(lobby);
                 currentlyDisplayedLobbies.Add(panel);
+                Debug.Log($"Created New Lobby @ IP: {lobby.Key.Address} Port: {lobby.Key.Port}");
             }
         }
-        
+
+        noLobbiesText.SetActive(!currentlyDisplayedLobbies.Any());
 
     }
 

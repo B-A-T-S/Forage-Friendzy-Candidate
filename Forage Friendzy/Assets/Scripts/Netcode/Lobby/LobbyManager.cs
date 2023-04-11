@@ -178,6 +178,7 @@ public class LobbyManager : NetworkBehaviour
 
     public override void OnNetworkDespawn()
     {
+        ForageFriendzyLanDiscovery.Instance.StopDiscovery();
         NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnectCallback;
     }
