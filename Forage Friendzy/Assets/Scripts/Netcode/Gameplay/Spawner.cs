@@ -54,6 +54,7 @@ public class Spawner : NetworkBehaviour
 
         preySpawnsUsed = new bool[preySpawns.Count];
         predatorSpawnsUsed = new bool[predatorSpawns.Count];
+        GameManager.Instance.localClientStatus = new ClientStatus(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance);
         SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance);
 
         if (IsHost && foodSpawnLocations.Count > 0)

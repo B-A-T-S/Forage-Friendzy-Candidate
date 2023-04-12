@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class EOMCanvasManager : NetworkBehaviour
 {
 
+    public static EOMCanvasManager Instance { get; private set; }
+
     [SerializeField] private List<string> preyStatStrings, predatorStatStrings;
     [SerializeField] private FadingCanvasGroup eomScreenParent;
     [SerializeField] private GameObject exitMatchBtn;
@@ -26,6 +28,9 @@ public class EOMCanvasManager : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(Instance == null)
+            Instance = this;
+
         Invoke("SubscribeToEvents", 1.0f);
 
         eomScreenParent.FadeOut(0);
@@ -43,7 +48,7 @@ public class EOMCanvasManager : NetworkBehaviour
 
     private void OnEndOfMatch(bool localClientWon, ClientStatus localClientStatus)
     {
-
+        GameManager.Instance.UnlockMouse();
         winBoard.SetActive(localClientWon);
         lossBoard.SetActive(!localClientWon);
 
@@ -65,14 +70,8 @@ public class EOMCanvasManager : NetworkBehaviour
         */
 
         //Change the text of stats depending on Prey or Predator
-        //ApplyStatString(localClientStatus.role == 0 ? preyStatStrings : predatorStatStrings, localClientStatus);
+        ApplyStatString(localClientStatus.role == 0 ? preyStatStrings : predatorStatStrings, localClientStatus);
         eomScreenParent.FadeIn();
-    }
-
-    [ClientRpc]
-    private void OnEndOfMatchClientRpc(bool b)
-    {
-
     }
 
     private void ApplyStatString(List<string> statLabels, ClientStatus clientStatus)
@@ -90,12 +89,17 @@ public class EOMCanvasManager : NetworkBehaviour
         }
     }
 
-    public void ExitMatchClicked()
+    public void CloseEndOfMatchCanvas()
     {
-
         winBoard.SetActive(false);
         lossBoard.SetActive(false);
         eomScreenParent.FadeOut();
+    }
+
+    public void ExitMatchClicked()
+    {
+
+        CloseEndOfMatchCanvas();
 
         if(NetworkManager.Singleton.IsHost)
             GameManager.Instance.TryExitMatch();
