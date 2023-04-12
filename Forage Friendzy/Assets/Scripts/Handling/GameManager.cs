@@ -356,6 +356,11 @@ public class GameManager : NetworkBehaviour
     #endregion
 
     #region Act
+    public void TurnOffMenuMusic()
+    {
+        //Do the stuff
+    }
+
 
     /*
      * Call this every time a prey reaches the fainted state.
