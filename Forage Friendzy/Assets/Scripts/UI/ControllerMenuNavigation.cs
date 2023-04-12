@@ -27,11 +27,20 @@ public class ControllerMenuNavigation : MonoBehaviour
                 Debug.Log("CONTROLLER CONNECTED");
                 controllerConnected = true;
                 selectOnConnection.Select();
-            }else if (controllerConnected && string.IsNullOrEmpty(controllers[0]))
+            }else if (controllerConnected)
             {
-                Debug.Log("CONTROLLER DISCONNECTED");
-                controllerConnected = false;
-                EventSystem.current.SetSelectedGameObject(null);
+                if (controllers == null)
+                {
+                    Debug.Log("CONTROLLER DISCONNECTED");
+                    controllerConnected = false;
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+                else if (string.IsNullOrEmpty(controllers[0]))
+                {
+                    Debug.Log("CONTROLLER DISCONNECTED");
+                    controllerConnected = false;
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
             }
             yield return new WaitForSeconds(1f);
         }
