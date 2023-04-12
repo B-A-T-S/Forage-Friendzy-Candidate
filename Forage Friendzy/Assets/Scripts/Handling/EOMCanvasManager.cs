@@ -96,6 +96,12 @@ public class EOMCanvasManager : NetworkBehaviour
         eomScreenParent.FadeOut();
     }
 
+    [ClientRpc]
+    public void CloseEOMCanvasClientRpc()
+    {
+        CloseEndOfMatchCanvas();
+    }
+
     public void ExitMatchClicked()
     {
 

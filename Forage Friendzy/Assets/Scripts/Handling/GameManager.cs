@@ -581,6 +581,8 @@ public class GameManager : NetworkBehaviour
         {
             using (new LoadNetworkScene("Exiting Match...", NetworkManager.Singleton))
             {
+                EOMCanvasManager.Instance.CloseEndOfMatchCanvas();
+                EOMCanvasManager.Instance.CloseEOMCanvasClientRpc();
                 UnlockClientMouseClientRpc();
                 await Matchmaking.UnlockGlobalLobby();
                 //LoadSceneUtil.Instance.NM_BySceneName("LobbyScene");
@@ -591,6 +593,8 @@ public class GameManager : NetworkBehaviour
         {
             using (new LoadScene("Exiting Match..."))
             {
+                EOMCanvasManager.Instance.CloseEndOfMatchCanvas();
+                UnlockMouse();
                 NetworkManager.Singleton.Shutdown();
                 await Matchmaking.LeaveLobby();
                 LoadSceneUtil.Instance.PreviousBuildIndex();
