@@ -70,7 +70,7 @@ public class EOMCanvasManager : NetworkBehaviour
         */
 
         //Change the text of stats depending on Prey or Predator
-        ApplyStatString(localClientStatus.role == 0 ? preyStatStrings : predatorStatStrings, localClientStatus);
+        //ApplyStatString(localClientStatus.role == 0 ? preyStatStrings : predatorStatStrings, localClientStatus);
         eomScreenParent.FadeIn();
     }
 
