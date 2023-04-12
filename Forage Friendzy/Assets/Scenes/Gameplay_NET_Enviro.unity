@@ -7770,6 +7770,7 @@ GameObject:
   - component: {fileID: 191881587}
   - component: {fileID: 191881586}
   - component: {fileID: 191881588}
+  - component: {fileID: 191881589}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -7802,8 +7803,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191881585}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9732628, y: 5.2388515, z: -5.461464}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5.461464}
+  m_LocalScale: {x: 135.25983, y: 106.220894, z: 135.25983}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 60298476}
@@ -7824,6 +7825,19 @@ MonoBehaviour:
   ppVol: {fileID: 191881586}
   ppDay: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
   ppNight: {fileID: 11400000, guid: 8431244dae64a1a4c99161d5558413d1, type: 2}
+--- !u!65 &191881589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191881585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.19790962, z: 1}
+  m_Center: {x: 0, y: -0.006163165, z: 0}
 --- !u!1001 &201670604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79971,7 +79985,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
