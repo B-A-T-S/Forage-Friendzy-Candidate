@@ -13,7 +13,7 @@ public class PreySelfHeal : NetworkBehaviour
 
     [Tooltip("The amount of time that it will take to heal yourself..")]
     [SerializeField] private float healTime;
-    public float HealTime { set { healTime = value; } }
+    public float HealTime { get { return healTime; } set { healTime = value; } }
     [Tooltip("The amount of speed reduction when healing")]
     [SerializeField] private float speedReduction;
     #endregion

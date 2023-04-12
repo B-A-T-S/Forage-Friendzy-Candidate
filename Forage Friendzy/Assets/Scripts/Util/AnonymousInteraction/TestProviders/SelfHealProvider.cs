@@ -16,6 +16,7 @@ public class SelfHealProvider : AnonymousProvider
         pFood = GetComponent<PreyFood>();
         pHealth = GetComponent<PreyHealth>();
         pSelfHeal = GetComponent<PreySelfHeal>();
+        heldAction.requiredHoldTime = pSelfHeal.HealTime;
     }
 
     public override void AddAction(AnonymousActor actor)

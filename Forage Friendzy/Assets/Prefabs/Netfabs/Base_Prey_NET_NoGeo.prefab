@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodCost: 2
-  healTime: 5
+  healTime: 4
   speedReduction: 6
   selfHealActive:
     m_InternalValue: 0
