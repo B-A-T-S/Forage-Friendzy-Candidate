@@ -20,9 +20,9 @@ public class ControllerMenuNavigation : MonoBehaviour
     {
         while (true)
         {
-            controllers = null;
+
             controllers = Input.GetJoystickNames();
-            if (!controllerConnected && !string.IsNullOrEmpty(controllers[0]))
+            if (!controllerConnected && controllers.Length != 0 && !string.IsNullOrEmpty(controllers[0]))
             {
                 Debug.Log("CONTROLLER CONNECTED");
                 controllerConnected = true;
