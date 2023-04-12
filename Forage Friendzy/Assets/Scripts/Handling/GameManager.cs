@@ -74,6 +74,7 @@ public class GameManager : NetworkBehaviour
     //game objs for sun slider and moon icon
 
     public bool isMatch;
+    public ClientStatus localClientStatus;
     public List<ClientStatus> clientStatus = new();
 
     public GameObject predatorDoor, centerDepo;
@@ -428,7 +429,7 @@ public class GameManager : NetworkBehaviour
     //in future will be used to display win screen for predators and loss for prey
     public void PredatorWin()
     {
-        onPredatorWin.Invoke();
+        onPredatorWin?.Invoke();
         /*
         //winText.text = "<color=#88FF00>Predator Players Win!</color>";
         if (IsClient)
@@ -483,7 +484,7 @@ public class GameManager : NetworkBehaviour
     //in future will be used to display win screen for prey and loss for predators
     public void PreyWin()
     {
-        onPreyWin.Invoke();
+        onPreyWin?.Invoke();
         //winText.text = "<color=#88FF00>Prey Players Win!</color>";
         /*
         if (IsClient)
@@ -541,11 +542,16 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    private void UnlockClientMouseClientRpc()
+    public void UnlockMouse()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    [ClientRpc]
+    private void UnlockClientMouseClientRpc()
+    {
+        UnlockMouse();
     }
 
     [ClientRpc]
@@ -575,6 +581,8 @@ public class GameManager : NetworkBehaviour
         {
             using (new LoadNetworkScene("Exiting Match...", NetworkManager.Singleton))
             {
+                EOMCanvasManager.Instance.CloseEndOfMatchCanvas();
+                EOMCanvasManager.Instance.CloseEOMCanvasClientRpc();
                 UnlockClientMouseClientRpc();
                 await Matchmaking.UnlockGlobalLobby();
                 //LoadSceneUtil.Instance.NM_BySceneName("LobbyScene");
@@ -585,6 +593,8 @@ public class GameManager : NetworkBehaviour
         {
             using (new LoadScene("Exiting Match..."))
             {
+                EOMCanvasManager.Instance.CloseEndOfMatchCanvas();
+                UnlockMouse();
                 NetworkManager.Singleton.Shutdown();
                 await Matchmaking.LeaveLobby();
                 LoadSceneUtil.Instance.PreviousBuildIndex();
@@ -606,6 +616,15 @@ public class GameManager : NetworkBehaviour
     public void AddClientStatus(ulong clientId, ClientLaunchInfo launchInfo)
     {
         clientStatus.Add(new ClientStatus(clientId, launchInfo));
+    }
+
+    public void EditClientStatus(int metricIndex, int amount)
+    {
+        ClientStatus copyOfLocal = localClientStatus;
+        copyOfLocal.metrics[metricIndex] += amount;
+        localClientStatus = copyOfLocal;
+
+        EditClientMetricServerRpc(NetworkManager.Singleton.LocalClientId, metricIndex, amount);
     }
 
     [ServerRpc]
