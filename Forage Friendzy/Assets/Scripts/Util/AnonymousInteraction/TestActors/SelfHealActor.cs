@@ -16,20 +16,24 @@ public class SelfHealActor : AnonymousActor
         base.Start();
         pHealth = GetComponent<PreyHealth>();
         pFood = GetComponent<PreyFood>();
+        pSelfHeal = GetComponent<PreySelfHeal>();
     }
 
     protected override void WhenForgottenAction()
     {
         isHealing = false;
+        pSelfHeal.SetSelfHealActivityServerRpc(false);
     }
     protected override void WhenInputActive()
     {
         isHealing = true;
+        pSelfHeal.SetSelfHealActivityServerRpc(true);
     }
 
     protected override void WhenInputInactive()
     {
         isHealing = false;
+        pSelfHeal.SetSelfHealActivityServerRpc(false);
     }
 
     protected virtual bool IsValidInputState()

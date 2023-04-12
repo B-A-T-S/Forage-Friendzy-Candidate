@@ -1227,6 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodCost: 2
   healTime: 5
+  speedReduction: 6
   selfHealActive:
     m_InternalValue: 0
 --- !u!114 &6454307978888079979

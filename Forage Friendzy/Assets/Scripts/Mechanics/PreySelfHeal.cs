@@ -14,18 +14,23 @@ public class PreySelfHeal : NetworkBehaviour
     [Tooltip("The amount of time that it will take to heal yourself..")]
     [SerializeField] private float healTime;
     public float HealTime { set { healTime = value; } }
+    [Tooltip("The amount of speed reduction when healing")]
+    [SerializeField] private float speedReduction;
     #endregion
 
     #region Component Variables
     private PreyFood preyFoodComponent;
     private PreyHealth preyHealthComponent;
     private PlayerController playerControllerComponent;
+    private BodyMovement bodyMovement;
     #endregion
 
     #region Helper Variables
     [HideInInspector]
     public NetworkVariable<bool> selfHealActive;
     private Coroutine selfHealCoroutine;
+    private float normalSpeed;
+    private float reducedSpeed;
     #endregion
 
     public override void OnNetworkSpawn()
@@ -39,7 +44,10 @@ public class PreySelfHeal : NetworkBehaviour
     {
         preyFoodComponent = GetComponent<PreyFood>();
         preyHealthComponent = GetComponent<PreyHealth>();
-        playerControllerComponent = GetComponent<BodyMovement>().linkedController;
+        bodyMovement = GetComponent<BodyMovement>();
+        playerControllerComponent = bodyMovement.linkedController;
+        normalSpeed = bodyMovement.SprintSpeed;
+        reducedSpeed = bodyMovement.SprintSpeed - speedReduction;
     }
 
     // Update is called once per frame
@@ -88,10 +96,20 @@ public class PreySelfHeal : NetworkBehaviour
     private void OnSelfHealChanged(bool previous, bool current)
     {
         Debug.Log($"Self heal set from {previous} to {current}");
+        if (current)
+        {
+            bodyMovement.SprintSpeed = reducedSpeed;
+            bodyMovement.WalkSpeed = reducedSpeed;
+        }
+        else
+        {
+            bodyMovement.SprintSpeed = normalSpeed;
+            bodyMovement.WalkSpeed = normalSpeed;
+        }
     }
 
     [ServerRpc]
-    private void SetSelfHealActivityServerRpc(bool isActive)
+    public void SetSelfHealActivityServerRpc(bool isActive)
     {
         selfHealActive.Value = isActive;
     }
