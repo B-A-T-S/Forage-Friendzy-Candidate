@@ -54,7 +54,7 @@ public static class Authentication
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
                 //Set PlayerID based on provided ID
                 PlayerId = AuthenticationService.Instance.PlayerId;
-                IsAuthenticated = true;
+                IsAuthenticated = !string.IsNullOrEmpty(PlayerId);
 
             } catch (Exception e)
             {

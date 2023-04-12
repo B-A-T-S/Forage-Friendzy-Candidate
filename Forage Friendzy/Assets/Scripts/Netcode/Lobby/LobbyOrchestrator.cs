@@ -4,8 +4,6 @@ using System.Net;
 using TMPro;
 using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
-using Unity.VisualScripting;
-//using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class LobbyOrchestrator : MonoBehaviour
@@ -17,6 +15,8 @@ public class LobbyOrchestrator : MonoBehaviour
     [SerializeField] private LobbyCreator lobbyCreator;
 
     [SerializeField] private RoomView roomView;
+
+    [SerializeField] private GameObject offineLineMode;
 
     [Header("Password Lobbies")]
     private string cachedLobbyPassword;
@@ -103,8 +103,9 @@ public class LobbyOrchestrator : MonoBehaviour
             roomView.gameObject.SetActive(false);
         }
 
-        //subscribe to events
+        offineLineMode.SetActive(!Authentication.IsAuthenticated);
 
+        //subscribe to events
         LobbyViewer.event_OnExitClicked += ExitLobbyViewer;
         LobbyViewer.event_OnHostClicked += Transition_ViewerToCreator;
 

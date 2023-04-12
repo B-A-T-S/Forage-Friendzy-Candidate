@@ -38,12 +38,14 @@ public class LobbyCreator : MonoBehaviour
     private void OnEnable()
     {
         nameInput.text = "";
-        lobbySizeDropdown.value = 2;
+        
 #if UNITY_STANDALONE || UNITY_STANDALONE_WIN
         hasRestrictionsToggle.isOn = true;
+        lobbySizeDropdown.value = 0;
 #endif
 #if UNITY_EDITOR_WIN || UNITY_EDITOR
         hasRestrictionsToggle.isOn = false;
+        lobbySizeDropdown.value = 2;
 #endif
         hasPasswordToggle.isOn = false;
         OnPasswordToggled(false);
