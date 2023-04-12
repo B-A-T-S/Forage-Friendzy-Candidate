@@ -11,6 +11,7 @@ public class PredatorAttack : NetworkBehaviour
     public NetworkVariable<bool> isStunned;
 
     private PreyHealth currentPrey;
+    private BodyMovement bodyMovement;
 
     public event Action event_OnAttack;
     NetworkVariable<int> attackVariableAbstract = new NetworkVariable<int>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -30,7 +31,7 @@ public class PredatorAttack : NetworkBehaviour
         isStunned.Value = false;
         isStunned.OnValueChanged += OnStunChanged;
         attackVariableAbstract.OnValueChanged += OnAbstractChanged;
-
+        bodyMovement = GetComponent<BodyMovement>();
     }
 
     private void OnAbstractChanged(int prev, int curr)
@@ -45,8 +46,8 @@ public class PredatorAttack : NetworkBehaviour
 
         if (!IsOwner)
             return;
-
-        if (Input.GetMouseButtonDown(0))
+        
+        if (Input.GetButton(bodyMovement.linkedController.interact))
         {
             //initiate an attack 
             if (canAttack)

@@ -12,7 +12,7 @@ public class ControllerMenuNavigation : MonoBehaviour
 
     private void Start()
     {
-        controllers = new string[1];
+        controllers = null;
         StartCoroutine(CheckForControllers());
     }
 
@@ -20,13 +20,14 @@ public class ControllerMenuNavigation : MonoBehaviour
     {
         while (true)
         {
+            controllers = null;
             controllers = Input.GetJoystickNames();
-            if (!controllerConnected && controllers.Length > 0)
+            if (!controllerConnected && !string.IsNullOrEmpty(controllers[0]))
             {
                 Debug.Log("CONTROLLER CONNECTED");
                 controllerConnected = true;
                 selectOnConnection.Select();
-            }else if (controllerConnected && controllers.Length == 0)
+            }else if (controllerConnected && string.IsNullOrEmpty(controllers[0]))
             {
                 Debug.Log("CONTROLLER DISCONNECTED");
                 controllerConnected = false;
