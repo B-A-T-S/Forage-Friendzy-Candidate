@@ -62,6 +62,11 @@ public class ActionContainerCanvas : NetworkBehaviour
                 //add ps controller suffix
                 resultingPath += psSuffix;
             }
+            else
+            {
+                //add keyboard suffix if controller is not xbox or ps
+                resultingPath += keyboardSuffix;
+            }
         }
         else
         {
@@ -69,7 +74,7 @@ public class ActionContainerCanvas : NetworkBehaviour
             resultingPath += keyboardSuffix;
         }
 
-        //Debug.Log($"Returned {resultingPath}");
+        Debug.Log($"Returned {resultingPath}");
         return Resources.Load<Sprite>(resultingPath);
     }
 
