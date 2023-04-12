@@ -8,9 +8,11 @@ public class ControllerMenuNavigation : MonoBehaviour
 {
     private bool controllerConnected;
     [SerializeField] private Selectable selectOnConnection;
+    string[] controllers;
 
     private void Start()
     {
+        controllers = new string[1];
         StartCoroutine(CheckForControllers());
     }
 
@@ -18,13 +20,13 @@ public class ControllerMenuNavigation : MonoBehaviour
     {
         while (true)
         {
-            var controllers = Input.GetJoystickNames();
-            if (!controllerConnected && !string.IsNullOrEmpty(controllers[0]))
+            controllers = Input.GetJoystickNames();
+            if (!controllerConnected && controllers.Length > 0)
             {
                 Debug.Log("CONTROLLER CONNECTED");
                 controllerConnected = true;
                 selectOnConnection.Select();
-            }else if (controllerConnected && string.IsNullOrEmpty(controllers[0]))
+            }else if (controllerConnected && controllers.Length == 0)
             {
                 Debug.Log("CONTROLLER DISCONNECTED");
                 controllerConnected = false;
