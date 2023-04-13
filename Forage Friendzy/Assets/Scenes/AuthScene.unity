@@ -2281,178 +2281,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457984572}
   m_CullTransparentMesh: 1
---- !u!1 &486779639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 486779640}
-  - component: {fileID: 486779642}
-  - component: {fileID: 486779641}
-  m_Layer: 5
-  m_Name: List02
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &486779640
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486779639}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1930491150}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 435.5555, y: -36.666683}
-  m_SizeDelta: {x: -618.3, y: 800}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &486779641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486779639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'Kandace Reitzel
-
-    Marketing Lead, 2D Artist, 3D Artist (Chipmunk, Rabbit
-    & Enviro), Music Design, UI/UX Design
-
-
-    Sebastian Susini
-
-    Network Programmer,
-    Systems Programmer
-
-
-    Tyler Swartz
-
-    QA Lead, 3D Artist (Enviro), SFX
-
-
-    Jared
-    Scott
-
-    Features Programmer, Systems Programmer
-
-
-    Jordan Bruyere
-
-    General
-    Programmer, VFX Programmer/Artist
-
-
-    Ziqi Zhou
-
-    2D Artist, UI/UX Design
-
-
-    Jordan
-    Odu
-
-    3D Artist (Enviro)'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
-  m_sharedMaterial: {fileID: -208495054993891980, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -604.1438, y: 26.291687, z: -675.8048, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &486779642
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486779639}
-  m_CullTransparentMesh: 1
 --- !u!95 &488457356
 Animator:
   serializedVersion: 4
@@ -2735,11 +2563,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1930491150}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -498.88892, y: -174.44446}
+  m_AnchoredPosition: {x: -498.88892, y: -167}
   m_SizeDelta: {x: -618.3, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &567162069
@@ -2762,11 +2590,35 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ericka Evans\nProducer, Morale Booster\n\nHailey Davidson\nProject Lead,
-    Rigger/Animator (Fox, Chipmunk & Rabbit)\n\nMitchell Brown\nProgramming Lead,
-    Gameplay Developer, \n\nWayne Jiang\nArt Lead, 3D Artist (Fox, Hedgehog & Enviro),
-    Rigger/Animator (Hedgehog), Environment Design\n\nAkshat Rawat\nDesign Lead,
-    Music Design, SFX, 3D Artist (Wolf), Rigger/Animator (Wolf), Environment Design"
+  m_text: "- Wildaboutimages. \u201CHedgehog Sounds\u201D, Aug 25, 2015. https://www.youtube.com/watch?v=5sgw-achKVM\r\n-
+    Potentjello. \u201CWoosh noise\u201D, Jul 8, 2013. https://freesound.org/people/potentjello/sounds/194081/\r\n-
+    Ev-Dawg. \u201CCricket\u201D, Feb 20, 2016. https://freesound.org/people/Ev-Dawg/sounds/337435/\r\n-
+    Eponn. \u201CUI APP\u201D, Jun 4, 2022. https://freesound.org/people/Eponn/sounds/636651/\r\n-
+    Newagesoup. \u201CEthereal Woosh\u201D, Mar 1, 2019. https://freesound.org/people/newagesoup/sounds/462089/\r\n-
+    Eponn. \u201CSine Beep Sytlized App UI\u201D, Feb 14, 2022. https://freesound.org/people/Eponn/sounds/619839/\r\n-
+    Jaoreir. \u201CButton Bleep 01\u201D, Sept 2, 2022. https://freesound.org/people/Jaoreir/sounds/533568/\r\n-
+    Leszek_Szary. \u201C3 up 2\u201D, Dec 13, 2012. https://freesound.org/people/Leszek_Szary/sounds/171579/\r\n-
+    Rob_Marion. \u201CGASP_Item Interact_1\u201D, Nov 3, 2020. https://freesound.org/people/Rob_Marion/sounds/542030/\r\n-
+    Marregheriti. \u201CLevel up\u201D, Mar 6, 2015. https://freesound.org/people/Marregheriti/sounds/266100/\r\n-
+    Craigsays. \u201CFox screaming in the night\u201D, Oct 2, 2020. https://freesound.org/people/craigsays/sounds/537586/\r\n-
+    Cazadordoblekatana. \u201C33-WolfDown\u201D, May 19, 2018. https://freesound.org/people/cazadordoblekatana/sounds/429122/\r\n-
+    RedRoxPetepPepper. \u201CMonster attack\u201D, Mar 1, 2018. https://freesound.org/people/RedRoxPeterPepper/sounds/420250/\r\n-
+    Qubodup. \u201CMonster Attack\u201D, Oct 13, 2018. https://freesound.org/people/qubodup/sounds/442957/\r\n-
+    Jofae. \u201CBite (Cartoon Style)\u201D, Aug 29, 2016. https://freesound.org/people/Jofae/sounds/353067/\r\n-
+    Raclure. \u201CDamage Sound Effect\u201D, Feb 7, 2019. https://freesound.org/people/Raclure/sounds/458867/\r\n-
+    Loyalty_Freak_Music. \u201CDrop\u201D, Nov 3, 2017. https://freesound.org/people/Loyalty_Freak_Music/sounds/407478/\r\n-
+    AuDRoger. \u201CBroken Branches\u201D, May 21, 2019. https://freesound.org/people/AuDRoger/sounds/471130/\r\n-
+    M.selassie. \u201CLeaves\u201D, Feb 28, 2019. https://freesound.org/people/m.selassie/sounds/461800/\r\n-
+    Ligidium. \u201CDoor Knock - 21\u201D, Jul 7, 2013. https://freesound.org/people/Ligidium/sounds/193854/\r\n-
+    Magnuswaker. \u201CHeavens Reprise\u201D, Jul 24, 2021. https://freesound.org/people/magnuswaker/sounds/581166/\r\n-
+    Gordeszkakerek. \u201CPick up or found it secret item\u201D, Apr. 27, 2014. https://freesound.org/people/gordeszkakerek/sounds/234924/\r\n-
+    El_boss. \u201CItem or Material Pickup Pop 3 of 3\u201D, Dec 18, 2022. https://freesound.org/people/el_boss/sounds/665181/\r\n-
+    Loyalty_Freak_Music. \u201CHeal\u201D, Nov 3, 2017. https://freesound.org/people/Loyalty_Freak_Music/sounds/407479/\r\n-
+    Shyguy014. \u201CHealpop\u201D, Feb 5, 2019. https://freesound.org/people/shyguy014/sounds/458533/\r\n-
+    Nivatius. \u201CRunning grizzly\u201D, May 26, 2020. https://freesound.org/people/Nivatius/sounds/519600/\r\n-
+    Freefire66. \u201CGrass1\u201D, Jan 25, 2013. https://freesound.org/people/freefire66/sounds/175955/\r\n-
+    Taure. \u201CWalk grass\u201D, Jun 10, 2021. https://freesound.org/people/taure/sounds/575320/\r\n-
+    Drowsyprincess. \u201CSnd_footsteps_grass\u201D, Mar 18, 2019. https://freesound.org/people/drowsyprincess/sounds/463854/"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
   m_sharedMaterial: {fileID: -208495054993891980, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
@@ -2793,14 +2645,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 21
+  m_fontSizeBase: 21
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2829,7 +2681,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -604.1438, y: 0, z: -675.8048, w: 0}
+  m_margin: {x: -560.1594, y: -20.682678, z: -1528.1691, w: -116.83151}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4711,7 +4563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 542, y: -417}
+  m_AnchoredPosition: {x: 542, y: -419}
   m_SizeDelta: {x: 326, y: 187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1134606580
@@ -9415,7 +9267,6 @@ RectTransform:
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 486779640}
   - {fileID: 2092145517}
   - {fileID: 567162068}
   m_Father: {fileID: 1435149014}
@@ -9821,7 +9672,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1930491150}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
