@@ -90,6 +90,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5055081703958072405, guid: 73463e1e64228f5459ae0d80d753984b, type: 3}
+      propertyPath: m_Size.y
+      value: 4.0083447
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055081703958072405, guid: 73463e1e64228f5459ae0d80d753984b, type: 3}
+      propertyPath: m_Center.y
+      value: 1.5041723
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73463e1e64228f5459ae0d80d753984b, type: 3}
 --- !u!4 &3031416744650922881 stripped
@@ -152,6 +160,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5055081703958072405, guid: 73463e1e64228f5459ae0d80d753984b, type: 3}
+      propertyPath: m_Size.y
+      value: 4.3083105
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055081703958072405, guid: 73463e1e64228f5459ae0d80d753984b, type: 3}
+      propertyPath: m_Center.y
+      value: 1.6541553
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73463e1e64228f5459ae0d80d753984b, type: 3}
 --- !u!4 &6667334159860954487 stripped
@@ -166,6 +182,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7186978604590698654}
     m_Modifications:
+    - target: {fileID: 5776040705074622134, guid: 371a0e39451da534fa85c0bc67624149, type: 3}
+      propertyPath: m_Radius
+      value: 0.50324327
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776040705074622134, guid: 371a0e39451da534fa85c0bc67624149, type: 3}
+      propertyPath: m_Center.x
+      value: 0.49967387
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776040705074622134, guid: 371a0e39451da534fa85c0bc67624149, type: 3}
+      propertyPath: m_Center.y
+      value: -0.9640947
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776040705074622134, guid: 371a0e39451da534fa85c0bc67624149, type: 3}
+      propertyPath: m_Center.z
+      value: -1.7836574
+      objectReference: {fileID: 0}
     - target: {fileID: 6325825046335835544, guid: 371a0e39451da534fa85c0bc67624149, type: 3}
       propertyPath: m_Name
       value: BushVar2_V2
@@ -180,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6665900232673171234, guid: 371a0e39451da534fa85c0bc67624149, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.496
       objectReference: {fileID: 0}
     - target: {fileID: 6665900232673171234, guid: 371a0e39451da534fa85c0bc67624149, type: 3}
       propertyPath: m_LocalPosition.z
