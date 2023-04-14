@@ -74,7 +74,7 @@ public class ActionContainerCanvas : NetworkBehaviour
             resultingPath += keyboardSuffix;
         }
 
-        Debug.Log($"Returned {resultingPath}");
+        //Debug.Log($"Returned {resultingPath}");
         return Resources.Load<Sprite>(resultingPath);
     }
 

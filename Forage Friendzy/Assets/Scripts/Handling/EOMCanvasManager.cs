@@ -46,7 +46,7 @@ public class EOMCanvasManager : NetworkBehaviour
         exitMatchBtn.SetActive(NetworkManager.Singleton.IsHost);
     }
 
-    private void OnEndOfMatch(bool localClientWon, ClientStatus localClientStatus)
+    private void OnEndOfMatch(bool localClientWon, ClientStatus clientStatus)
     {
         GameManager.Instance.UnlockMouse();
         winBoard.SetActive(localClientWon);
@@ -70,7 +70,7 @@ public class EOMCanvasManager : NetworkBehaviour
         */
 
         //Change the text of stats depending on Prey or Predator
-        //ApplyStatString(localClientStatus.role == 0 ? preyStatStrings : predatorStatStrings, localClientStatus);
+        ApplyStatString(clientStatus.role == 0 ? preyStatStrings : predatorStatStrings, clientStatus);
         eomScreenParent.FadeIn();
     }
 

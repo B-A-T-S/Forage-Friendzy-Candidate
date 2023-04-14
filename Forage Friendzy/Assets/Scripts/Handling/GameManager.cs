@@ -450,8 +450,7 @@ public class GameManager : NetworkBehaviour
         */
 
         //Determine MVP
-        event_EndOfMatch?.Invoke(ClientLaunchInfo.Instance.role == 1, 
-            clientStatus.Find(x => x.clientId == NetworkManager.Singleton.LocalClientId));
+        event_EndOfMatch?.Invoke(ClientLaunchInfo.Instance.role == 1, localClientStatus);
     }
 
     private ClientStatus DetermineMVP(int role)
