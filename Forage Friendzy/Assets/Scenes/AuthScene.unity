@@ -2444,10 +2444,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1495760226}
-    m_SelectOnDown: {fileID: 1279732682}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 2139360655}
+    m_SelectOnRight: {fileID: 2139360655}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2506,6 +2506,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 400187224}
+        m_TargetAssemblyTypeName: ControllerMenuNavigation, Assembly-CSharp
+        m_MethodName: SelectNextButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1510617501}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -3561,6 +3573,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4619921579140174639, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 1255425552}
+    - target: {fileID: 4619921579140174639, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -3632,6 +3648,10 @@ PrefabInstance:
       propertyPath: m_RaycastPadding.z
       value: 79.8
       objectReference: {fileID: 0}
+    - target: {fileID: 4979995648349519064, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 1255425552}
     - target: {fileID: 4979995648349519064, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -3716,6 +3736,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5229322045672255141, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 1255425552}
     - target: {fileID: 5229322045672255141, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -3893,8 +3917,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 1255425552}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -3905,6 +3933,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 626905768}
@@ -3913,11 +3945,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 152205149}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 400187224}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
@@ -3929,12 +3969,20 @@ PrefabInstance:
       value: FadeIn
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SelectNextButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: FadingCanvasGroup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: FadingCanvasGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: ControllerMenuNavigation, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
@@ -3945,12 +3993,20 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2139360655}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Selectable, UnityEngine.UI
       objectReference: {fileID: 0}
     - target: {fileID: 8825724005984567683, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4546,7 +4602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1495760226}
     m_SelectOnDown: {fileID: 1279732682}
@@ -4610,6 +4666,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 400187224}
+        m_TargetAssemblyTypeName: ControllerMenuNavigation, Assembly-CSharp
+        m_MethodName: SelectNextButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 457984574}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -5187,7 +5255,7 @@ MonoBehaviour:
         m_MethodName: SelectNextButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 626905765}
+          m_ObjectArgument: {fileID: 1679681087}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5569,18 +5637,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 626905765}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -7982,6 +8050,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508459792}
   m_CullTransparentMesh: 1
+--- !u!114 &1510617501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8464365383081295275, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+  m_PrefabInstance: {fileID: 626905761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514705406
 GameObject:
   m_ObjectHideFlags: 0
@@ -8736,6 +8815,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d6a8066dae07124f98a5699814f08b5, type: 3}
   m_PrefabInstance: {fileID: 5773557409080165115}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1679681087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4979995648349519064, guid: 5b2b0b79bbd8e5b4caf0c64406e7a1ed, type: 3}
+  m_PrefabInstance: {fileID: 626905761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1719647686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10030,10 +10120,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1495760226}
-    m_SelectOnDown: {fileID: 1279732682}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 457984574}
+    m_SelectOnRight: {fileID: 457984574}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -10092,6 +10182,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 400187224}
+        m_TargetAssemblyTypeName: ControllerMenuNavigation, Assembly-CSharp
+        m_MethodName: SelectNextButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 926473103}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

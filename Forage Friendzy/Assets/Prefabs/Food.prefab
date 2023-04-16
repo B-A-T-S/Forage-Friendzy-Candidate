@@ -650,7 +650,7 @@ MonoBehaviour:
   heldAction:
     containerID: 1763745256
     displayName: Collect
-    inputKey: 323
+    inputKey: Interact
     catagory: 1
     priority: 0
     requiredHoldTime: 1
