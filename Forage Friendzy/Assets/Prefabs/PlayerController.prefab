@@ -55,7 +55,7 @@ MonoBehaviour:
   selfHeal: Fire2
   sprint: 0
   sneak: 0
-  scoreboard: 0
+  scoreboard: Tutorial
   mouseX: Mouse X
   mouseY: Mouse Y
   horizontal: Horizontal

@@ -21,12 +21,13 @@ public class ControllerMenuNavigation : MonoBehaviour
         StartCoroutine(CheckForControllers());
     }
 
-    //private void Update()
-    //{
-    //    if (updateNav) { 
-    //        JoinLobbyNavigation();
-    //    }
-    //}
+    private void Update()
+    {
+        if (updateNav)
+        {
+            JoinLobbyNavigation();
+        }
+    }
 
     IEnumerator CheckForControllers()
     {
@@ -71,11 +72,15 @@ public class ControllerMenuNavigation : MonoBehaviour
             GameObject currentLobby = joinButtons.transform.GetChild(i).gameObject;
             Navigation nav = new Navigation();
             Navigation hostNav = new Navigation();
+            Navigation backNav = new Navigation();
             nav.mode = Navigation.Mode.Explicit;
+            hostNav.mode = Navigation.Mode.Explicit;
+            backNav.mode = Navigation.Mode.Explicit;
             if (i == 0)
             {
                 nav.selectOnUp = hostButton;
                 hostNav.selectOnUp = currentLobby.GetComponent<Selectable>();
+                backNav.selectOnUp = currentLobby.GetComponent<Selectable>();
             }
             else
                 nav.selectOnUp = joinButtons.transform.GetChild(i - 1).gameObject.GetComponent<Selectable>();
@@ -84,11 +89,17 @@ public class ControllerMenuNavigation : MonoBehaviour
             {
                 nav.selectOnDown = hostButton;
                 hostNav.selectOnDown = currentLobby.GetComponent<Selectable>();
+                backNav.selectOnDown = currentLobby.GetComponent<Selectable>();
             }
             else
                 nav.selectOnDown = joinButtons.transform.GetChild(i + 1).gameObject.GetComponent<Selectable>();
 
+            hostNav.selectOnRight = backButton;
+            hostNav.selectOnLeft = backButton;
             hostButton.navigation = hostNav;
+            backNav.selectOnRight = hostButton;
+            backNav.selectOnLeft = hostButton;
+            backButton.navigation = backNav;
             currentLobby.GetComponent<Button>().navigation = nav;
         }
     }

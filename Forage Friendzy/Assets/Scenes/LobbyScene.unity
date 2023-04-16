@@ -2752,7 +2752,7 @@ MonoBehaviour:
   selectOnConnection: {fileID: 406438683}
   joinButtons: {fileID: 8665991494962659091}
   hostButton: {fileID: 406438683}
-  backButton: {fileID: 0}
+  backButton: {fileID: 1055128299}
   updateNav: 1
 --- !u!1 &939397268
 GameObject:

@@ -34,12 +34,12 @@ public class TabMenuController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(playerController.scoreboard))
+        if (Input.GetButtonDown(playerController.scoreboard))
         {
             (isPrey ? preyMenu : predMenu).gameObject.SetActive(true);
         }
 
-        if (Input.GetKeyUp(playerController.scoreboard))
+        if (Input.GetButtonUp(playerController.scoreboard))
         {
             (isPrey ? preyMenu : predMenu).gameObject.SetActive(false);
             //Debug.Log("just disabled " + (isPrey ? "preyMenu" : "predMenu"));

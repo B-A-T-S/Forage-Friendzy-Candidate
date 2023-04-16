@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public string selfHeal;
     public KeyCode sprint;
     public KeyCode sneak;
-    public KeyCode scoreboard;
+    public string scoreboard = "Tutorial";
     #endregion
 
     #endregion
