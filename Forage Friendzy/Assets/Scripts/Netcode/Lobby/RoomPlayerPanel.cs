@@ -53,7 +53,7 @@ public class RoomPlayerPanel : MonoBehaviour
 
     [SerializeField] private RoleComponentGroup preyComponentGroup, predatorComponentGroup;
 
-    [SerializeField] private Button roleSwapper;
+    [SerializeField] private Button roleSwapper, cosmeticNext, cosmeticPrevious;
 
     [SerializeField] private TMP_Text nameText, statusText;
 
@@ -111,19 +111,6 @@ public class RoomPlayerPanel : MonoBehaviour
         previewImage.texture = activePreviewObject.renderTexture;
 
         activePreviewObject.SwitchSubjectPreview(ClientLaunchInfo.Instance.character + (3 * ClientLaunchInfo.Instance.role));
-
-        //if (playerId == 0 && localId == 0)
-            //TempFix_LockHostToPredator();
-
-    }
-
-    bool lockHost = false;
-
-    private void TempFix_LockHostToPredator()
-    {
-        roleSwapper.interactable = false;
-        lockHost = true;
-
     }
 
     private int GetFakePlayerId(ulong playerId)
@@ -145,10 +132,12 @@ public class RoomPlayerPanel : MonoBehaviour
 
     public void SetInteractable(bool isInteractable)
     {
-        if(!lockHost)
-            roleSwapper.interactable = isInteractable;
+        
+        roleSwapper.interactable = isInteractable;
         preyComponentGroup.SetInteractable(isInteractable);
         predatorComponentGroup.SetInteractable(isInteractable);
+        cosmeticNext.interactable = isInteractable;
+        cosmeticPrevious.interactable = isInteractable;
     }
 
     public void ChangeTeam()
@@ -256,7 +245,7 @@ public struct PlayerInfo : INetworkSerializable
     public PlayerInfo(bool isReady)
     {
         this.isReady = isReady;
-        roleIndex = 1;
+        roleIndex = 0;
         characterIndex = 0;
         cosmeticIndex = 0;
         playerName = "";

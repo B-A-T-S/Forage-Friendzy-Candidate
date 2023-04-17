@@ -162,9 +162,8 @@ public class LobbyManager : NetworkBehaviour
             //add myself to the list of local clients as not ready (because I am in the lobby)
             if(!playersInLobby.ContainsKey(NetworkManager.Singleton.LocalClientId))
                 playersInLobby.Add(NetworkManager.Singleton.LocalClientId, new PlayerInfo(false));
-            //EnqueueNameUpdateRequestServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
-            
-            //and update UI
+            EnqueueNameUpdateRequestServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
+
             UpdateUI();
         }
 
@@ -172,8 +171,8 @@ public class LobbyManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
         //After a client networkSpawn, update playerName on server
-        //if(IsClient)
-            //EnqueueNameUpdateRequestServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
+        if(IsClient && !IsServer)
+            EnqueueNameUpdateRequestServerRpc(NetworkManager.Singleton.LocalClientId, ClientLaunchInfo.Instance.playerName);
     }
 
     public override void OnNetworkDespawn()
@@ -422,7 +421,7 @@ public class LobbyManager : NetworkBehaviour
         }
 
         //does given name already exist?
-        // if so, add postfix
+        // if so, add suffix
         int numDuplicates = DoesNameExist(name);
         if (numDuplicates > 0)
             name = $"{name} ({numDuplicates})";
@@ -431,8 +430,8 @@ public class LobbyManager : NetworkBehaviour
         PlayerInfo copyOfInfo = playersInLobby[id];
         copyOfInfo.playerName = name;
         playersInLobby[id] = copyOfInfo;
-        PropagateToClients();
-        UpdateUI();
+        //PropagateToClients();
+        //UpdateUI();
     }
 
     //client to server

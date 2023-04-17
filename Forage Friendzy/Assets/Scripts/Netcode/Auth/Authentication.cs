@@ -39,7 +39,7 @@ public static class Authentication
             } 
             catch (Exception e)
             {
-                CanvasUtil.Instance.ShowError("Service Initilization Failed. Switching to Offline Mode");
+                //CanvasUtil.Instance.ShowError("Service Initilization Failed. Switching to Offline Mode");
             } 
 
             
@@ -54,11 +54,12 @@ public static class Authentication
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
                 //Set PlayerID based on provided ID
                 PlayerId = AuthenticationService.Instance.PlayerId;
-                IsAuthenticated = !string.IsNullOrEmpty(PlayerId);
 
             } catch (Exception e)
             {
-                CanvasUtil.Instance.ShowError("Authentication Failed. Switching to Offline <ode");
+                CanvasUtil.Instance.ShowError("Authentication Failed. Switching to Offline mode");
+            } finally {
+                IsAuthenticated = !string.IsNullOrEmpty(PlayerId);
             }
             
         }
