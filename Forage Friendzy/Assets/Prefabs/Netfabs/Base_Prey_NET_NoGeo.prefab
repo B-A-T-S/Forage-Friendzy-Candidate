@@ -2020,6 +2020,7 @@ GameObject:
   - component: {fileID: 7873666677048199925}
   - component: {fileID: 7873666677048199926}
   - component: {fileID: 7873666677048199927}
+  - component: {fileID: 1282123707245764229}
   m_Layer: 0
   m_Name: SelfHealPromt
   m_TagString: Untagged
@@ -2158,6 +2159,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1282123707245764229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873666677048199882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74952001077a1c24480e3739860e73b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 1
+  initialScale: {x: 1, y: 1, z: 1}
+  resultingScale: {x: 1.2, y: 1.2, z: 1.2}
+  cycleDelay: 4
+  timeToComplete: 2
 --- !u!1 &7873666677088432767
 GameObject:
   m_ObjectHideFlags: 0
