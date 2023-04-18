@@ -192,9 +192,9 @@ public class GameManager : NetworkBehaviour
         if (!isMatch)
             return;
 
-        timeElapsed += Time.deltaTime;
-        if (timeElapsed >= pollingInterval)
-        {
+        //timeElapsed += Time.deltaTime;
+        //if (timeElapsed >= pollingInterval)
+        //{
             //behaviours we only want to poll periodically
 
             //CheckNighttime();
@@ -207,8 +207,8 @@ public class GameManager : NetworkBehaviour
             CheckMatchOver();
 
 
-            timeElapsed -= pollingInterval;
-        }
+            //timeElapsed -= pollingInterval;
+        //}
     }
 
     #endregion
