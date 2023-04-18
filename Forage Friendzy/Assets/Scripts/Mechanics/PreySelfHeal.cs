@@ -35,19 +35,20 @@ public class PreySelfHeal : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        selfHealActive.Value = false;
-        selfHealActive.OnValueChanged += OnSelfHealChanged;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         preyFoodComponent = GetComponent<PreyFood>();
         preyHealthComponent = GetComponent<PreyHealth>();
         bodyMovement = GetComponent<BodyMovement>();
         playerControllerComponent = bodyMovement.linkedController;
         normalSpeed = bodyMovement.SprintSpeed;
         reducedSpeed = bodyMovement.SprintSpeed - speedReduction;
+        //selfHealActive.Value = false;
+        selfHealActive.OnValueChanged += OnSelfHealChanged;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -103,7 +104,7 @@ public class PreySelfHeal : NetworkBehaviour
         }
         else
         {
-            bodyMovement.SprintSpeed = normalSpeed;
+            //bodyMovement.SprintSpeed = normalSpeed;
             bodyMovement.WalkSpeed = normalSpeed;
         }
     }
