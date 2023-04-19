@@ -87,8 +87,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8974544325696234155}
   - component: {fileID: 8944955169510048712}
-  - component: {fileID: 859480621190669481}
-  - component: {fileID: 859480621190669480}
   m_Layer: 5
   m_Name: VictoryScreen
   m_TagString: Untagged
@@ -126,30 +124,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859480621190669482}
   m_CullTransparentMesh: 1
---- !u!225 &859480621190669481
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859480621190669482}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &859480621190669480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859480621190669482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6739ef5e16d4bcd4fa521ebf01d97091, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1352301270825033514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1009,7 @@ MonoBehaviour:
   predatorStatStrings:
   - 'Attacks Landed: '
   - 'Knockouts: '
-  eomScreenParent: {fileID: 859480621190669480}
+  eomScreenParent: {fileID: 859480621190669482}
   exitMatchBtn: {fileID: 2919806207435810873}
   winBoard: {fileID: 7416911926353235011}
   lossBoard: {fileID: 8309336028676391142}

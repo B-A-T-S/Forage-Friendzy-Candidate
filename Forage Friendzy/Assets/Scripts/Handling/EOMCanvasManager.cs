@@ -12,7 +12,7 @@ public class EOMCanvasManager : NetworkBehaviour
     public static EOMCanvasManager Instance { get; private set; }
 
     [SerializeField] private List<string> preyStatStrings, predatorStatStrings;
-    [SerializeField] private FadingCanvasGroup eomScreenParent;
+    [SerializeField] private GameObject eomScreenParent;
     [SerializeField] private GameObject exitMatchBtn;
 
     [SerializeField] private GameObject winBoard, lossBoard;
@@ -33,7 +33,7 @@ public class EOMCanvasManager : NetworkBehaviour
 
         Invoke("SubscribeToEvents", 1.0f);
 
-        eomScreenParent.FadeOut(0);
+        eomScreenParent.SetActive(false);
     }
 
     void SubscribeToEvents()
@@ -71,7 +71,7 @@ public class EOMCanvasManager : NetworkBehaviour
 
         //Change the text of stats depending on Prey or Predator
         ApplyStatString(clientStatus.role == 0 ? preyStatStrings : predatorStatStrings, clientStatus);
-        eomScreenParent.FadeIn();
+        eomScreenParent.gameObject.SetActive(true);
     }
 
     private void ApplyStatString(List<string> statLabels, ClientStatus clientStatus)
@@ -93,7 +93,7 @@ public class EOMCanvasManager : NetworkBehaviour
     {
         winBoard.SetActive(false);
         lossBoard.SetActive(false);
-        eomScreenParent.FadeOut();
+        eomScreenParent.gameObject.SetActive(false);
     }
 
     [ClientRpc]
