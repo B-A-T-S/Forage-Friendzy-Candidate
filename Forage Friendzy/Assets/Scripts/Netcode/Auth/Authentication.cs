@@ -57,7 +57,7 @@ public static class Authentication
 
             } catch (Exception e)
             {
-                CanvasUtil.Instance.ShowError("Authentication Failed. Switching to Offline mode");
+                //CanvasUtil.Instance.ShowError("Authentication Failed. Switching to Offline mode");
             } finally {
                 IsAuthenticated = !string.IsNullOrEmpty(PlayerId);
             }

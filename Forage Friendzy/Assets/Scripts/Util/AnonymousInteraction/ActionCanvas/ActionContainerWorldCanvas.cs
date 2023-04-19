@@ -25,7 +25,11 @@ public class ActionContainerWorldCanvas : ActionContainerCanvas
             target = GameManager.Instance.localPlayer.GetComponent<Controlled3DBody>().cameraReference.MyCamera.transform;
 
         if (isPromptVisible && target != null)
+        {
+            //transform.position = transform.position + (target.position - transform.position).normalized;
             promptParent.transform.LookAt(target);
+        }
+            
     }
 
 }
