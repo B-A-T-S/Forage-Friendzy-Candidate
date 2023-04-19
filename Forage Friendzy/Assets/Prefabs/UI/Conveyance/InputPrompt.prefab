@@ -581,6 +581,9 @@ MonoBehaviour:
   inputIconImage: {fileID: 772996448946478216}
   actionNameText: {fileID: 772996448892243142}
   inputIconFilePath: InputIcons/
+  xboxSuffix: _xctrl
+  psSuffix: _psctrl
+  keyboardSuffix: _kb
   isPromptVisible: 0
 --- !u!114 &772996449240441522
 MonoBehaviour:
@@ -649,7 +652,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &772996449240441527
 MonoBehaviour:
   m_ObjectHideFlags: 0
