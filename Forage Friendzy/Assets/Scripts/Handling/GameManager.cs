@@ -566,6 +566,15 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    private void ResetClientClientRpc()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        isMatch = false;
+        Reset();
+    }
+
     public async void ExitMatch()
     {
 
@@ -581,6 +590,7 @@ public class GameManager : NetworkBehaviour
             using (new LoadNetworkScene("Exiting Match...", NetworkManager.Singleton))
             {
                 EOMCanvasManager.Instance.CloseEndOfMatchCanvas();
+                ResetClientClientRpc();
                 UnlockClientMouseClientRpc();
                 await Matchmaking.UnlockGlobalLobby();
                 //LoadSceneUtil.Instance.NM_BySceneName("LobbyScene");
