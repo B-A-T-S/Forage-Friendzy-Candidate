@@ -77,7 +77,7 @@ public class GameManager : NetworkBehaviour
     public ClientStatus localClientStatus;
     public List<ClientStatus> clientStatus = new();
 
-    public GameObject predatorDoor, centerDepo;
+    public GameObject predatorDoor, centerDepo, winLossScreen;
 
     #endregion
 
@@ -775,5 +775,6 @@ public enum CustomLayers
 public enum Findable
 {
     PredatorDoor,
-    CenterDepo
+    CenterDepo,
+    WinLossScreen
 }

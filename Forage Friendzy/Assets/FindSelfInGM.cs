@@ -21,6 +21,12 @@ public class FindSelfInGM : MonoBehaviour
             GameManager.Instance.centerDepo = this.gameObject;
             return;
         }
+
+        if (me.Equals(Findable.WinLossScreen))
+        {
+            GameManager.Instance.winLossScreen = this.gameObject;
+            return;
+        }
     }
 
     // Update is called once per frame
