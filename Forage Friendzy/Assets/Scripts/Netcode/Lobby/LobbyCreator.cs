@@ -41,11 +41,11 @@ public class LobbyCreator : MonoBehaviour
         
 #if UNITY_STANDALONE || UNITY_STANDALONE_WIN
         hasRestrictionsToggle.isOn = true;
-        lobbySizeDropdown.value = 0;
+        lobbySizeDropdown.value = 2;
 #endif
 #if UNITY_EDITOR_WIN || UNITY_EDITOR
         hasRestrictionsToggle.isOn = false;
-        lobbySizeDropdown.value = 2;
+        lobbySizeDropdown.value = 0;
 #endif
         hasPasswordToggle.isOn = false;
         OnPasswordToggled(false);
