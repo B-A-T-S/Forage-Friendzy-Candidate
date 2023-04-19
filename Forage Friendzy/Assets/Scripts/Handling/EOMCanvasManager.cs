@@ -31,19 +31,7 @@ public class EOMCanvasManager : NetworkBehaviour
         if(Instance == null)
             Instance = this;
 
-        Invoke("SubscribeToEvents", 1.0f);
-
         eomScreenParent.SetActive(false);
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.Instance.event_EndOfMatch -= OnEndOfMatch;
-    }
-
-    void SubscribeToEvents()
-    {
-        GameManager.Instance.event_EndOfMatch += OnEndOfMatch;
     }
 
     public override void OnNetworkSpawn()
@@ -51,7 +39,7 @@ public class EOMCanvasManager : NetworkBehaviour
         exitMatchBtn.SetActive(NetworkManager.Singleton.IsHost);
     }
 
-    private void OnEndOfMatch(bool localClientWon, ClientStatus clientStatus)
+    public void OnEndOfMatch(bool localClientWon)
     {
         GameManager.Instance.UnlockMouse();
         winBoard.SetActive(localClientWon);

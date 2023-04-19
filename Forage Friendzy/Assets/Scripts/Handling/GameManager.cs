@@ -430,81 +430,14 @@ public class GameManager : NetworkBehaviour
     public void PredatorWin()
     {
         onPredatorWin?.Invoke();
-        /*
-        //winText.text = "<color=#88FF00>Predator Players Win!</color>";
-        if (IsClient)
-        {
-            if (predatorTeam.ContainsKey(NetworkManager.Singleton.LocalClientId))
-            {
-                //Display Victory
-                instantiatedWinMenu = Instantiate(winMenu);
-            }
-            else if (preyTeam.ContainsKey(NetworkManager.Singleton.LocalClientId))
-            {
-                //Display loss menu
-                instantiatedLossMenu = Instantiate(lossMenu);
-            }
-        }
-        if(IsHost)
-            StartCoroutine(DelayedFunction(() => { TryExitMatch(); }, 3f));
-        */
-
-        //Determine MVP
-        event_EndOfMatch?.Invoke(ClientLaunchInfo.Instance.role == 1, localClientStatus);
-    }
-
-    private ClientStatus DetermineMVP(int role)
-    {
-
-        int currentMaxScore = int.MinValue;
-        ClientStatus currentMVP = clientStatus.ElementAt(0);
-        foreach(ClientStatus cs in clientStatus)
-        {
-            if (cs.role != role)
-                continue;
-
-            int sum = 0;
-            if (role == 0)
-                sum = (cs.metrics[0] * 1) + (cs.metrics[1] * 2);
-            else
-                sum = (cs.metrics[2] * 1) + (cs.metrics[3] * 2);
-            
-            if(sum > currentMaxScore)
-            {
-                currentMaxScore = sum;
-                currentMVP = cs;
-            }
-
-        }
-
-        return currentMVP;
+        winLossScreen.GetComponent<EOMCanvasManager>().OnEndOfMatch(ClientLaunchInfo.Instance.role == 1);
     }
 
     //in future will be used to display win screen for prey and loss for predators
     public void PreyWin()
     {
         onPreyWin?.Invoke();
-        //winText.text = "<color=#88FF00>Prey Players Win!</color>";
-        /*
-        if (IsClient)
-        {
-            if (preyTeam.ContainsKey(NetworkManager.Singleton.LocalClientId))
-            {
-                //Display Victory
-                instantiatedWinMenu = Instantiate(winMenu);
-            }
-            else if (predatorTeam.ContainsKey(NetworkManager.Singleton.LocalClientId))
-            {
-                //Display loss menu
-                instantiatedLossMenu = Instantiate(lossMenu);
-            }
-        }
-
-        if (IsHost)
-            StartCoroutine(DelayedFunction(() => { TryExitMatch(); }, 3f));
-        */
-        event_EndOfMatch?.Invoke(ClientLaunchInfo.Instance.role == 0,
-            clientStatus.Find(x => x.clientId == NetworkManager.Singleton.LocalClientId));
+        winLossScreen.GetComponent<EOMCanvasManager>().OnEndOfMatch(ClientLaunchInfo.Instance.role == 0);
     }
 
     //call after everyone is loaded into game, possibly after a prematch timer?
