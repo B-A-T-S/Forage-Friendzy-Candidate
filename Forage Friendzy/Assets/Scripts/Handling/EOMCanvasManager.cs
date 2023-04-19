@@ -37,7 +37,7 @@ public class EOMCanvasManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         exitMatchBtn.SetActive(NetworkManager.Singleton.IsHost);
-        closeWindowBtn.SetActive(!NetworkManager.Singleton.IsServer);
+        //closeWindowBtn.SetActive(!NetworkManager.Singleton.IsServer);
     }
 
     public void OnEndOfMatch(bool localClientWon)
