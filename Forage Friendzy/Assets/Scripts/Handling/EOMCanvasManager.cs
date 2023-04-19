@@ -107,7 +107,9 @@ public class EOMCanvasManager : NetworkBehaviour
 
         CloseEndOfMatchCanvas();
 
-        if(NetworkManager.Singleton.IsHost)
+        GameManager.Instance.event_EndOfMatch -= OnEndOfMatch;
+
+        if (NetworkManager.Singleton.IsHost)
             GameManager.Instance.TryExitMatch();
     }
 }
