@@ -58,7 +58,7 @@ public class PreyFood : NetworkBehaviour
             //playerfood = playerfood - 1;
             int amount = playerfood.Value;
             SetPlayerFoodServerRpc(amount - 1);
-            GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.FoodDeposited, 1);
+            //GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.FoodDeposited, 1);
             GameManager.Instance.FoodDeposited(1);
             //nestfood = nestfood + 1;
             //player puts their food into nest

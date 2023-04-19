@@ -36,6 +36,11 @@ public class EOMCanvasManager : NetworkBehaviour
         eomScreenParent.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.event_EndOfMatch -= OnEndOfMatch;
+    }
+
     void SubscribeToEvents()
     {
         GameManager.Instance.event_EndOfMatch += OnEndOfMatch;
@@ -70,7 +75,7 @@ public class EOMCanvasManager : NetworkBehaviour
         */
 
         //Change the text of stats depending on Prey or Predator
-        ApplyStatString(clientStatus.role == 0 ? preyStatStrings : predatorStatStrings, clientStatus);
+        //ApplyStatString(clientStatus.role == 0 ? preyStatStrings : predatorStatStrings, clientStatus);
         eomScreenParent.gameObject.SetActive(true);
     }
 
@@ -106,8 +111,6 @@ public class EOMCanvasManager : NetworkBehaviour
     {
 
         CloseEndOfMatchCanvas();
-
-        GameManager.Instance.event_EndOfMatch -= OnEndOfMatch;
 
         if (NetworkManager.Singleton.IsHost)
             GameManager.Instance.TryExitMatch();
