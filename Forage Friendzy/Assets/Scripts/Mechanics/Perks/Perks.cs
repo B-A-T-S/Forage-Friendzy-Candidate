@@ -96,11 +96,7 @@ public class Perks : NetworkBehaviour
         //for perks that need to be initialized at the start
         if (!isPrey)
         {
-            //set up pred perks and other related stuff
-            if(bodyMovement.characterId.Value == (int)(predator.WOLF))
-            {
-                FasterScurry();
-            }
+            FasterScurry();
         }
         else
         {
