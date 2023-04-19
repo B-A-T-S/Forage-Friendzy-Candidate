@@ -581,7 +581,6 @@ public class GameManager : NetworkBehaviour
             using (new LoadNetworkScene("Exiting Match...", NetworkManager.Singleton))
             {
                 EOMCanvasManager.Instance.CloseEndOfMatchCanvas();
-                EOMCanvasManager.Instance.CloseEOMCanvasClientRpc();
                 UnlockClientMouseClientRpc();
                 await Matchmaking.UnlockGlobalLobby();
                 //LoadSceneUtil.Instance.NM_BySceneName("LobbyScene");
@@ -623,7 +622,7 @@ public class GameManager : NetworkBehaviour
         copyOfLocal.metrics[metricIndex] += amount;
         localClientStatus = copyOfLocal;
 
-        EditClientMetricServerRpc(NetworkManager.Singleton.LocalClientId, metricIndex, amount);
+        //EditClientMetricServerRpc(NetworkManager.Singleton.LocalClientId, metricIndex, amount);
     }
 
     [ServerRpc]
