@@ -430,14 +430,14 @@ public class GameManager : NetworkBehaviour
     public void PredatorWin()
     {
         onPredatorWin?.Invoke();
-        EOMCanvasManager.Instance.OnEndOfMatch(ClientLaunchInfo.Instance.role == 1);
+        EOMCanvasManager.Instance?.OnEndOfMatch(ClientLaunchInfo.Instance.role == 1);
     }
 
     //in future will be used to display win screen for prey and loss for predators
     public void PreyWin()
     {
         onPreyWin?.Invoke();
-        EOMCanvasManager.Instance.OnEndOfMatch(ClientLaunchInfo.Instance.role == 0);
+        EOMCanvasManager.Instance?.OnEndOfMatch(ClientLaunchInfo.Instance.role == 0);
     }
 
     //call after everyone is loaded into game, possibly after a prematch timer?
