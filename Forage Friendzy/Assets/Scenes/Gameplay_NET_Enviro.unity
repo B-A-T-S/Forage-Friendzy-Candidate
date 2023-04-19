@@ -21936,6 +21936,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 859480621190669481, guid: 94f4e1523fbdf584aaa7eac5ebe4b32f, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859480621190669481, guid: 94f4e1523fbdf584aaa7eac5ebe4b32f, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859480621190669481, guid: 94f4e1523fbdf584aaa7eac5ebe4b32f, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6452074549391383214, guid: 94f4e1523fbdf584aaa7eac5ebe4b32f, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3586472863
@@ -35559,7 +35571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7912363354896610581, guid: ce7c183f1ab266142bbeb01b565d3507, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7912363354896610582, guid: ce7c183f1ab266142bbeb01b565d3507, type: 3}
       propertyPath: exitGame

@@ -32,7 +32,7 @@ public class DebugFunctions : MonoBehaviour
     private void OnGUI()
     {
 
-
+        #if UNITY_EDITOR || UNITY_EDITOR_WIN
         GUILayout.BeginArea(new Rect(Screen.width - widthOffset, Screen.height - heightOffset, GUIWidth, GUIHeight));
         
         if(toggleGlobalPreyXRay)
@@ -106,6 +106,7 @@ public class DebugFunctions : MonoBehaviour
             
 
         GUILayout.EndArea();
+        #endif
     }
     
     private GameObject GetLocalPlayer()
