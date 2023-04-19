@@ -55,6 +55,10 @@ public class ControllerMenuNavigation : MonoBehaviour
                     EventSystem.current.SetSelectedGameObject(null);
                 }
             }
+
+            if(controllerConnected && EventSystem.current.currentSelectedGameObject == null)
+                selectOnConnection.Select();
+
             yield return new WaitForSeconds(1f);
         }
     }
