@@ -565,7 +565,7 @@ public class GameManager : NetworkBehaviour
         copyOfLocal.metrics[metricIndex] += amount;
         localClientStatus = copyOfLocal;
 
-        //EditClientMetricServerRpc(NetworkManager.Singleton.LocalClientId, metricIndex, amount);
+        EditClientMetricServerRpc(NetworkManager.Singleton.LocalClientId, metricIndex, amount);
     }
 
     [ServerRpc]

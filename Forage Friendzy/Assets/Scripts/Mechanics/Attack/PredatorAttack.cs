@@ -130,10 +130,10 @@ public class PredatorAttack : NetworkBehaviour
                     {
                         //Debug.Log("I Hit Sone");
                         if (currentPrey.isInjured.Value)
-                            //GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.AttacksLanded, 1);
+                            GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.AttacksLanded, 1);
 
                         if(currentPrey.isFainted.Value)
-                            //GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.Knockouts, 1);
+                            GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.Knockouts, 1);
 
                         currentPrey.ProcessAttack(NetworkManager.Singleton.LocalClientId);
                         if (currentPrey.GetComponent<BodyMovement>().characterId.Value == (int)(prey.HEDGEHOG))
