@@ -564,12 +564,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 109155206}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 424, y: -17}
-  m_SizeDelta: {x: 668.0349, y: 735.194}
+  m_AnchoredPosition: {x: 424, y: -110}
+  m_SizeDelta: {x: 770, y: 735.194}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &102565275
 MonoBehaviour:
@@ -655,8 +655,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -735,6 +735,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1997032519}
   - {fileID: 102565274}
   - {fileID: 330033087}
   m_Father: {fileID: 152205148}
@@ -1593,15 +1594,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1997032519}
+  m_Children: []
   m_Father: {fileID: 109155206}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -452, y: -87}
-  m_SizeDelta: {x: 618, y: 680.67}
+  m_AnchoredPosition: {x: -350, y: -110}
+  m_SizeDelta: {x: 770, y: 680.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &330033088
 MonoBehaviour:
@@ -1624,10 +1624,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Ericka Evans\nProducer, Morale Booster\n\nHailey Davidson\nProject Lead,
-    Rigger/Animator (Fox, Chipmunk & Rabbit)\n\nMitchell Brown\nProgramming Lead,
-    Gameplay Developer, \n\nWayne Jiang\nArt Lead, 3D Artist (Fox, Hedgehog & Enviro),
-    Rigger/Animator (Hedgehog), Environment Design\n\nAkshat Rawat\nDesign Lead,
-    Music Design, SFX, 3D Artist (Wolf), Rigger/Animator (Wolf), Environment Design"
+    \nRigger/Animator (Fox, Chipmunk & Rabbit)\n\nMitchell Brown\nProject Secondary,
+    Programming Lead, Gameplay/Systems Developer\n\nWayne Jiang\nArt Lead, 3D Artist
+    (Fox, Hedgehog & Enviro), Rigger/Animator (Hedgehog), \nEnvironment Design\n\nAkshat
+    Rawat\nDesign Lead, Music Design, SFX, 3D Artist (Wolf), Rigger/Animator (Wolf),
+    Environment Design"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
   m_sharedMaterial: {fileID: -208495054993891980, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
@@ -1654,8 +1655,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1690,7 +1691,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 2.3908691, y: 2.2569587, z: 5.179566, w: 1.3867799}
+  m_margin: {x: 2.3908691, y: -21.288147, z: 5.179566, w: 1.3867799}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2910,7 +2911,9 @@ MonoBehaviour:
     Nivatius. \u201CRunning grizzly\u201D, May 26, 2020. https://freesound.org/people/Nivatius/sounds/519600/\r\n-
     Freefire66. \u201CGrass1\u201D, Jan 25, 2013. https://freesound.org/people/freefire66/sounds/175955/\r\n-
     Taure. \u201CWalk grass\u201D, Jun 10, 2021. https://freesound.org/people/taure/sounds/575320/\r\n-
-    Drowsyprincess. \u201CSnd_footsteps_grass\u201D, Mar 18, 2019. https://freesound.org/people/drowsyprincess/sounds/463854/"
+    Drowsyprincess. \u201CSnd_footsteps_grass\u201D, Mar 18, 2019. https://freesound.org/people/drowsyprincess/sounds/463854/\n-
+    J. Lang ft. Airtone.\"Drops of H2O (The Filtered Water Treatment)\", May 13,
+    2015. https://youtu.be/l8rb1MsbY8c"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
   m_sharedMaterial: {fileID: -208495054993891980, guid: 2476e2b9730ecdf409c6fb1419853906, type: 2}
@@ -9569,12 +9572,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 330033087}
+  m_Father: {fileID: 109155206}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 31}
+  m_AnchoredPosition: {x: 5, y: -207}
   m_SizeDelta: {x: 445, y: 90}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1997032520
