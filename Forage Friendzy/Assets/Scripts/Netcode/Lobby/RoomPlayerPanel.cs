@@ -127,7 +127,7 @@ public class RoomPlayerPanel : MonoBehaviour
 
     public void SetName(string name)
     {
-        nameText.text = string.IsNullOrEmpty(name) ? $"Player {FakePlayerId}" : name;
+        nameText.text = string.IsNullOrEmpty(name) ? $"Player {FakePlayerId + 1}" : name;
     }
 
     public void SetInteractable(bool isInteractable)

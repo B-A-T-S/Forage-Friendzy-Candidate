@@ -720,7 +720,7 @@ public struct ClientStatus : INetworkSerializable
         role = launchInfo.role;
         character = launchInfo.character;
         cosmetic = launchInfo.cosmetic;
-        playerName = launchInfo.playerName;
+        playerName = string.IsNullOrEmpty(launchInfo.playerName) ? $"Player {clientId + 1}" : launchInfo.playerName;
 
         metrics = new int[4];
 
