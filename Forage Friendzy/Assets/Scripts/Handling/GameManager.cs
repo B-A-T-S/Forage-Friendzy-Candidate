@@ -573,19 +573,24 @@ public class GameManager : NetworkBehaviour
             clientStatus[indexOfMatch] = match;
         }
 
-        foreach(ClientStatus cs in clientStatus)
+        for(int i = 0; i < clientStatus.Count; i++)
         {
-            TrickleDownClientMetricsClientRpc(cs);
+            TrickleDownClientMetricsClientRpc(clientStatus[i], i);
         }
                 
     }
 
     [ClientRpc]
-    public void TrickleDownClientMetricsClientRpc(ClientStatus cs)
+    public void TrickleDownClientMetricsClientRpc(ClientStatus cs, int index)
     {
-        int indexOfMatch = clientStatus.FindIndex(x => x.clientId == cs.clientId);
-        if (indexOfMatch >= 0)
-            this.clientStatus[indexOfMatch] = cs;
+        try
+        {
+            this.clientStatus[index] = cs;
+        } catch (ArgumentOutOfRangeException e)
+        {
+            clientStatus.Insert(index, cs);
+        }
+            
     }
 
     public ClientStatus DetermineMVP(int role)

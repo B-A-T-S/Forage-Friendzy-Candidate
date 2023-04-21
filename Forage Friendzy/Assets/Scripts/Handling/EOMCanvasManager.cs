@@ -63,8 +63,8 @@ public class EOMCanvasManager : NetworkBehaviour
         }
         else
         {
-            mvpStatTexts[0].text = predatorStatStrings[2] + mvp.metrics[2];
-            mvpStatTexts[1].text = predatorStatStrings[3] + mvp.metrics[3];
+            mvpStatTexts[0].text = predatorStatStrings[0] + mvp.metrics[2];
+            mvpStatTexts[1].text = predatorStatStrings[1] + mvp.metrics[3];
         }
         
 

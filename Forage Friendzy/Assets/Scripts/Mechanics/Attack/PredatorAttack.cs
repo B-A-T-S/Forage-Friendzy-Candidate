@@ -107,6 +107,7 @@ public class PredatorAttack : NetworkBehaviour
 
         Collider[] hits = Physics.OverlapSphere(attackTransform.position, attackRadius);
 
+        bool metricUpdated = false;
 
         foreach (Collider preyHit in hits)
         {
@@ -129,11 +130,19 @@ public class PredatorAttack : NetworkBehaviour
                     if (currentPrey != null)
                     {
                         //Debug.Log("I Hit Sone");
-                        if (currentPrey.isInjured.Value)
+                        if (!currentPrey.isInjured.Value && !currentPrey.isFainted.Value && !metricUpdated)
+                        {
                             GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.AttacksLanded, 1);
+                            metricUpdated = true;
+                        }
+                            
 
-                        if(currentPrey.isFainted.Value)
+                        if(currentPrey.isInjured.Value && !metricUpdated)
+                        {
                             GameManager.Instance.EditClientStatus((int)ClientStatus.StatIndex.Knockouts, 1);
+                            metricUpdated = true;
+                        }
+                            
 
                         currentPrey.ProcessAttack(NetworkManager.Singleton.LocalClientId);
                         if (currentPrey.GetComponent<BodyMovement>().characterId.Value == (int)(prey.HEDGEHOG))

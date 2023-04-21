@@ -75,7 +75,7 @@ public class PreyHealth : NetworkBehaviour
         if (!isFainted.Value)
         {
             HitClientRPC();
-            GameManager.Instance.EditClientMetricServerRpc(attackerID, (int)ClientStatus.StatIndex.AttacksLanded, 1);
+            //GameManager.Instance.EditClientMetricServerRpc(attackerID, (int)ClientStatus.StatIndex.AttacksLanded, 1);
             if (isInjured.Value)
             {
 
@@ -87,7 +87,7 @@ public class PreyHealth : NetworkBehaviour
                 matchFaintCount++;
                 
 
-                GameManager.Instance.EditClientMetricServerRpc(attackerID, (int)ClientStatus.StatIndex.Knockouts, 1);
+                //GameManager.Instance.EditClientMetricServerRpc(attackerID, (int)ClientStatus.StatIndex.Knockouts, 1);
                 //TakeDamage(damage);
 
                 //Debug.Log("Help, I've fallen, and I can't get up (without the help of a teammate).");
