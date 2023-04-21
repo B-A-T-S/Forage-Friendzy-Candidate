@@ -37,7 +37,6 @@ public class EOMCanvasManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         exitMatchBtn.SetActive(NetworkManager.Singleton.IsHost);
-        //closeWindowBtn.SetActive(!NetworkManager.Singleton.IsServer);
     }
 
     public void OnEndOfMatch(bool localClientWon)
@@ -45,8 +44,14 @@ public class EOMCanvasManager : NetworkBehaviour
         GameManager.Instance.UnlockMouse();
         winBoard.SetActive(localClientWon);
         lossBoard.SetActive(!localClientWon);
+        int mvpRole = 0;
+        if (GameManager.Instance.localClientStatus.role == 0)
+            mvpRole = localClientWon ? 0 : 1;
+        else if (GameManager.Instance.localClientStatus.role == 1)
+            mvpRole = localClientWon ? 1 : 0;
 
-        /*
+        ClientStatus mvp = GameManager.Instance.DetermineMVP(mvpRole);
+
         //Change the text of stats on mvp
         mvpPlayerName.text = mvp.playerName;
         mvpCharacterImage.sprite = characterSprites[mvp.character + (3 * mvp.role)];
@@ -61,10 +66,11 @@ public class EOMCanvasManager : NetworkBehaviour
             mvpStatTexts[0].text = predatorStatStrings[2] + mvp.metrics[2];
             mvpStatTexts[1].text = predatorStatStrings[3] + mvp.metrics[3];
         }
-        */
+        
 
         //Change the text of stats depending on Prey or Predator
-        //ApplyStatString(clientStatus.role == 0 ? preyStatStrings : predatorStatStrings, clientStatus);
+        ApplyStatString(GameManager.Instance.localClientStatus.role == 0 ? preyStatStrings : predatorStatStrings, 
+            GameManager.Instance.localClientStatus);
         eomScreenParent.gameObject.SetActive(true);
     }
 

@@ -10,11 +10,18 @@ public class DestructScurryData : ScurryData
 
     [Header("Destructible Scurry Data")]
     public NetworkVariable<ScurryState> destrucState;
+
+    [Header("References")]
+    [Tooltip("The Collider Object that is enabled/disabled depending on scurry state")]
+    [SerializeField] private Collider scurryBlockedCollider;
+
     [Header("Unity Events")]
     [Tooltip("Invoked when a <b>Prey<\\b> interacts with this Scurry while it is <b>unblocked<\\b>")]
     public UnityEvent interact_Unblocked;
     [Tooltip("Invoked when a <b>Predator<\\b> interacts with this Scurry while it is <b>blocked<\\b>")]
     public UnityEvent interact_Blocked;
+
+
 
     // Use this for initialization
     void Start()
@@ -54,6 +61,18 @@ public class DestructScurryData : ScurryData
         {
             interact_Blocked.Invoke();
         }
+    }
+
+    public void ToggleBlockedCollider(float delay)
+    {
+
+        Invoke("ToggleCollider", delay);
+
+        void ToggleCollider()
+        {
+            scurryBlockedCollider.gameObject.SetActive(destrucState.Value == ScurryState.Blocked ? true : false);
+        }
+
     }
 
     public void MakeDestructible()

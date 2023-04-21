@@ -446,12 +446,6 @@ public class GameManager : NetworkBehaviour
         StartCoroutine(MatchTimer());
     }
 
-    IEnumerator DelayedFunction(Action toPerform, float toWait)
-    {
-        yield return new WaitForSeconds(toWait);
-        toPerform?.Invoke();
-    }
-
     IEnumerator MatchTimer()
     {
         yield return new WaitForSeconds(matchDuration);
@@ -568,7 +562,7 @@ public class GameManager : NetworkBehaviour
         EditClientMetricServerRpc(NetworkManager.Singleton.LocalClientId, metricIndex, amount);
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void EditClientMetricServerRpc(ulong clientId, int metricIndex, int amount)
     {
         int indexOfMatch = clientStatus.FindIndex(x => x.clientId == clientId);
@@ -578,7 +572,47 @@ public class GameManager : NetworkBehaviour
             match.metrics[metricIndex] += amount;
             clientStatus[indexOfMatch] = match;
         }
+
+        foreach(ClientStatus cs in clientStatus)
+        {
+            TrickleDownClientMetricsClientRpc(cs);
+        }
                 
+    }
+
+    [ClientRpc]
+    public void TrickleDownClientMetricsClientRpc(ClientStatus cs)
+    {
+        int indexOfMatch = clientStatus.FindIndex(x => x.clientId == cs.clientId);
+        if (indexOfMatch >= 0)
+            this.clientStatus[indexOfMatch] = cs;
+    }
+
+    public ClientStatus DetermineMVP(int role)
+    {
+
+        int currentMaxScore = int.MinValue;
+        ClientStatus currentMVP = clientStatus.ElementAt(0);
+        foreach (ClientStatus cs in clientStatus)
+        {
+            if (cs.role != role)
+                continue;
+
+            int sum = 0;
+            if (role == 0)
+                sum = (cs.metrics[0] * 1) + (cs.metrics[1] * 2);
+            else
+                sum = (cs.metrics[2] * 1) + (cs.metrics[3] * 2);
+
+            if (sum > currentMaxScore)
+            {
+                currentMaxScore = sum;
+                currentMVP = cs;
+            }
+
+        }
+
+        return currentMVP;
     }
 
     [ClientRpc]
@@ -663,7 +697,7 @@ public class GameManager : NetworkBehaviour
 }
 
 [Serializable]
-public struct ClientStatus
+public struct ClientStatus : INetworkSerializable
 {
     public ulong clientId;
     public int role;
@@ -695,6 +729,18 @@ public struct ClientStatus
         AttacksLanded,
         Knockouts
     }
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref clientId);
+        serializer.SerializeValue(ref role);
+        serializer.SerializeValue(ref character);
+        serializer.SerializeValue(ref cosmetic);
+        serializer.SerializeValue(ref playerName);
+        serializer.SerializeValue(ref metrics);
+        serializer.SerializeValue(ref isConnected);
+    }
+
 
 }
 
