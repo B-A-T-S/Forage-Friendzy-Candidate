@@ -137,11 +137,15 @@ public class Food : NetworkBehaviour
 
             yield return null;
         }
+
+        yield return new WaitForSeconds(1.5f);
         EnableMesh();
     }
 
     private bool AmIObserved()
     {
+        return false;
+
         Vector3 castDirection;
         RaycastHit hit;
 
