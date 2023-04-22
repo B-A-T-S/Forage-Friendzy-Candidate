@@ -233,13 +233,6 @@ MonoBehaviour:
   xRayGeometry: {fileID: 4605277563673099910}
   xRay_IsVisible:
     m_InternalValue: 0
-  cosmeticGroups:
-  - toEnable:
-    - {fileID: 6437798305817640911}
-    - {fileID: 8570939295541260970}
-  - toEnable:
-    - {fileID: 3729729508235875605}
-    - {fileID: 4562726203451779724}
 --- !u!114 &5619923852468392707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,6 +1293,8 @@ MonoBehaviour:
   keyMap:
   - key: Run
     value: GrassRun
+  - key: Walk
+    value: GrassWalk
   availableSoundLists:
   - key: Run
     list:
@@ -1312,6 +1307,26 @@ MonoBehaviour:
     - clip: {fileID: 8300000, guid: b65199a43a2791a46a5441115a11f88d, type: 3}
       pitchRange: {x: 0.5, y: 1}
   - key: GrassRun
+    list:
+    - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 85523eda435f74349b9513e634b8f2a0, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 35795ea279bd3ec4082c173799bab303, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 6838ded9b6451b143866436741924557, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: Walk
+    list:
+    - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 85523eda435f74349b9513e634b8f2a0, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 35795ea279bd3ec4082c173799bab303, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 6838ded9b6451b143866436741924557, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassWalk
     list:
     - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
       pitchRange: {x: 0.5, y: 1}

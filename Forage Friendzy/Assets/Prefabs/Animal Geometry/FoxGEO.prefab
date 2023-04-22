@@ -1046,6 +1046,8 @@ MonoBehaviour:
   keyMap:
   - key: Run
     value: GrassRun
+  - key: Walk
+    value: GrassWalk
   availableSoundLists:
   - key: Run
     list:
@@ -1058,6 +1060,26 @@ MonoBehaviour:
     - clip: {fileID: 8300000, guid: b65199a43a2791a46a5441115a11f88d, type: 3}
       pitchRange: {x: 0.5, y: 1}
   - key: GrassRun
+    list:
+    - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 85523eda435f74349b9513e634b8f2a0, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 35795ea279bd3ec4082c173799bab303, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 6838ded9b6451b143866436741924557, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: Walk
+    list:
+    - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 85523eda435f74349b9513e634b8f2a0, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 35795ea279bd3ec4082c173799bab303, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+    - clip: {fileID: 8300000, guid: 6838ded9b6451b143866436741924557, type: 3}
+      pitchRange: {x: 0.5, y: 1}
+  - key: GrassWalk
     list:
     - clip: {fileID: 8300000, guid: 629293c23fd26744796839fa97d77024, type: 3}
       pitchRange: {x: 0.5, y: 1}
